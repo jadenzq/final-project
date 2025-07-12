@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 p-4 font-sans">
+    <div class="md:max-w-[1000px] md:mx-auto">
+      <!-- Search Bar -->
+      <div class="bg-white p-4 rounded-xl shadow flex flex-wrap gap-4 mb-6">
+        <div class="flex items-center space-x-2">
+          <input type="radio" name="trip" checked />
+          <label>Round trip</label>
+          <input type="radio" name="trip" />
+          <label>One way</label>
+          <input type="radio" name="trip" />
+          <label>Multi-city</label>
+        </div>
+        <div class="flex flex-wrap items-center gap-y-2 w-full lg:w-auto">
+          <label class="w-full"
+            >Leaving from
+            <input
+              type="text"
+              placeholder="e.g. Kuala Lumpur"
+              value=""
+              class="border px-3 py-2 rounded w-full"
+            />
+          </label>
+          <label class="w-full"
+            >Going to
+            <input
+              type="text"
+              placeholder="e.g Rome"
+              value=""
+              class="border px-3 py-2 rounded w-full"
+            />
+          </label>
+          <label class="md:w-full"
+            >Travel dates
+            <div class="grid grid-cols-2 gap-x-2">
+              <input
+                type="date"
+                name="from-date"
+                value=""
+                class="border px-3 py-2 rounded"
+              />
+              <input
+                type="date"
+                name="to-date"
+                value=""
+                class="border px-3 py-2 rounded"
+              />
+            </div>
+          </label>
+          <label class="w-full"
+            >Travelers
+            <input type="number" class="border px-3 py-2 rounded w-full" />
+          </label>
+          <button
+            class="bg-blue-600 w-full text-white my-2 px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters & Results -->
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Filters -->
+        <aside class="bg-white p-4 rounded-xl shadow w-full lg:w-1/4 h-fit">
+          <h2
+            class="text-lg font-semibold mb-2 flex items-center justify-between"
+          >
+            Filters
+            <button
+              type="button"
+              id="toggle-filters"
+              onclick="document.querySelector('.collapsed-area').classList.toggle('hidden'); this.innerHTML = this.innerHTML === '▼' ? '▲' : '▼';"
+              class="ml-2 text-xl md:hidden"
+            >
+              ▲
+            </button>
+          </h2>
+          <p class="text-sm text-gray-500 mb-4">Showing 1281 results</p>
+          <div class="collapsed-area hidden md:block">
+            <div class="mb-4">
+              <h3 class="font-medium mb-1">Stops</h3>
+              <div class="space-y-2">
+                <label class="flex items-center space-x-2">
+                  <input type="radio" name="stops" checked /> <span>Any</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                  <input type="radio" name="stops" /> <span>Direct only</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                  <input type="radio" name="stops" /> <span>1 stop max</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="font-medium mb-1">Airlines</h3>
+              <div class="space-y-1">
+                <label class="flex items-center"
+                  ><input type="checkbox" checked class="mr-2" /> Air
+                  Asia</label
+                >
+                <label class="flex items-center"
+                  ><input type="checkbox" checked class="mr-2" /> China Eastern
+                  Airlines</label
+                >
+                <label class="flex items-center"
+                  ><input type="checkbox" checked class="mr-2" /> Scoot</label
+                >
+                <label class="flex items-center"
+                  ><input type="checkbox" checked class="mr-2" /> Batik Air
+                  Malaysia</label
+                >
+                <label class="flex items-center"
+                  ><input type="checkbox" checked class="mr-2" /> Xiamen
+                  Airlines</label
+                >
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Results -->
+        <main class="flex-1">
+          <!-- Sort Tabs -->
+          <div class="bg-white p-3 rounded-xl shadow mb-4 flex space-x-4">
+            <button
+              class="sort-btn font-semibold border-b-2 border-blue-600 pb-1"
+              onclick="setActiveSort(this)"
+            >
+              Best
+            </button>
+            <button
+              class="sort-btn text-gray-500"
+              onclick="setActiveSort(this)"
+            >
+              Cheapest
+            </button>
+            <button
+              class="sort-btn text-gray-500"
+              onclick="setActiveSort(this)"
+            >
+              Fastest
+            </button>
+          </div>
+
+          <!-- Price Suggestion -->
+          <div
+            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4 rounded overflow-scroll"
+          >
+            <p class="font-medium">
+              We found better prices! Compare nearby dates.
+            </p>
+            <div class="flex space-x-4 mt-2">
+              <span class="bg-white px-3 py-1 rounded shadow"
+                >6 Aug-13 Aug<br /><strong>MYR1,262</strong></span
+              >
+              <span class="bg-white px-3 py-1 rounded shadow"
+                >7 Aug-14 Aug<br /><strong>MYR1,239</strong></span
+              >
+              <span class="bg-red-100 px-3 py-1 rounded shadow"
+                >8 Aug-15 Aug<br /><strong>MYR1,487</strong></span
+              >
+              <span class="bg-white px-3 py-1 rounded shadow"
+                >10 Aug-17 Aug<br /><strong>MYR1,351</strong></span
+              >
+            </div>
+          </div>
+
+          <!-- Flight Ticket #1 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <!-- Left section -->
+            <div class="flex-1 w-full md:w-auto">
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Fastest</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Flexible ticket upgrade available</span
+                >
+              </div>
+
+              <!-- Flight details -->
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/batik-air.webp"
+                  alt="Batik Air"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">22:15</p>
+                  <p class="text-sm text-gray-600">KUL · 9 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                  >
+                    Direct
+                  </span>
+                  <span class="text-sm text-gray-500 justify-self-center"
+                    >3h 45m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">02:00</p>
+                  <p class="text-sm text-gray-600">KMG · 10 Aug</p>
+                </div>
+              </div>
+
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/air-asia.png"
+                  alt="AirAsia"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">17:55</p>
+                  <p class="text-sm text-gray-600">KMG · 16 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded w-fit mx-auto"
+                  >
+                    Direct
+                  </span>
+                  <span class="text-sm text-gray-500 justify-self-center"
+                    >3h 55m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">21:50</p>
+                  <p class="text-sm text-gray-600">KUL · 16 Aug</p>
+                </div>
+              </div>
+
+              <p class="text-sm text-gray-600 mt-2">
+                Batik Air Malaysia, Air Asia
+              </p>
+            </div>
+
+            <!-- Right section -->
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,529.80</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR3,059.61 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Ticket #2 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <div class="flex-1 w-full md:w-auto">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-yellow-100 text-yellow-700 px-2 py-0.5 text-sm rounded"
+                  >Cheapest</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Refundable</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/china-eastern-airlines.jpg"
+                  alt="China Eastern"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">08:30</p>
+                  <p class="text-sm text-gray-600">KUL · 10 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >6h 20m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">14:50</p>
+                  <p class="text-sm text-gray-600">PVG · 10 Aug</p>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/china-eastern-airlines.jpg"
+                  alt="China Eastern"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">16:00</p>
+                  <p class="text-sm text-gray-600">PVG · 17 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >7h 10m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">23:10</p>
+                  <p class="text-sm text-gray-600">KUL · 17 Aug</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mt-2">China Eastern Airlines</p>
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,099.00</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR2,198.00 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Ticket #3 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <div class="flex-1 w-full md:w-auto">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-red-100 text-red-700 px-2 py-0.5 text-sm rounded"
+                  >Shortest layover</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Flexible ticket</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/scoot.png"
+                  alt="Scoot"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">12:00</p>
+                  <p class="text-sm text-gray-600">KUL · 11 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >5h 30m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">17:30</p>
+                  <p class="text-sm text-gray-600">SIN · 11 Aug</p>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/scoot.png"
+                  alt="Scoot"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">19:00</p>
+                  <p class="text-sm text-gray-600">SIN · 18 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >6h 00m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">01:00</p>
+                  <p class="text-sm text-gray-600">KUL · 19 Aug</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mt-2">Scoot</p>
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,199.00</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR2,398.00 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Ticket #4 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <div class="flex-1 w-full md:w-auto">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-blue-100 text-blue-700 px-2 py-0.5 text-sm rounded"
+                  >Best value</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Flexible ticket</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/xiamen-airlines.jpg"
+                  alt="Xiamen Airlines"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">10:00</p>
+                  <p class="text-sm text-gray-600">KUL · 12 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >8h 10m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">18:10</p>
+                  <p class="text-sm text-gray-600">XMN · 12 Aug</p>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/xiamen-airlines.jpg"
+                  alt="Xiamen Airlines"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">20:00</p>
+                  <p class="text-sm text-gray-600">XMN · 19 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >1 stop</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >7h 30m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">03:30</p>
+                  <p class="text-sm text-gray-600">KUL · 20 Aug</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mt-2">Xiamen Airlines</p>
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,399.00</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR2,798.00 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Ticket #6 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <div class="flex-1 w-full md:w-auto">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-purple-100 text-purple-700 px-2 py-0.5 text-sm rounded"
+                  >Premium</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Flexible ticket</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/batik-air.webp"
+                  alt="Batik Air"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">15:00</p>
+                  <p class="text-sm text-gray-600">KUL · 13 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >Direct</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >3h 55m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">18:55</p>
+                  <p class="text-sm text-gray-600">KMG · 13 Aug</p>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/batik-air.webp"
+                  alt="Batik Air"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">20:00</p>
+                  <p class="text-sm text-gray-600">KMG · 20 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >Direct</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >3h 55m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">23:55</p>
+                  <p class="text-sm text-gray-600">KUL · 20 Aug</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mt-2">Batik Air Malaysia</p>
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,899.00</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR3,798.00 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Ticket #6 -->
+          <div
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
+          >
+            <div class="flex-1 w-full md:w-auto">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="bg-gray-200 text-gray-700 px-2 py-0.5 text-sm rounded"
+                  >Standard</span
+                >
+                <span
+                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
+                  >Flexible ticket</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
+              >
+                <img
+                  src="../images/air-asia.png"
+                  alt="AirAsia"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">06:00</p>
+                  <p class="text-sm text-gray-600">KUL · 14 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >Direct</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >3h 55m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">09:55</p>
+                  <p class="text-sm text-gray-600">KMG · 14 Aug</p>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
+              >
+                <img
+                  src="../images/air-asia.png"
+                  alt="AirAsia"
+                  class="w-8 h-8 object-contain"
+                />
+                <div>
+                  <p class="text-lg font-semibold">12:00</p>
+                  <p class="text-sm text-gray-600">KMG · 21 Aug</p>
+                </div>
+                <div class="grid grid-cols-1 items-center">
+                  <span
+                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
+                    >Direct</span
+                  ><span class="text-sm text-gray-500 justify-self-center"
+                    >3h 55m</span
+                  >
+                </div>
+                <div>
+                  <p class="text-lg font-semibold">15:55</p>
+                  <p class="text-sm text-gray-600">KUL · 21 Aug</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mt-2">Air Asia</p>
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-black"
+                ></svg>
+                <p class="text-xl font-bold">MYR1,299.00</p>
+              </div>
+              <p class="text-sm text-gray-500">
+                MYR2,598.00 for all travellers
+              </p>
+              <button
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function setActiveSort(btn) {
+        document.querySelectorAll(".sort-btn").forEach((b) => {
+          b.classList.remove(
+            "font-semibold",
+            "border-b-2",
+            "border-blue-600",
+            "pb-1"
+          );
+          b.classList.add("text-gray-500");
+        });
+        btn.classList.remove("text-gray-500");
+        btn.classList.add(
+          "font-semibold",
+          "border-b-2",
+          "border-blue-600",
+          "pb-1"
+        );
+      }
+    </script>
+  </body>
+</html>
