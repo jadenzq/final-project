@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triple Fun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-4 font-sans">
+    <div class="md:max-w-[1000px] md:mx-auto">
+      <!-- Search Bar -->
+      <div class="p-4 rounded-xl border shadow flex flex-wrap gap-4 mb-6">
+        <div class="flex items-center space-x-2">
+          <input type="radio" name="trip" checked />
+          <label>Round trip</label>
+          <input type="radio" name="trip" />
+          <label>One way</label>
+          <input type="radio" name="trip" />
+          <label>Multi-city</label>
+        </div>
+        <div class="flex flex-wrap items-center gap-y-2 w-full lg:w-auto">
+          <label class="w-full"
+            >Hotel location
+            <input
+              type="text"
+              placeholder="e.g. Kuala Lumpur"
+              value=""
+              class="border px-3 py-2 rounded w-full"
+            />
+          </label>
+          <label class="md:w-full"
+            >Staying dates
+            <div class="grid grid-cols-2 gap-x-2">
+              <input
+                type="date"
+                name="from-date"
+                value=""
+                class="border px-3 py-2 rounded"
+              />
+              <input
+                type="date"
+                name="to-date"
+                value=""
+                class="border px-3 py-2 rounded"
+              />
+            </div>
+          </label>
+          <label class="w-full"
+            >Travelers
+            <input type="number" class="border px-3 py-2 rounded w-full" />
+          </label>
+          <button
+            class="bg-blue-600 w-full text-white my-2 px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row w-full gap-4">
+        <!-- Sidebar -->
+        <aside
+          class="w-full lg:w-1/4 bg-white rounded-xl shadow p-4 space-y-6 border"
+        >
+          <div>
+            <img src="../images/google-map.webp" alt="Map" class="rounded-md" />
+            <button class="mt-2 text-blue-600 font-semibold">
+              Show on map
+            </button>
+          </div>
+          <div>
+            <h2
+              class="text-lg font-bold mb-2 flex items-center justify-between"
+            >
+              Filter by:
+              <button
+                type="button"
+                id="toggle-hotel-filters"
+                onclick="document.querySelector('.hotel-collapsed-area').classList.toggle('hidden'); this.innerHTML = this.innerHTML === '▼' ? '▲' : '▼';"
+                class="ml-2 text-xl lg:hidden"
+              >
+                ▲
+              </button>
+            </h2>
+            <div class="hotel-collapsed-area hidden lg:block">
+              <div class="mb-4">
+                <h3 class="font-semibold">Your previous filters</h3>
+                <div class="space-y-1 mt-2">
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Guest houses</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Bed and
+                    breakfasts</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Homestays</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Apartments</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Villas</label
+                  >
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <h3 class="font-semibold">Your budget (per night)</h3>
+                <p class="text-sm text-gray-500 mt-1">MYR 50 – MYR 600+</p>
+                <div class="h-2 bg-gray-200 rounded my-2"></div>
+              </div>
+
+              <div class="mb-4">
+                <h3 class="font-semibold">Popular filters</h3>
+                <div class="space-y-1 mt-2">
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />No prepayment</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Free
+                    cancellation</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Very good: 8+</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Hotels</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Book without credit
+                    card</label
+                  >
+                  <label class="block"
+                    ><input type="checkbox" class="mr-2" />Breakfast
+                    included</label
+                  >
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <h3 class="font-semibold">Meals</h3>
+                <label class="block"
+                  ><input type="checkbox" class="mr-2" />Self catering</label
+                >
+                <label class="block"
+                  ><input type="checkbox" class="mr-2" />Breakfast
+                  included</label
+                >
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="w-full lg:w-3/4">
+          <div
+            class="flex justify-between items-center mb-4 bg-white p-3 rounded-xl shadow space-x-4 border"
+          >
+            <div class="flex items-center gap-2">
+              <select class="rounded px-2 py-1">
+                <option>Sort by: Our top picks</option>
+              </select>
+              <button class="px-2 py-1 rounded">List</button>
+              <button class="px-2 py-1 rounded">Grid</button>
+            </div>
+          </div>
+
+          <!-- Hotel Card -->
+          <div class="space-y-4">
+            <!-- Hotel Item -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border"
+            >
+              <img
+                src="../images/holiday-inn-kunming-city-center.jpg"
+                alt="Holiday Inn"
+                class="w-full h-40 md:w-40 md:h-32 object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div class="flex flex-col md:flex-row justify-between">
+                  <div>
+                    <h2 class="text-lg font-semibold">
+                      Holiday Inn Kunming City Centre by IHG
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                      Panlong District, Kunming ·
+                      <a href="#" class="text-blue-600">Show on map</a> · 0.7 km
+                      from centre
+                    </p>
+                    <p class="mt-1 text-sm">Standard Room</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      No prepayment needed
+                    </p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="text-sm flex items-center space-x-2">
+                      <span
+                        class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1"
+                      >
+                        8.7
+                      </span>
+                      <span>Fabulous</span>
+                    </div>
+                    <div class="text-sm text-gray-600">267 reviews</div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col md:flex-row justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 467</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 77 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add more hotel cards below as needed, same structure -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
