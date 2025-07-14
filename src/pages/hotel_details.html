@@ -27,22 +27,22 @@
         >
           <a
             href="#"
-            class="text-booking-blue border-b-2 border-booking-blue pb-2 font-medium"
+            class="nav-tab text-booking-blue border-b-2 border-booking-blue pb-2 font-medium"
             >Overview</a
           >
-          <a href="#" class="text-gray-600 hover:text-booking-blue"
+          <a
+            href="#overview"
+            class="nav-tab text-gray-600 hover:text-booking-blue"
             >Info & prices</a
           >
-          <a href="#" class="text-gray-600 hover:text-booking-blue"
+          <a
+            href="#facilities"
+            class="nav-tab text-gray-600 hover:text-booking-blue"
             >Facilities</a
           >
-          <a href="#" class="text-gray-600 hover:text-booking-blue"
-            >House rules</a
-          >
-          <a href="#" class="text-gray-600 hover:text-booking-blue"
-            >The fine print</a
-          >
-          <a href="#" class="text-gray-600 hover:text-booking-blue"
+          <a
+            href="#reviews"
+            class="nav-tab text-gray-600 hover:text-booking-blue"
             >Guest reviews (267)</a
           >
         </nav>
@@ -408,7 +408,7 @@
           </div>
 
           <!-- About Section -->
-          <div class="mb-8">
+          <div class="mb-8" id="overview">
             <h2 class="text-2xl font-bold mb-4 flex items-center">
               About this property
               <button
@@ -454,7 +454,7 @@
           </div>
 
           <!-- Reviews Section -->
-          <div class="">
+          <div class="" id="reviews">
             <h2 class="text-2xl font-bold mb-4">Guest reviews</h2>
             <div
               class="bg-blue-600 text-white inline-block px-3 py-1 rounded text-xl font-bold mb-4"
@@ -850,7 +850,10 @@
       </div>
 
       <!-- Detailed Facilities -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 bg-white">
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 bg-white"
+        id="facilities"
+      >
         <!-- Great for your stay -->
         <div>
           <h3 class="text-lg font-semibold mb-4 flex items-center">
@@ -1388,11 +1391,35 @@
     <script src="./hotel_autocomplete.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // About section see more
         var btn = document.getElementById("about-see-more-btn");
         var extra = document.getElementById("about-extra-paragraphs");
         btn.addEventListener("click", function () {
           extra.style.display = "block";
           btn.style.display = "none";
+        });
+
+        // Navigation tab interactivity
+        var navTabs = document.querySelectorAll(".nav-tab");
+        navTabs.forEach(function (tab) {
+          tab.addEventListener("click", function (e) {
+            navTabs.forEach(function (t) {
+              t.classList.remove(
+                "text-booking-blue",
+                "border-b-2",
+                "border-booking-blue",
+                "font-medium"
+              );
+              t.classList.add("text-gray-600");
+            });
+            tab.classList.remove("text-gray-600");
+            tab.classList.add(
+              "text-booking-blue",
+              "border-b-2",
+              "border-booking-blue",
+              "font-medium"
+            );
+          });
         });
       });
     </script>
