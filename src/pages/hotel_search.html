@@ -10,14 +10,6 @@
     <div class="md:max-w-[1000px] md:mx-auto">
       <!-- Search Bar -->
       <div class="p-4 rounded-xl border shadow flex flex-wrap gap-4 mb-6">
-        <div class="flex items-center space-x-2">
-          <input type="radio" name="trip" checked />
-          <label>Round trip</label>
-          <input type="radio" name="trip" />
-          <label>One way</label>
-          <input type="radio" name="trip" />
-          <label>Multi-city</label>
-        </div>
         <div class="flex flex-wrap items-center gap-y-2 w-full lg:w-auto">
           <label class="w-full"
             >Hotel location
@@ -534,12 +526,28 @@
       </div>
     </div>
 
-    <!-- Add this before the closing </body> tag -->
+    <!-- Google Map Modal -->
+    <div
+      id="map-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden"
+    >
+      <div
+        class="bg-white rounded-lg shadow-lg p-0 relative w-[90vw] max-w-xl md:max-w-[800px] h-[60vh] flex flex-col"
+      >
+        <button
+          id="close-map-modal"
+          class="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl font-bold z-10"
+        >
+          &times;
+        </button>
+        <div id="map-container" class="flex-1 w-full h-full rounded-b-lg"></div>
+      </div>
+    </div>
+    <script src="./hotel_autocomplete.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxYn-Dgp1r1Qp2HbIubEc-egYC1_xb9E&libraries=places&callback=initHotelAutocomplete"
       async
       defer
     ></script>
-    <script src="./hotel_autocomplete.js"></script>
   </body>
 </html>
