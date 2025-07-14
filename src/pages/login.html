@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-md">
+    <h2 class="text-3xl font-bold text-blue-600 text-center mb-8">Login</h2>
+
+    <!-- General Error Message -->
+    <div id="generalError" class="text-red-500 text-sm mb-4 hidden">
+      <!-- error message will be inserted here -->
+    </div>
+
+    <form id="loginForm" class="space-y-5">
+      <!-- Email Input -->
+      <div>
+        <label for="email" class="block mb-1 text-gray-700">Email</label>
+        <div class="relative">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            class="w-full px-4 py-3 pl-11 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-100"
+            required
+          />
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path d="M16 12H8m0 0l4-4m-4 4l4 4" />
+            </svg>
+          </div>
+        </div>
+        <p id="emailError" class="text-red-500 text-sm mt-1 hidden"></p>
+      </div>
+
+      <!-- Password Input -->
+      <div>
+        <label for="password" class="block mb-1 text-gray-700">Password</label>
+        <div class="relative">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            class="w-full px-4 py-3 pl-11 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-100"
+            required
+          />
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path d="M12 11c.943 0 1.818-.33 2.512-.883m0 0a4.002 4.002 0 00-5.024-6.263A4.002 4.002 0 0012 11zm0 0v6m0 0H9m3 0h3" />
+            </svg>
+          </div>
+        </div>
+        <p id="passwordError" class="text-red-500 text-sm mt-1 hidden"></p>
+      </div>
+
+      <!-- Login Button -->
+      <button
+        type="submit"
+        id="loginButton"
+        class="w-full py-3 rounded-xl text-white font-semibold bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+      >
+        Login
+      </button>
+    </form>
+
+    <!-- Register Link -->
+    <div class="mt-6 text-sm text-center text-gray-600">
+      Don't have an account?
+      <a href="signup.html" class="text-blue-600 hover:underline">Register here.</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const generalError = document.getElementById("generalError");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Clear errors
+      emailError.classList.add("hidden");
+      passwordError.classList.add("hidden");
+      generalError.classList.add("hidden");
+
+      const email = loginForm.email.value.trim();
+      const password = loginForm.password.value.trim();
+
+      // Mock authentication logic (replace with Firebase/your backend logic)
+      loginButton.disabled = true;
+      loginButton.textContent = "Loading...";
+
+      try {
+        // Simulated login
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        if (email === "user@example.com" && password === "password123") {
+          alert("Login successful!");
+          // Redirect or call onLogin callback
+        } else if (email !== "user@example.com") {
+          emailError.textContent = "Email not found.";
+          emailError.classList.remove("hidden");
+        } else {
+          passwordError.textContent = "Incorrect password.";
+          passwordError.classList.remove("hidden");
+        }
+
+      } catch (err) {
+        generalError.textContent = "An unexpected error occurred.";
+        generalError.classList.remove("hidden");
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+      }
+    });
+  </script>
+</body>
+</html>
