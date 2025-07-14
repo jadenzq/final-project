@@ -1,6 +1,3 @@
-// hotel_autocomplete.js
-// Replace 'YOUR_GOOGLE_API_KEY' with your actual Google Places API key below.
-
 let selectedPlace = null;
 let geocoder; // Declare geocoder globally
 
@@ -51,66 +48,42 @@ function fetchHotelsNearLocation(event) {
   console.log("Fetching hotels near:", lat, lng);
 }
 
-// Show Google Static Map in a popup when 'Show on map' is clicked
-function showStaticMapPopup() {
-  if (!selectedPlace || !selectedPlace.geometry) {
-    alert("Please select a location from the dropdown first.");
-    return;
-  }
-  const lat = selectedPlace.geometry.location.lat();
-  const lng = selectedPlace.geometry.location.lng();
-  const apiKey = "AIzaSyCLxYn-Dgp1r1Qp2HbIubEc-egYC1_xb9E";
-  const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=13&size=600x400&markers=color:red%7C${lat},${lng}&key=${apiKey}`;
-
-  // Create popup
-  const popup = document.createElement("div");
-  popup.style.position = "fixed";
-  popup.style.top = "0";
-  popup.style.left = "0";
-  popup.style.width = "100vw";
-  popup.style.height = "100vh";
-  popup.style.background = "rgba(0,0,0,0.5)";
-  popup.style.display = "flex";
-  popup.style.alignItems = "center";
-  popup.style.justifyContent = "center";
-  popup.style.zIndex = "9999";
-  popup.innerHTML = `<div style="background:#fff;padding:16px;border-radius:8px;position:relative;"><img src='${mapUrl}' alt='Map' style='max-width:100%;border-radius:8px;'/><button id='closeMapPopup' style='position:absolute;top:8px;right:8px;font-size:20px;background:none;border:none;cursor:pointer;'>&times;</button></div>`;
-  document.body.appendChild(popup);
-  document.getElementById("closeMapPopup").onclick = function () {
-    document.body.removeChild(popup);
-  };
+// Helper to show the embedded Google Map modal
+function showEmbeddedMapModal(lat, lng, title = "Location") {
+  const modal = document.getElementById("map-modal");
+  const mapContainer = document.getElementById("map-container");
+  modal.classList.remove("hidden");
+  // Clear previous map instance
+  mapContainer.innerHTML = "";
+  // Create the map
+  const map = new google.maps.Map(mapContainer, {
+    center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+    zoom: 15,
+  });
+  new google.maps.Marker({
+    position: { lat: parseFloat(lat), lng: parseFloat(lng) },
+    map,
+    title,
+  });
 }
 
-// Show Google Static Map in a popup when 'Show on map' is clicked (for any hotel card)
-function showStaticMapPopupForHotel(event) {
-  const btn = event.currentTarget;
-  const lat = btn.getAttribute("data-lat");
-  const lng = btn.getAttribute("data-lng");
-  if (!lat || !lng) {
-    alert("No location found for this hotel.");
-    return;
+// Close modal logic
+window.addEventListener("DOMContentLoaded", function () {
+  const closeBtn = document.getElementById("close-map-modal");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      document.getElementById("map-modal").classList.add("hidden");
+    });
   }
-  const apiKey = "AIzaSyCLxYn-Dgp1r1Qp2HbIubEc-egYC1_xb9E";
-  const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=13&size=600x400&markers=color:red%7C${lat},${lng}&key=${apiKey}`;
-
-  // Create popup
-  const popup = document.createElement("div");
-  popup.style.position = "fixed";
-  popup.style.top = "0";
-  popup.style.left = "0";
-  popup.style.width = "100vw";
-  popup.style.height = "100vh";
-  popup.style.background = "rgba(0,0,0,0.5)";
-  popup.style.display = "flex";
-  popup.style.alignItems = "center";
-  popup.style.justifyContent = "center";
-  popup.style.zIndex = "9999";
-  popup.innerHTML = `<div style="background:#fff;padding:16px;border-radius:8px;position:relative;"><img src='${mapUrl}' alt='Map' style='max-width:100%;border-radius:8px;'/><button id='closeMapPopup' style='position:absolute;top:8px;right:8px;font-size:20px;background:none;border:none;cursor:pointer;'>&times;</button></div>`;
-  document.body.appendChild(popup);
-  document.getElementById("closeMapPopup").onclick = function () {
-    document.body.removeChild(popup);
-  };
-}
+  const modal = document.getElementById("map-modal");
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === this) {
+        this.classList.add("hidden");
+      }
+    });
+  }
+});
 
 // Attach the event listener after DOM is loaded
 window.addEventListener("DOMContentLoaded", function () {
@@ -120,10 +93,26 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   const showMapBtn = document.querySelector("button.text-blue-600");
   if (showMapBtn) {
-    showMapBtn.addEventListener("click", showStaticMapPopup);
+    showMapBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (selectedPlace && selectedPlace.geometry) {
+        const lat = selectedPlace.geometry.location.lat();
+        const lng = selectedPlace.geometry.location.lng();
+        const name = selectedPlace.name || "Location";
+        showEmbeddedMapModal(lat, lng, name);
+      } else {
+        alert("Please select a location from the dropdown first.");
+      }
+    });
   }
-  // Attach to all hotel card map buttons
   document.querySelectorAll(".hotel-show-map-btn").forEach((btn) => {
-    btn.addEventListener("click", showStaticMapPopupForHotel);
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      const lat = this.getAttribute("data-lat");
+      const lng = this.getAttribute("data-lng");
+      const title =
+        this.closest(".flex-1")?.querySelector("h2")?.textContent || "Hotel";
+      showEmbeddedMapModal(lat, lng, title);
+    });
   });
 });
