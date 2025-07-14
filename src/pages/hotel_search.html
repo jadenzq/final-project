@@ -22,6 +22,7 @@
           <label class="w-full"
             >Hotel location
             <input
+              id="hotel-location-input"
               type="text"
               placeholder="e.g. Kuala Lumpur"
               value=""
@@ -60,7 +61,7 @@
       <div class="flex flex-col lg:flex-row w-full gap-4">
         <!-- Sidebar -->
         <aside
-          class="w-full lg:w-1/4 bg-white rounded-xl shadow p-4 space-y-6 border"
+          class="w-full lg:w-1/4 bg-white rounded-xl shadow p-4 space-y-6 border md:h-fit"
         >
           <div>
             <img src="../images/google-map.webp" alt="Map" class="rounded-md" />
@@ -82,7 +83,7 @@
                 ▲
               </button>
             </h2>
-            <div class="hotel-collapsed-area hidden lg:block">
+            <div class="hotel-collapsed-area hidden md:block">
               <div class="mb-4">
                 <h3 class="font-semibold">Your previous filters</h3>
                 <div class="space-y-1 mt-2">
@@ -161,8 +162,6 @@
               <select class="rounded px-2 py-1">
                 <option>Sort by: Our top picks</option>
               </select>
-              <button class="px-2 py-1 rounded">List</button>
-              <button class="px-2 py-1 rounded">Grid</button>
             </div>
           </div>
 
@@ -170,47 +169,357 @@
           <div class="space-y-4">
             <!-- Hotel Item -->
             <div
-              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border"
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
             >
               <img
                 src="../images/holiday-inn-kunming-city-center.jpg"
                 alt="Holiday Inn"
-                class="w-full h-40 md:w-40 md:h-32 object-cover rounded-md"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
               />
               <div class="flex-1">
-                <div class="flex flex-col md:flex-row justify-between">
-                  <div>
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
                     <h2 class="text-lg font-semibold">
                       Holiday Inn Kunming City Centre by IHG
                     </h2>
                     <p class="text-sm text-gray-600">
                       Panlong District, Kunming ·
-                      <a href="#" class="text-blue-600">Show on map</a> · 0.7 km
-                      from centre
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="25.038001648970276"
+                        data-lng="102.7250935964026"
+                      >
+                        Show on map
+                      </button>
+                      · 0.7 km from centre
                     </p>
                     <p class="mt-1 text-sm">Standard Room</p>
                     <p class="text-sm font-semibold mt-1 text-green-700">
                       No prepayment needed
                     </p>
                   </div>
-                  <div class="flex items-center space-x-2">
-                    <div class="text-sm flex items-center space-x-2">
-                      <span
-                        class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1"
-                      >
-                        8.7
-                      </span>
-                      <span>Fabulous</span>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      8.7
                     </div>
-                    <div class="text-sm text-gray-600">267 reviews</div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Fabulous</span>
+                      <div class="text-sm text-gray-600">267 reviews</div>
+                    </div>
                   </div>
                 </div>
                 <div
-                  class="mt-2 flex flex-col md:flex-row justify-between items-end space-y-2"
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
                 >
                   <p class="text-right text-gray-700 font-semibold">MYR 467</p>
                   <span class="text-sm font-normal text-gray-500"
                     >+MYR 77 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Item 2 -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
+            >
+              <img
+                src="../images/shangri-la-kunming.jpg"
+                alt="Shangri-La Hotel"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
+                    <h2 class="text-lg font-semibold">
+                      Shangri-La Hotel, Kunming
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                      Xishan District ·
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="25.038973270926878"
+                        data-lng="102.72823562339188"
+                      >
+                        Show on map
+                      </button>
+                      · 2.1 km from centre
+                    </p>
+                    <p class="mt-1 text-sm">Deluxe King Room</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      Free cancellation
+                    </p>
+                  </div>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      9.1
+                    </div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Superb</span>
+                      <div class="text-sm text-gray-600">312 reviews</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 620</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 90 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Item 3 -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
+            >
+              <img
+                src="../images/inter-continental-kunming.avif"
+                alt="InterContinental Kunming"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
+                    <h2 class="text-lg font-semibold">
+                      InterContinental Kunming
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                      Guandu District ·
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="24.977795387196892"
+                        data-lng="102.65655326756587"
+                      >
+                        Show on map</button
+                      >> · 5.3 km from centre
+                    </p>
+                    <p class="mt-1 text-sm">Superior Twin Room</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      Breakfast included
+                    </p>
+                  </div>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      8.9
+                    </div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Fabulous</span>
+                      <div class="text-sm text-gray-600">198 reviews</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 540</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 85 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Item 4 -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
+            >
+              <img
+                src="../images/sofitel-kunming.jpg"
+                alt="Sofitel Kunming"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
+                    <h2 class="text-lg font-semibold">Sofitel Kunming</h2>
+                    <p class="text-sm text-gray-600">
+                      Wuhua District ·
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="25.022683858212677"
+                        data-lng="102.70116509824814"
+                      >
+                        Show on map
+                      </button>
+                      · 1.5 km from centre
+                    </p>
+                    <p class="mt-1 text-sm">Luxury Room</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      No prepayment needed
+                    </p>
+                  </div>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      8.5
+                    </div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Very good</span>
+                      <div class="text-sm text-gray-600">154 reviews</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 480</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 70 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Item 5 -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
+            >
+              <img
+                src="../images/green-lake-kunming.avif"
+                alt="Green Lake Hotel"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
+                    <h2 class="text-lg font-semibold">Green Lake Hotel</h2>
+                    <p class="text-sm text-gray-600">
+                      Green Lake District ·
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="25.04793883478602"
+                        data-lng="102.70763445407324"
+                      >
+                        Show on map
+                      </button>
+                      · 0.3 km from centre
+                    </p>
+                    <p class="mt-1 text-sm">Executive Suite</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      Free cancellation
+                    </p>
+                  </div>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      9.3
+                    </div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Superb</span>
+                      <div class="text-sm text-gray-600">421 reviews</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 780</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 120 taxes and charges</span
+                  >
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    See availability
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Item 6 -->
+            <div
+              class="flex flex-col md:flex-row bg-white rounded-xl shadow p-4 gap-4 border md:h-[300px]"
+            >
+              <img
+                src="../images/grand-hyatt-kunming.jpg"
+                alt="Kunming Hotel"
+                class="w-full h-40 md:w-1/3 md:h-full object-cover rounded-md"
+              />
+              <div class="flex-1">
+                <div
+                  class="flex flex-col md:flex-row md:space-x-2 justify-between md:items-start"
+                >
+                  <div class="md:max-h-[150px] md:overflow-scroll">
+                    <h2 class="text-lg font-semibold">
+                      Grand Hyatt Hotel Kunming
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                      Panlong District ·
+                      <button
+                        class="mt-2 text-blue-600 font-semibold hotel-show-map-btn"
+                        data-lat="25.036634614726328"
+                        data-lng="102.72170979045524"
+                      >
+                        Show on map
+                      </button>
+                      · 1.0 km from centre
+                    </p>
+                    <p class="mt-1 text-sm">Business Double Room</p>
+                    <p class="text-sm font-semibold mt-1 text-green-700">
+                      No prepayment needed
+                    </p>
+                  </div>
+                  <div
+                    class="flex md:flex-row-reverse items-center space-x-2 my-2 md:my-0 md:min-w-[140px]"
+                  >
+                    <div
+                      class="bg-blue-600 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mt-1 md:ml-2"
+                    >
+                      8.2
+                    </div>
+                    <div class="text-sm flex flex-col items-start">
+                      <span>Very good</span>
+                      <div class="text-sm text-gray-600">189 reviews</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-2 flex flex-col justify-between items-end space-y-2"
+                >
+                  <p class="text-right text-gray-700 font-semibold">MYR 390</p>
+                  <span class="text-sm font-normal text-gray-500"
+                    >+MYR 60 taxes and charges</span
                   >
                   <button class="bg-blue-600 text-white px-4 py-2 rounded">
                     See availability
@@ -224,5 +533,13 @@
         </main>
       </div>
     </div>
+
+    <!-- Add this before the closing </body> tag -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxYn-Dgp1r1Qp2HbIubEc-egYC1_xb9E&libraries=places&callback=initHotelAutocomplete"
+      async
+      defer
+    ></script>
+    <script src="./hotel_autocomplete.js"></script>
   </body>
 </html>
