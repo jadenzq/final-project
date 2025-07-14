@@ -1,144 +1,145 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Travelers Dropdown Logic (similar to stays, but with flights-specific IDs) ---
-  const travelersSummaryInput = document.getElementById('flights-travelers-summary-input');
-  const travelersDropdown = document.getElementById('flights-travelers-dropdown');
-  const adultsInput = document.getElementById('flights-adults-input');
-  const childrenInput = document.getElementById('flights-children-input');
-  const infantsInput = document.getElementById('flights-infants-input'); // New for flights
-  const quantityButtons = document.querySelectorAll('.flights-quantity-btn'); // Use specific class
+    // Get elements for the flights traveler dropdown
+    const flightsTravelersSummaryInput = document.getElementById('flights-travelers-summary-input');
+    const flightsTravelersDropdown = document.getElementById('flights-travelers-dropdown');
+    const flightsAdultsInput = document.getElementById('flights-adults-input');
+    const flightsChildrenInput = document.getElementById('flights-children-input');
+    const flightsInfantsInput = document.getElementById('flights-infants-input');
+    const flightsQuantityBtns = document.querySelectorAll('.flights-quantity-btn');
 
-  // --- Trip Type Logic ---
-  const roundTripRadio = document.getElementById('round-trip');
-  const oneWayRadio = document.getElementById('one-way');
-  const returnDateSection = document.getElementById('return-date-section');
+    // Function to update the summary input text
+    function updateFlightsTravelersSummary() {
+        const adults = parseInt(flightsAdultsInput.value);
+        const children = parseInt(flightsChildrenInput.value);
+        const infants = parseInt(flightsInfantsInput.value);
+        let summaryText = '';
 
-  // Function to update the summary text in the main input field
-  function updateFlightsTravelersSummary() {
-    const adults = parseInt(adultsInput.value);
-    const children = parseInt(childrenInput.value);
-    const infants = parseInt(infantsInput.value);
-    let summary = `${adults} adult${adults !== 1 ? 's' : ''}`;
-    if (children > 0) {
-      summary += ` - ${children} child${children !== 1 ? 'ren' : ''}`;
-    }
-    if (infants > 0) {
-      summary += ` - ${infants} infant${infants !== 1 ? 's' : ''}`;
-    }
-    travelersSummaryInput.value = summary;
-  }
-
-  // Function to toggle return date visibility based on trip type
-  function toggleReturnDateVisibility() {
-    if (oneWayRadio.checked) {
-      returnDateSection.classList.add('hidden');
-    } else {
-      returnDateSection.classList.remove('hidden');
-    }
-  }
-
-  // Toggle dropdown visibility
-  travelersSummaryInput.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent click from propagating to document
-    travelersDropdown.classList.toggle('hidden');
-  });
-
-  // Handle increment/decrement buttons
-  quantityButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent form submission
-      event.stopPropagation(); // Prevent click from propagating to document
-
-      const targetInputId = 'flights-' + button.dataset.target + '-input'; // flights-adults-input, etc.
-      const targetInput = document.getElementById(targetInputId);
-      const action = button.dataset.action;
-      let currentValue = parseInt(targetInput.value);
-
-      if (action === 'increment') {
-        currentValue++;
-      } else if (action === 'decrement') {
-        if (currentValue > parseInt(targetInput.min)) {
-          currentValue--;
+        if (adults > 0) {
+            summaryText += `${adults} adult${adults > 1 ? 's' : ''}`;
         }
-      }
-      targetInput.value = currentValue;
-      updateFlightsTravelersSummary(); // Update summary after value changes
-    });
-  });
+        if (children > 0) {
+            if (summaryText !== '') summaryText += ', ';
+            summaryText += `${children} child${children > 1 ? 'ren' : ''}`;
+        }
+        if (infants > 0) {
+            if (summaryText !== '') summaryText += ', ';
+            summaryText += `${infants} infant${infants > 1 ? 's' : ''}`;
+        }
 
-  // Hide dropdown when clicking outside
-  document.addEventListener('click', (event) => {
-    if (!travelersDropdown.contains(event.target) && !travelersSummaryInput.contains(event.target)) {
-      travelersDropdown.classList.add('hidden');
+        if (summaryText === '') {
+            flightsTravelersSummaryInput.value = '1 adult'; // Default if no travelers selected
+        } else {
+            flightsTravelersSummaryInput.value = summaryText;
+        }
     }
-  });
 
-  // Add event listeners for trip type radio buttons
-  roundTripRadio.addEventListener('change', toggleReturnDateVisibility);
-  oneWayRadio.addEventListener('change', toggleReturnDateVisibility);
-
-  // Initialize summary text and return date visibility on page load
-  updateFlightsTravelersSummary();
-  toggleReturnDateVisibility();
-
-  // --- flight_planner_switch.js logic merged here ---
-  const vibeButtonsFlights = document.querySelectorAll('.vibe-btn-flights');
-  const vibeContentAreasFlights = document.querySelectorAll('.vibe-content-flights');
-
-  function showVibeContentFlights(vibe) {
-    vibeContentAreasFlights.forEach(content => {
-      content.classList.add('hidden');
+    // Toggle the travelers dropdown visibility
+    flightsTravelersSummaryInput.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent click from closing immediately
+        flightsTravelersDropdown.classList.toggle('hidden');
     });
 
-    const selectedContent = document.getElementById(`${vibe}-content`);
-    if (selectedContent) {
-      selectedContent.classList.remove('hidden');
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!flightsTravelersDropdown.contains(event.target) && event.target !== flightsTravelersSummaryInput) {
+            flightsTravelersDropdown.classList.add('hidden');
+        }
+    });
+
+    // Handle increment/decrement buttons
+    flightsQuantityBtns.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent form submission if button is inside a form
+            event.stopPropagation(); // Prevent click from bubbling up to document and closing dropdown
+
+            const target = button.dataset.target;
+            const action = button.dataset.action;
+            let inputElement;
+
+            if (target === 'adults') {
+                inputElement = flightsAdultsInput;
+            } else if (target === 'children') {
+                inputElement = flightsChildrenInput;
+            } else if (target === 'infants') {
+                inputElement = flightsInfantsInput;
+            }
+
+            let currentValue = parseInt(inputElement.value);
+
+            if (action === 'increment') {
+                inputElement.value = currentValue + 1;
+            } else if (action === 'decrement') {
+                if (currentValue > parseInt(inputElement.min)) {
+                    inputElement.value = currentValue - 1;
+                }
+            }
+            updateFlightsTravelersSummary();
+        });
+    });
+
+    // Initial update of the summary input
+    updateFlightsTravelersSummary();
+
+    // --- Date Handling Logic ---
+    const departDateInput = document.getElementById('depart-date');
+    const returnDateInput = document.getElementById('return-date');
+    const returnDateSection = document.getElementById('return-date-section'); // The div containing the return date input
+
+    // Function to get today's date in UTC+8 (or local time for consistency with input type='date')
+    function getTodayFormatted() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const day = today.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
-  }
 
-  function setActiveVibeButtonFlights(clickedButton) {
-    vibeButtonsFlights.forEach(button => {
-      button.classList.remove('bg-blue-700', 'text-white');
-      button.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-    });
+    // Set min date for depart date to today
+    const todayString = getTodayFormatted();
+    departDateInput.setAttribute('min', todayString);
 
-    clickedButton.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-    clickedButton.classList.add('bg-blue-700', 'text-white');
-  }
+    // Function to update min date for return date
+    function updateReturnDateMinDate() {
+        const departDateValue = departDateInput.value;
+        if (departDateValue) {
+            const departDate = new Date(departDateValue);
+            // Set return date min to one day after depart date
+            departDate.setDate(departDate.getDate() + 1);
+            const nextDayString = departDate.toISOString().split('T')[0];
+            returnDateInput.setAttribute('min', nextDayString);
 
-  vibeButtonsFlights.forEach(button => {
-    button.addEventListener('click', () => {
-      const vibe = button.dataset.vibe;
-      setActiveVibeButtonFlights(button);
-      showVibeContentFlights(vibe);
-    });
-  });
+            // If return date is before the new min date, clear it
+            if (returnDateInput.value && new Date(returnDateInput.value) < departDate) {
+                returnDateInput.value = '';
+            }
+        } else {
+            // If depart date is empty, return date min date is today
+            returnDateInput.setAttribute('min', todayString);
+        }
+    }
 
-  // Initialize with 'city-flights' content shown and 'City' button active
-  const defaultVibeButtonFlights = document.querySelector('.vibe-btn-flights[data-vibe="city-flights"]');
-  if (defaultVibeButtonFlights) {
-    setActiveVibeButtonFlights(defaultVibeButtonFlights);
-    showVibeContentFlights('city-flights');
-  }
+    // Add event listener to depart date input
+    departDateInput.addEventListener('change', updateReturnDateMinDate);
+
+    // Initial call to set min date for return date
+    updateReturnDateMinDate();
+
+    // Handle "One way" radio button to hide/show return date
+    const oneWayRadio = document.getElementById('one-way');
+    const roundTripRadio = document.getElementById('round-trip');
+
+    function toggleReturnDateVisibility() {
+        if (oneWayRadio.checked) {
+            returnDateSection.classList.add('hidden');
+            returnDateInput.value = ''; // Clear return date if one-way
+        } else {
+            returnDateSection.classList.remove('hidden');
+        }
+    }
+
+    oneWayRadio.addEventListener('change', toggleReturnDateVisibility);
+    roundTripRadio.addEventListener('change', toggleReturnDateVisibility);
+
+    // Initial check for return date visibility
+    toggleReturnDateVisibility();
 });
-
-// The setActiveSort function is not part of the DOMContentLoaded listener as it's a global function called by onclick attributes.
-function setActiveSort(btn) {
-  document.querySelectorAll(".sort-btn").forEach((b) => {
-    b.classList.remove(
-      "font-semibold",
-      "border-b-2",
-      "border-sky-600",
-      "pb-1",
-      "text-sky-600"
-    );
-    b.classList.add("text-gray-500");
-  });
-  btn.classList.remove("text-gray-500");
-  btn.classList.add(
-    "font-semibold",
-    "border-b-2",
-    "border-sky-600",
-    "pb-1",
-    "text-sky-600"
-  );
-}

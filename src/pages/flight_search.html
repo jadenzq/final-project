@@ -1,87 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Triple Fun</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="p-4 font-sans">
-    <div class="md:max-w-[1000px] md:mx-auto">
-      <!-- Search Bar -->
-      <div class="p-4 rounded-xl border shadow flex flex-wrap gap-4 mb-6">
-        <div class="flex items-center space-x-2">
-          <input type="radio" name="trip" checked />
-          <label>Round trip</label>
-          <input type="radio" name="trip" />
-          <label>One way</label>
-          <input type="radio" name="trip" />
-          <label>Multi-city</label>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../output.css" rel="stylesheet" />
+  <title>Triple Fun</title>
+  <style>
+    /* Hide scrollbar for a cleaner look */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+      /* For Chrome, Safari, and Opera */
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      /* For Internet Explorer and Edge */
+      scrollbar-width: none;
+      /* For Firefox */
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+  <!-- Header from flights.html -->
+  <header class="bg-sky-500 text-white p-4 shadow-md">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <!-- Logo and Title in a row -->
+      <a href="../index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-luggage-icon lucide-luggage">
+          <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" />
+          <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" />
+          <path d="M10 20h4" />
+          <circle cx="16" cy="20" r="2" />
+          <circle cx="8" cy="20" r="2" />
+        </svg>
+        <h1 class="text-3xl font-bold">TripleFun</h1>
+      </a>
+      <nav class="flex-grow flex justify-center mt-4 md:mt-0">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-lg">
+          <li><a href="../index.html"
+              class="px-4 py-2 rounded-full border border-transparent hover:bg-sky-600 hover:text-white transition duration-300">Stays</a>
+          </li>
+          <li><a href="../flights.html"
+              class="px-4 py-2 rounded-full bg-sky-700 text-white transition duration-300">Flights</a></li>
+        </ul>
+      </nav>
+      <!-- User Login/Signup -->
+      <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
+        <a href="./login.html"
+          class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+        <a href="./signup.html"
+          class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign
+          in</a>
+      </div>
+    </div>
+
+    <!-- Extended Header Content for Flights Page - Search Bar from flights.html -->
+    <div class="container mx-auto mt-8 p-6 pb-4 bg-sky-500 text-white text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-2">Find your next flight</h2>
+      <p class="text-lg md:text-xl mb-6">Search low prices on flights, compare airlines and much more...</p>
+
+      <!-- Search Form -->
+      <div
+        class="bg-white rounded-lg p-2 shadow-xl flex flex-col lg:flex-row items-center justify-between space-y-2 lg:space-y-0 lg:space-x-1 border-4 border-orange-400">
+        <!-- Leaving From -->
+        <div class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-5 h-5 text-gray-500 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+          </svg>
+          <input type="text" placeholder="Leaving from" id="leaving-from-input"
+            class="w-full p-0.5 focus:outline-none text-base" />
         </div>
-        <div class="flex flex-wrap items-center gap-y-2 w-full lg:w-auto">
-          <label class="w-full"
-            >Leaving from
-            <input
-              type="text"
-              placeholder="e.g. Kuala Lumpur"
-              value=""
-              class="border px-3 py-2 rounded w-full"
-            />
-          </label>
-          <label class="w-full"
-            >Going to
-            <input
-              type="text"
-              placeholder="e.g Rome"
-              value=""
-              class="border px-3 py-2 rounded w-full"
-            />
-          </label>
-          <label class="md:w-full"
-            >Travel dates
-            <div class="grid grid-cols-2 gap-x-2">
-              <input
-                type="date"
-                name="from-date"
-                value=""
-                class="border px-3 py-2 rounded"
-              />
-              <input
-                type="date"
-                name="to-date"
-                value=""
-                class="border px-3 py-2 rounded"
-              />
+
+        <!-- Going To -->
+        <div
+          class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-5 h-5 text-gray-500 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+          </svg>
+          <input type="text" placeholder="Going to" id="going-to-input"
+            class="w-full p-0.5 focus:outline-none text-base" />
+        </div>
+
+        <!-- Travel Dates -->
+        <div
+          class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-5 h-5 text-gray-500 mr-1">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zM12 18h.008v.008H12V18z" />
+          </svg>
+          <input type="text" placeholder="Depart" onfocus="(this.type='date')" onblur="(this.type='text')"
+            id="depart-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+          <div id="return-date-section" class="flex items-center w-full">
+            <span class="mx-1 text-gray-500">—</span>
+            <input type="text" placeholder="Return" onfocus="(this.type='date')" onblur="(this.type='text')"
+              id="return-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </div>
+
+        <!-- Travelers -->
+        <div
+          class="relative flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-5 h-5 text-gray-500 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15.75 6a3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          <input type="text" id="flights-travelers-summary-input" placeholder="1 adult"
+            class="w-full p-0.5 bg-white focus:outline-none text-base cursor-pointer" readonly />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+
+          <!-- Custom Travelers Dropdown for Flights -->
+          <div id="flights-travelers-dropdown"
+            class="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10 p-4 hidden text-gray-800 w-64">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-medium">Adults</span>
+              <div class="flex items-center space-x-2">
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="adults" data-action="decrement">-</button>
+                <input type="number" id="flights-adults-input" value="1" min="1"
+                  class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="adults" data-action="increment">+</button>
+              </div>
             </div>
-          </label>
-          <label class="w-full"
-            >Travelers
-            <input type="number" class="border px-3 py-2 rounded w-full" />
-          </label>
-          <button
-            class="bg-blue-600 w-full text-white my-2 px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Search
-          </button>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-medium text-left">Children<br>(2-11)</span>
+              <div class="flex items-center space-x-2">
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="children" data-action="decrement">-</button>
+                <input type="number" id="flights-children-input" value="0" min="0"
+                  class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="children" data-action="increment">+</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-left">Infants<br>(0-2)</span>
+              <div class="flex items-center space-x-2">
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="infants" data-action="decrement">-</button>
+                <input type="number" id="flights-infants-input" value="0" min="0"
+                  class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                <button
+                  class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition"
+                  data-target="infants" data-action="increment">+</button>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <button id="search-flights-button"
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer w-full lg:w-auto">
+          Search
+        </button>
       </div>
 
+      <!-- Trip Type Radios - Moved outside and centered -->
+      <div class="flex justify-center items-center space-x-4 p-2 mt-4">
+        <div class="flex items-center space-x-2">
+          <input type="radio" id="round-trip" name="trip-type" value="round-trip"
+            class="form-radio h-4 w-4 text-blue-600" checked>
+          <label for="round-trip" class="text-white text-base">Round trip</label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 text-blue-600">
+          <label for="one-way" class="text-white text-base">One way</label>
+        </div>
+        <!-- Removed Multi-city radio button -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area with original flight_search.html content -->
+  <main class="flex-grow container mx-auto p-6">
+    <div class="md:max-w-[1000px] md:mx-auto">
       <!-- Filters & Results -->
       <div class="flex flex-col lg:flex-row gap-6">
         <!-- Filters -->
-        <aside
-          class="bg-white p-4 rounded-xl shadow w-full lg:w-1/4 h-fit border"
-        >
-          <h2
-            class="text-lg font-semibold mb-2 flex items-center justify-between"
-          >
+        <aside class="bg-white p-4 rounded-xl shadow-md w-full lg:w-1/4 h-fit border border-gray-200">
+          <h2 class="text-lg font-semibold mb-2 flex items-center justify-between">
             Filters
-            <button
-              type="button"
-              id="toggle-filters"
+            <button type="button" id="toggle-filters"
               onclick="document.querySelector('.collapsed-area').classList.toggle('hidden'); this.innerHTML = this.innerHTML === '▼' ? '▲' : '▼';"
-              class="ml-2 text-xl md:hidden"
-            >
+              class="ml-2 text-xl md:hidden">
               ▲
             </button>
           </h2>
@@ -105,25 +228,15 @@
             <div class="mb-4">
               <h3 class="font-medium mb-1">Airlines</h3>
               <div class="space-y-1">
-                <label class="flex items-center"
-                  ><input type="checkbox" checked class="mr-2" /> Air
-                  Asia</label
-                >
-                <label class="flex items-center"
-                  ><input type="checkbox" checked class="mr-2" /> China Eastern
-                  Airlines</label
-                >
-                <label class="flex items-center"
-                  ><input type="checkbox" checked class="mr-2" /> Scoot</label
-                >
-                <label class="flex items-center"
-                  ><input type="checkbox" checked class="mr-2" /> Batik Air
-                  Malaysia</label
-                >
-                <label class="flex items-center"
-                  ><input type="checkbox" checked class="mr-2" /> Xiamen
-                  Airlines</label
-                >
+                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Air
+                  Asia</label>
+                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> China Eastern
+                  Airlines</label>
+                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Scoot</label>
+                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Batik Air
+                  Malaysia</label>
+                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Xiamen
+                  Airlines</label>
               </div>
             </div>
           </div>
@@ -132,92 +245,56 @@
         <!-- Results -->
         <main class="flex-1">
           <!-- Sort Tabs -->
-          <div
-            class="bg-white p-3 rounded-xl shadow mb-4 flex space-x-4 border"
-          >
-            <button
-              class="sort-btn font-semibold border-b-2 border-blue-600 pb-1"
-              onclick="setActiveSort(this)"
-            >
+          <div class="bg-white p-3 rounded-xl shadow-md mb-4 flex space-x-4 border border-gray-200">
+            <button class="sort-btn font-semibold border-b-2 border-blue-600 pb-1" onclick="setActiveSort(this)">
               Best
             </button>
-            <button
-              class="sort-btn text-gray-500"
-              onclick="setActiveSort(this)"
-            >
+            <button class="sort-btn text-gray-500" onclick="setActiveSort(this)">
               Cheapest
             </button>
-            <button
-              class="sort-btn text-gray-500"
-              onclick="setActiveSort(this)"
-            >
+            <button class="sort-btn text-gray-500" onclick="setActiveSort(this)">
               Fastest
             </button>
           </div>
 
           <!-- Price Suggestion -->
           <div
-            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4 rounded overflow-scroll"
-          >
+            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4 rounded overflow-x-auto scrollbar-hide">
             <p class="font-medium">
               We found better prices! Compare nearby dates.
             </p>
             <div class="flex space-x-4 mt-2">
-              <span class="bg-white px-3 py-1 rounded shadow"
-                >6 Aug-13 Aug<br /><strong>MYR1,262</strong></span
-              >
-              <span class="bg-white px-3 py-1 rounded shadow"
-                >7 Aug-14 Aug<br /><strong>MYR1,239</strong></span
-              >
-              <span class="bg-red-100 px-3 py-1 rounded shadow"
-                >8 Aug-15 Aug<br /><strong>MYR1,487</strong></span
-              >
-              <span class="bg-white px-3 py-1 rounded shadow"
-                >10 Aug-17 Aug<br /><strong>MYR1,351</strong></span
-              >
+              <span class="bg-white px-3 py-1 rounded shadow">6 Aug-13 Aug<br /><strong>MYR1,262</strong></span>
+              <span class="bg-white px-3 py-1 rounded shadow">7 Aug-14 Aug<br /><strong>MYR1,239</strong></span>
+              <span class="bg-red-100 px-3 py-1 rounded shadow">8 Aug-15 Aug<br /><strong>MYR1,487</strong></span>
+              <span class="bg-white px-3 py-1 rounded shadow">10 Aug-17 Aug<br /><strong>MYR1,351</strong></span>
             </div>
           </div>
 
           <!-- Flight Ticket #1 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <!-- Left section -->
             <div class="flex-1 w-full md:w-auto">
               <!-- Tags -->
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Fastest</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Flexible ticket upgrade available</span
-                >
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Fastest</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Flexible ticket upgrade
+                  available</span>
               </div>
 
               <!-- Flight details -->
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/batik-air.webp"
-                  alt="Batik Air"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/batik-air.webp" alt="Batik Air" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">22:15</p>
                   <p class="text-sm text-gray-600">KUL · 9 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                  >
+                  <span class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded justify-self-center">
                     Direct
                   </span>
-                  <span class="text-sm text-gray-500 justify-self-center"
-                    >3h 45m</span
-                  >
+                  <span class="text-sm text-gray-500 justify-self-center">3h 45m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">02:00</p>
@@ -225,27 +302,17 @@
                 </div>
               </div>
 
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/air-asia.png"
-                  alt="AirAsia"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/air-asia.png" alt="AirAsia" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">17:55</p>
                   <p class="text-sm text-gray-600">KMG · 16 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded w-fit mx-auto"
-                  >
+                  <span class="text-white bg-green-600 text-xs font-semibold px-2 py-1 rounded w-fit mx-auto">
                     Direct
                   </span>
-                  <span class="text-sm text-gray-500 justify-self-center"
-                    >3h 55m</span
-                  >
+                  <span class="text-sm text-gray-500 justify-self-center">3h 55m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">21:50</p>
@@ -259,25 +326,17 @@
             </div>
 
             <!-- Right section -->
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,529.80</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR3,059.61 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -285,63 +344,36 @@
 
           <!-- Flight Ticket #2 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <div class="flex-1 w-full md:w-auto">
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-yellow-100 text-yellow-700 px-2 py-0.5 text-sm rounded"
-                  >Cheapest</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Refundable</span
-                >
+                <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 text-sm rounded">Cheapest</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Refundable</span>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/china-eastern-airlines.jpg"
-                  alt="China Eastern"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/china-eastern-airlines.jpg" alt="China Eastern" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">08:30</p>
                   <p class="text-sm text-gray-600">KUL · 10 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >6h 20m</span
-                  >
+                  <span class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">6h 20m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">14:50</p>
                   <p class="text-sm text-gray-600">PVG · 10 Aug</p>
                 </div>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/china-eastern-airlines.jpg"
-                  alt="China Eastern"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/china-eastern-airlines.jpg" alt="China Eastern" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">16:00</p>
                   <p class="text-sm text-gray-600">PVG · 17 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >7h 10m</span
-                  >
+                  <span class="text-white bg-blue-600 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">7h 10m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">23:10</p>
@@ -350,25 +382,17 @@
               </div>
               <p class="text-sm text-gray-600 mt-2">China Eastern Airlines</p>
             </div>
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,099.00</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR2,198.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -376,63 +400,36 @@
 
           <!-- Flight Ticket #3 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <div class="flex-1 w-full md:w-auto">
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-red-100 text-red-700 px-2 py-0.5 text-sm rounded"
-                  >Shortest layover</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Flexible ticket</span
-                >
+                <span class="bg-red-100 text-red-700 px-2 py-0.5 text-sm rounded">Shortest layover</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Flexible ticket</span>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/scoot.png"
-                  alt="Scoot"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/scoot.png" alt="Scoot" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">12:00</p>
                   <p class="text-sm text-gray-600">KUL · 11 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >5h 30m</span
-                  >
+                  <span class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">5h 30m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">17:30</p>
                   <p class="text-sm text-gray-600">SIN · 11 Aug</p>
                 </div>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/scoot.png"
-                  alt="Scoot"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/scoot.png" alt="Scoot" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">19:00</p>
                   <p class="text-sm text-gray-600">SIN · 18 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >6h 00m</span
-                  >
+                  <span class="text-white bg-yellow-600 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">6h 00m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">01:00</p>
@@ -441,25 +438,17 @@
               </div>
               <p class="text-sm text-gray-600 mt-2">Scoot</p>
             </div>
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,199.00</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR2,398.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -467,63 +456,36 @@
 
           <!-- Flight Ticket #4 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <div class="flex-1 w-full md:w-auto">
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-blue-100 text-blue-700 px-2 py-0.5 text-sm rounded"
-                  >Best value</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Flexible ticket</span
-                >
+                <span class="bg-blue-100 text-blue-700 px-2 py-0.5 text-sm rounded">Best value</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Flexible ticket</span>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/xiamen-airlines.jpg"
-                  alt="Xiamen Airlines"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/xiamen-airlines.jpg" alt="Xiamen Airlines" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">10:00</p>
                   <p class="text-sm text-gray-600">KUL · 12 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >8h 10m</span
-                  >
+                  <span class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">8h 10m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">18:10</p>
                   <p class="text-sm text-gray-600">XMN · 12 Aug</p>
                 </div>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/xiamen-airlines.jpg"
-                  alt="Xiamen Airlines"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/xiamen-airlines.jpg" alt="Xiamen Airlines" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">20:00</p>
                   <p class="text-sm text-gray-600">XMN · 19 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
-                  <span
-                    class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >1 stop</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >7h 30m</span
-                  >
+                  <span class="text-white bg-blue-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">1
+                    stop</span><span class="text-sm text-gray-500 justify-self-center">7h 30m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">03:30</p>
@@ -532,25 +494,17 @@
               </div>
               <p class="text-sm text-gray-600 mt-2">Xiamen Airlines</p>
             </div>
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,399.00</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR2,798.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -558,63 +512,38 @@
 
           <!-- Flight Ticket #6 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <div class="flex-1 w-full md:w-auto">
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-purple-100 text-purple-700 px-2 py-0.5 text-sm rounded"
-                  >Premium</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Flexible ticket</span
-                >
+                <span class="bg-purple-100 text-purple-700 px-2 py-0.5 text-sm rounded">Premium</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Flexible ticket</span>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/batik-air.webp"
-                  alt="Batik Air"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/batik-air.webp" alt="Batik Air" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">15:00</p>
                   <p class="text-sm text-gray-600">KUL · 13 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
                   <span
-                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >Direct</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >3h 55m</span
-                  >
+                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">Direct</span><span
+                    class="text-sm text-gray-500 justify-self-center">3h 55m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">18:55</p>
                   <p class="text-sm text-gray-600">KMG · 13 Aug</p>
                 </div>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/batik-air.webp"
-                  alt="Batik Air"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/batik-air.webp" alt="Batik Air" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">20:00</p>
                   <p class="text-sm text-gray-600">KMG · 20 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
                   <span
-                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >Direct</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >3h 55m</span
-                  >
+                    class="text-white bg-purple-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">Direct</span><span
+                    class="text-sm text-gray-500 justify-self-center">3h 55m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">23:55</p>
@@ -623,25 +552,17 @@
               </div>
               <p class="text-sm text-gray-600 mt-2">Batik Air Malaysia</p>
             </div>
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,899.00</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR3,798.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -649,63 +570,38 @@
 
           <!-- Flight Ticket #6 -->
           <div
-            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4"
-          >
+            class="bg-white rounded-xl shadow p-4 flex flex-col md:flex-row justify-between items-center border border-gray-200 mb-4">
             <div class="flex-1 w-full md:w-auto">
               <div class="flex flex-wrap gap-2 mb-2">
-                <span
-                  class="bg-gray-200 text-gray-700 px-2 py-0.5 text-sm rounded"
-                  >Standard</span
-                >
-                <span
-                  class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded"
-                  >Flexible ticket</span
-                >
+                <span class="bg-gray-200 text-gray-700 px-2 py-0.5 text-sm rounded">Standard</span>
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 text-sm rounded">Flexible ticket</span>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2"
-              >
-                <img
-                  src="../images/air-asia.png"
-                  alt="AirAsia"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4 mb-2">
+                <img src="../images/air-asia.png" alt="AirAsia" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">06:00</p>
                   <p class="text-sm text-gray-600">KUL · 14 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
                   <span
-                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >Direct</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >3h 55m</span
-                  >
+                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">Direct</span><span
+                    class="text-sm text-gray-500 justify-self-center">3h 55m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">09:55</p>
                   <p class="text-sm text-gray-600">KMG · 14 Aug</p>
                 </div>
               </div>
-              <div
-                class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4"
-              >
-                <img
-                  src="../images/air-asia.png"
-                  alt="AirAsia"
-                  class="w-8 h-8 object-contain"
-                />
+              <div class="grid grid-cols-[30px_1fr_1fr_1fr] items-center space-x-4">
+                <img src="../images/air-asia.png" alt="AirAsia" class="w-8 h-8 object-contain" />
                 <div>
                   <p class="text-lg font-semibold">12:00</p>
                   <p class="text-sm text-gray-600">KMG · 21 Aug</p>
                 </div>
                 <div class="grid grid-cols-1 items-center">
                   <span
-                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center"
-                    >Direct</span
-                  ><span class="text-sm text-gray-500 justify-self-center"
-                    >3h 55m</span
-                  >
+                    class="text-white bg-gray-700 text-xs font-semibold px-2 py-1 rounded justify-self-center">Direct</span><span
+                    class="text-sm text-gray-500 justify-self-center">3h 55m</span>
                 </div>
                 <div>
                   <p class="text-lg font-semibold">15:55</p>
@@ -714,25 +610,17 @@
               </div>
               <p class="text-sm text-gray-600 mt-2">Air Asia</p>
             </div>
-            <div
-              class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l"
-            >
+            <div class="mt-4 md:mt-0 md:pl-6 flex flex-col items-end w-full md:w-auto md:border-l">
               <div class="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-black"
-                ></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-6 h-6 text-black"></svg>
                 <p class="text-xl font-bold">MYR1,299.00</p>
               </div>
               <p class="text-sm text-gray-500">
                 MYR2,598.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white"
-              >
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
                 View details
               </button>
             </div>
@@ -740,26 +628,74 @@
         </main>
       </div>
     </div>
+  </main>
 
-    <script>
-      function setActiveSort(btn) {
-        document.querySelectorAll(".sort-btn").forEach((b) => {
-          b.classList.remove(
-            "font-semibold",
-            "border-b-2",
-            "border-blue-600",
-            "pb-1"
-          );
-          b.classList.add("text-gray-500");
+  <!-- Footer from flights.html -->
+  <footer class="bg-sky-500 text-white p-3 shadow-inner">
+    <div class="container mx-auto text-center text-sm">
+      <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="hover:text-sky-200 transition duration-300">Privacy Policy</a>
+        <a href="#" class="hover:text-sky-200 transition duration-300">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/flights_home.js"></script>
+  <script>
+    // Logic for sorting buttons (Best, Cheapest, Fastest)
+    window.setActiveSort = function(button) {
+        // Remove active styles from all sort buttons
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        sortButtons.forEach(btn => {
+            btn.classList.remove('font-semibold', 'border-b-2', 'border-blue-600', 'pb-1');
+            btn.classList.add('text-gray-500');
         });
-        btn.classList.remove("text-gray-500");
-        btn.classList.add(
-          "font-semibold",
-          "border-b-2",
-          "border-blue-600",
-          "pb-1"
-        );
-      }
-    </script>
-  </body>
+
+        // Add active styles to the clicked button
+        button.classList.add('font-semibold', 'border-b-2', 'border-blue-600', 'pb-1');
+        button.classList.remove('text-gray-500');
+    };
+
+    // Function to parse URL parameters and populate search fields
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const leavingFrom = urlParams.get('leavingFrom');
+        const goingTo = urlParams.get('goingTo');
+        const departDate = urlParams.get('departDate');
+        const returnDate = urlParams.get('returnDate');
+        const travelers = urlParams.get('travelers');
+        const tripType = urlParams.get('tripType');
+
+        if (leavingFrom) {
+          document.getElementById('leaving-from-input').value = decodeURIComponent(leavingFrom);
+        }
+        if (goingTo) {
+          document.getElementById('going-to-input').value = decodeURIComponent(goingTo);
+        }
+        if (departDate) {
+          document.getElementById('depart-date').value = decodeURIComponent(departDate);
+          document.getElementById('depart-date').type = 'date'; // Ensure type is date
+        }
+        if (returnDate) {
+          document.getElementById('return-date').value = decodeURIComponent(returnDate);
+          document.getElementById('return-date').type = 'date'; // Ensure type is date
+        }
+        if (travelers) {
+          document.getElementById('flights-travelers-summary-input').value = decodeURIComponent(travelers);
+        }
+        if (tripType) {
+          const radio = document.getElementById(tripType);
+          if (radio) {
+            radio.checked = true;
+            // Manually trigger change to update return date visibility
+            const event = new Event('change');
+            radio.dispatchEvent(event);
+          }
+        }
+      });
+  </script>
+
+</body>
+
 </html>

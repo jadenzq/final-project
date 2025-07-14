@@ -99,4 +99,46 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveVibeButton(defaultVibeButton);
     showVibeContent('city');
   }
+
+  const checkInInput = document.getElementById('check-in-date');
+  const checkOutInput = document.getElementById('check-out-date');
+
+  // Function to get today's date in UTC+8 (or local time for consistency with input type='date')
+    function getTodayFormatted() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const day = today.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    // Set min date for check in date to today
+    const todayString = getTodayFormatted();
+    checkInInput.setAttribute('min', todayString);
+
+    // Function to update min date for check out date
+    function updateCheckOutDateMinDate() {
+        const checkInDateValue = checkInInput.value;
+        if (checkInDateValue) {
+            const checkInDate = new Date(checkInDateValue);
+            // Set check out date min to one day after check in date
+            checkInDate.setDate(checkInDate.getDate() + 1);
+            const nextDayString = checkInDate.toISOString().split('T')[0];
+            checkOutInput.setAttribute('min', nextDayString);
+
+            // If check out date is before the new min date, clear it
+            if (checkOutInput.value && new Date(checkOutInput.value) < checkInDate) {
+                checkOutInput.value = '';
+            }
+        } else {
+            // If check in date is empty, check out date min date is today
+            checkOutInput.setAttribute('min', todayString);
+        }
+    }
+
+    // Add event listener to check in date input
+    checkInInput.addEventListener('change', updateCheckOutDateMinDate);
+
+    // Initial call to set min date for return date
+    updateCheckOutDateMinDate();
 });

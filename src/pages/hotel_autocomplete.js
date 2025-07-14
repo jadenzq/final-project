@@ -2,16 +2,39 @@
 // Replace 'YOUR_GOOGLE_API_KEY' with your actual Google Places API key below.
 
 let selectedPlace = null;
+let geocoder; // Declare geocoder globally
 
 function initHotelAutocomplete() {
   const input = document.getElementById("hotel-location-input");
   if (!input) return;
+
+  // Initialize Geocoder
+  geocoder = new google.maps.Geocoder();
+
   const autocomplete = new google.maps.places.Autocomplete(input, {
     types: ["(cities)"],
   });
   autocomplete.addListener("place_changed", function () {
     selectedPlace = autocomplete.getPlace();
   });
+
+  // Get location from URL parameters and auto-select if available
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialLocation = urlParams.get('location');
+
+  if (initialLocation) {
+    // Attempt to geocode the initial location to get a full PlaceResult object
+    geocoder.geocode({ 'address': decodeURIComponent(initialLocation) }, function(results, status) {
+      if (status === 'OK' && results[0]) {
+        selectedPlace = results[0]; // Set the selectedPlace for future use
+        input.value = selectedPlace.formatted_address; // Update the input field with the formatted address
+      } else {
+        console.error('Geocode was not successful for initial location: ' + status);
+        // Fallback: if geocoding fails, just set the input value from the URL string
+        input.value = decodeURIComponent(initialLocation);
+      }
+    });
+  }
 }
 
 window.initHotelAutocomplete = initHotelAutocomplete;
