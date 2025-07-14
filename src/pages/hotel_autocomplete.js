@@ -1,11 +1,11 @@
+// Global variables for map functionality
 let selectedPlace = null;
-let geocoder; // Declare geocoder globally
+let geocoder;
 
 function initHotelAutocomplete() {
   const input = document.getElementById("hotel-location-input");
   if (!input) return;
 
-  // Initialize Geocoder
   geocoder = new google.maps.Geocoder();
 
   const autocomplete = new google.maps.places.Autocomplete(input, {
@@ -15,7 +15,6 @@ function initHotelAutocomplete() {
     selectedPlace = autocomplete.getPlace();
   });
 
-  // Get location from URL parameters and auto-select if available
   const urlParams = new URLSearchParams(window.location.search);
   const initialLocation = urlParams.get('location');
 
