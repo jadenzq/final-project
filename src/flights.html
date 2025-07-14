@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Triple Fun</title>
+    <style>
+      /* Hide scrollbar for a cleaner look */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, and Opera */
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+        scrollbar-width: none;  /* For Firefox */
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-sky-500 text-white p-4 shadow-md">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+          <!-- Logo and Title in a row -->
+          <a href="index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-luggage-icon lucide-luggage">
+              <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/>
+              <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/>
+              <path d="M10 20h4"/><circle cx="16" cy="20" r="2"/>
+              <circle cx="8" cy="20" r="2"/>
+            </svg>
+            <h1 class="text-3xl font-bold">TripleFun</h1>
+          </a>
+          <nav class="flex-grow flex justify-center mt-4 md:mt-0">
+            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-lg">
+              <li><a href="index.html" class="px-4 py-2 rounded-full border border-transparent hover:bg-sky-600 hover:text-white transition duration-300">Stays</a></li>
+              <li><a href="flights.html" class="px-4 py-2 rounded-full bg-sky-700 text-white transition duration-300">Flights</a></li>
+            </ul>
+          </nav>
+          <!-- User Login/Signup -->
+          <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
+            <a href="pages/login.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+            <a href="pages/signup.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
+          </div>
+        </div>
+  
+        <!-- Extended Header Content for Flights Page -->
+      <div class="container mx-auto mt-8 p-6 pb-4 bg-sky-500 text-white text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-2">Find your next flight</h2>
+        <p class="text-lg md:text-xl mb-6">Search low prices on flights, compare airlines and much more...</p>
+
+        <!-- Search Form -->
+        <div class="bg-white rounded-lg p-2 shadow-xl flex flex-col lg:flex-row items-center justify-between space-y-2 lg:space-y-0 lg:space-x-1 border-4 border-orange-400">
+          <!-- Leaving From -->
+          <div class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+            <input type="text" placeholder="Leaving from" class="w-full p-0.5 focus:outline-none text-base" />
+          </div>
+
+          <!-- Going To -->
+          <div class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+            <input type="text" placeholder="Going to" class="w-full p-0.5 focus:outline-none text-base" />
+          </div>
+
+          <!-- Travel Dates -->
+          <div class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zM12 18h.008v.008H12V18z" />
+            </svg>
+            <input type="text" placeholder="Depart" onfocus="(this.type='date')" onblur="(this.type='text')" id="depart-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+            <div id="return-date-section" class="flex items-center w-full">
+                <span class="mx-1 text-gray-500">—</span>
+                <input type="text" placeholder="Return" onfocus="(this.type='date')" onblur="(this.type='text')" id="return-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+
+          <!-- Travelers -->
+          <div class="relative flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            <input type="text" id="flights-travelers-summary-input" placeholder="1 adult" class="w-full p-0.5 bg-white focus:outline-none text-base cursor-pointer" readonly />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+
+            <!-- Custom Travelers Dropdown for Flights -->
+            <div id="flights-travelers-dropdown" class="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10 p-4 hidden text-gray-800 w-64">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-medium">Adults</span>
+                <div class="flex items-center space-x-2">
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="adults" data-action="decrement">-</button>
+                  <input type="number" id="flights-adults-input" value="1" min="1" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="adults" data-action="increment">+</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-medium text-left">Children<br>(2-11)</span>
+                <div class="flex items-center space-x-2">
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="children" data-action="decrement">-</button>
+                  <input type="number" id="flights-children-input" value="0" min="0" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="children" data-action="increment">+</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-left">Infants<br>(0-2)</span>
+                <div class="flex items-center space-x-2">
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="infants" data-action="decrement">-</button>
+                  <input type="number" id="flights-infants-input" value="0" min="0" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="flights-quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="infants" data-action="increment">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer w-full lg:w-auto">
+            Search
+          </button>
+        </div>
+
+      <!-- Trip Type Radios - Moved outside and centered -->
+      <div class="flex justify-center items-center space-x-4 p-2 mt-4">
+        <div class="flex items-center space-x-2">
+          <input type="radio" id="round-trip" name="trip-type" value="round-trip" class="form-radio h-4 w-4 text-blue-600" checked>
+          <label for="round-trip" class="text-white text-base">Round trip</label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 text-blue-600">
+          <label for="one-way" class="text-white text-base">One way</label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-6 -mt-12">
+      <div class="flex flex-col lg:flex-row gap-6">
+        <main class="flex-1 w-full">
+          <!-- Offers Section (Flights) -->
+          <section class="container mx-auto p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Flight Deals & Offers</h2>
+            <p class="text-gray-600 mb-6">Discover amazing flight deals and promotions for your next adventure.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Offer Card 1 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row hover:scale-105 transition transform duration-300">
+                <div class="p-6 flex-1">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">Early Bird Savings</h3>
+                  <p class="text-gray-600 mb-4">Book in advance and save up to 15% on international flights.</p>
+                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Find Flights</button>
+                </div>
+                <div class="md:w-1/3 flex-shrink-0">
+                  <img src="https://placehold.co/300x200/E0E0E0/000000?text=Flight+Offer+1" alt="Flight Offer 1" class="w-full h-full object-cover">
+                </div>
+              </div>
+
+              <!-- Offer Card 2 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row hover:scale-105 transition transform duration-300">
+                <div class="p-6 flex-1">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">Last Minute Escapes</h3>
+                  <p class="text-gray-600 mb-4">Spontaneous travel? Grab incredible last-minute flight deals.</p>
+                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Explore Deals</button>
+                </div>
+                <div class="md:w-1/3 flex-shrink-0">
+                  <img src="https://placehold.co/300x200/E0E0E0/000000?text=Flight+Offer+2" alt="Flight Offer 2" class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Explore Popular Flight Destinations Section -->
+          <section class="container mx-auto p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Explore Popular Flight Destinations</h2>
+            <p class="text-gray-600 mb-6">Find flights to top cities around the world based on your travel style.</p>
+
+            <!-- Vibe Filters -->
+            <div class="flex space-x-2 mb-6 overflow-x-auto pb-2">
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-blue-700 text-white text-sm font-medium flex-shrink-0" data-vibe="city-flights">City</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="beach-flights">Beach</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="outdoors-flights">Outdoors</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="relax-flights">Relax</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="romance-flights">Romance</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="food-flights">Food</button>
+            </div>
+
+            <!-- Vibe Content Areas (Flights) -->
+            <div id="vibe-content-container-flights">
+              <!-- City Content (Default) -->
+              <div id="city-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=New+York" alt="New York" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">New York</p>
+                    <p class="text-sm text-gray-600">USA</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=London" alt="London" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">London</p>
+                    <p class="text-sm text-gray-600">UK</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Tokyo" alt="Tokyo" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Tokyo</p>
+                    <p class="text-sm text-gray-600">Japan</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Paris" alt="Paris" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Paris</p>
+                    <p class="text-sm text-gray-600">France</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Dubai" alt="Dubai" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Dubai</p>
+                    <p class="text-sm text-gray-600">UAE</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Singapore" alt="Singapore" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Singapore</p>
+                    <p class="text-sm text-gray-600">Singapore</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Beach Content (Hidden by default) -->
+              <div id="beach-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Maldives" alt="Maldives" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Maldives</p>
+                    <p class="text-sm text-gray-600">Island Nation</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Bali" alt="Bali" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Bali</p>
+                    <p class="text-sm text-gray-600">Indonesia</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Cancun" alt="Cancun" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Cancun</p>
+                    <p class="text-sm text-gray-600">Mexico</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Outdoors Content (Hidden by default) -->
+              <div id="outdoors-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Queenstown" alt="Queenstown" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Queenstown</p>
+                    <p class="text-sm text-gray-600">New Zealand</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Banff" alt="Banff" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Banff</p>
+                    <p class="text-sm text-gray-600">Canada</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Relax Content (Hidden by default) -->
+              <div id="relax-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Santorini" alt="Santorini" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Santorini</p>
+                    <p class="text-sm text-gray-600">Greece</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kyoto" alt="Kyoto" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Kyoto</p>
+                    <p class="text-sm text-gray-600">Japan</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Romance Content (Hidden by default) -->
+              <div id="romance-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Paris" alt="Paris" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Paris</p>
+                    <p class="text-sm text-gray-600">France</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Venice" alt="Venice" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Venice</p>
+                    <p class="text-sm text-gray-600">Italy</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Food Content (Hidden by default) -->
+              <div id="food-flights-content" class="vibe-content-flights flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Rome" alt="Rome" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Rome</p>
+                    <p class="text-sm text-gray-600">Italy</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                  <img src="https://placehold.co/200x150/E0E0E0/000000?text=Bangkok" alt="Bangkok" class="w-full h-32 object-cover">
+                  <div class="p-3">
+                    <p class="font-semibold text-gray-800">Bangkok</p>
+                    <p class="text-sm text-gray-600">Thailand</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Top International Flight Destinations -->
+          <section class="container mx-auto p-6 mt-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Top International Flight Destinations</h3>
+            <!-- Popular Destinations Cards (Horizontal Scroll) -->
+            <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+              <!-- Card 1 -->
+              <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                <img src="https://placehold.co/256x180/E0E0E0/000000?text=New+York" alt="New York" class="w-full h-40 object-cover">
+                <div class="p-3">
+                  <p class="font-semibold text-gray-800">New York <span class="fi fi-us"></span></p>
+                </div>
+              </div>
+              <!-- Card 2 -->
+              <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                <img src="https://placehold.co/256x180/E0E0E0/000000?text=London" alt="London" class="w-full h-40 object-cover">
+                <div class="p-3">
+                  <p class="font-semibold text-gray-800">London <span class="fi fi-gb"></span></p>
+                </div>
+              </div>
+              <!-- Card 3 -->
+              <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                <img src="https://placehold.co/256x150/E0E0E0/000000?text=Sydney" alt="Sydney" class="w-full h-40 object-cover">
+                <div class="p-3">
+                  <p class="font-semibold text-gray-800">Sydney <span class="fi fi-au"></span></p>
+                </div>
+              </div>
+              <!-- Card 4 -->
+              <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+                <img src="https://placehold.co/256x180/E0E0E0/000000?text=Dubai" alt="Dubai" class="w-full h-40 object-cover">
+                <div class="p-3">
+                  <p class="font-semibold text-gray-800">Dubai <span class="fi fi-ae"></span></p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sky-500 text-white p-3 mt-10 shadow-inner">
+      <div class="container mx-auto text-center text-sm">
+        <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-sky-200 transition duration-300">Privacy Policy</a>
+          <a href="#" class="hover:text-sky-200 transition duration-300">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/flights_home.js"></script>
+  </body>
+</html>
