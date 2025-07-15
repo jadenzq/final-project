@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <title>Triple Fun</title>
+    <title>TripleFun</title>
 
     <style>
       /* Hide scrollbar for a cleaner look */
@@ -41,8 +41,8 @@
         </nav>
         <!-- User Login/Signup -->
         <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
-          <a href="pages/login.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
-          <a href="pages/signup.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
+          <a href="pages/signup.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+          <a href="pages/login.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
         </div>
       </div>
 
@@ -136,7 +136,7 @@
               <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-stays">Save on stays</button>
             </div>
             <div class="md:w-1/3 flex-shrink-0">
-              <img src="https://placehold.co/300x200/E0E0E0/000000?text=Offer+Image+1" alt="Offer Image 1" class="w-full h-full object-cover">
+              <img src="images/stays/stay-offer-1.jpg" alt="Offer Image 1" class="w-full h-full object-cover aspect-[3/2]">
             </div>
           </div>
 
@@ -148,7 +148,7 @@
               <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-stays">Book yours</button>
             </div>
             <div class="md:w-1/3 flex-shrink-0">
-              <img src="https://placehold.co/300x200/E0E0E0/000000?text=Offer+Image+2" alt="Offer Image 2" class="w-full h-full object-cover">
+              <img src="images/stays/stay-offer-2.jpg" alt="Offer Image 2" class="w-full h-full object-cover aspect-[3/2]">
             </div>
           </div>
         </div>
@@ -164,7 +164,6 @@
           <button class="vibe-btn px-4 py-2 rounded-full bg-blue-700 text-white text-sm font-medium flex-shrink-0 transition duration-300 cursor-pointer" data-vibe="city">City</button>
           <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="beach">Beach</button>
           <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="outdoors">Outdoors</button>
-          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="relax">Relax</button>
           <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="romance">Romance</button>
           <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="food">Food</button>
         </div>
@@ -175,50 +174,50 @@
           <div id="city-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <!-- Card 1 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Putrajaya" alt="Putrajaya" class="w-full h-32 object-cover">
+              <img src="images/stays/Rome.jpg" alt="Rome" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Putrajaya</p>
-                <p class="text-sm text-gray-600">7 km away</p>
+                <p class="font-semibold text-gray-800">Rome</p>
+                <p class="text-sm text-gray-600">Italy</p>
               </div>
             </div>
             <!-- Card 2 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kajang" alt="Kajang" class="w-full h-32 object-cover">
+              <img src="images/stays/nyc.jpg" alt="New York City" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Kajang</p>
-                <p class="text-sm text-gray-600">16 km away</p>
+                <p class="font-semibold text-gray-800">New York City</p>
+                <p class="text-sm text-gray-600">United States</p>
               </div>
             </div>
             <!-- Card 3 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kuala+Lumpur" alt="Kuala Lumpur" class="w-full h-32 object-cover">
+              <img src="images/stays/tokyo.jpg" alt="Tokyo" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Kuala Lumpur</p>
-                <p class="text-sm text-gray-600">22 km away</p>
+                <p class="font-semibold text-gray-800">Tokyo</p>
+                <p class="text-sm text-gray-600">Japan</p>
               </div>
             </div>
             <!-- Card 4 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Melaka" alt="Melaka" class="w-full h-32 object-cover">
+              <img src="images/stays/london.jpg" alt="London" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Melaka</p>
-                <p class="text-sm text-gray-600">109 km away</p>
+                <p class="font-semibold text-gray-800">London</p>
+                <p class="text-sm text-gray-600">United Kingdom</p>
               </div>
             </div>
             <!-- Card 5 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Ipoh" alt="Ipoh" class="w-full h-32 object-cover">
+              <img src="images/stays/shanghai.jpg" alt="Shanghai" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Ipoh</p>
-                <p class="text-sm text-gray-600">191 km away</p>
+                <p class="font-semibold text-gray-800">Shanghai</p>
+                <p class="text-sm text-gray-600">China</p>
               </div>
             </div>
             <!-- Card 6 -->
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kulai" alt="Kulai" class="w-full h-32 object-cover">
+              <img src="images/stays/vienna.jpg" alt="Vienna" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Kulai</p>
-                <p class="text-sm text-gray-600">261 km away</p>
+                <p class="font-semibold text-gray-800">Vienna</p>
+                <p class="text-sm text-gray-600">Austria</p>
               </div>
             </div>
           </div>
@@ -226,24 +225,24 @@
           <!-- Beach Content (Hidden by default) -->
           <div id="beach-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Langkawi" alt="Langkawi" class="w-full h-32 object-cover">
+              <img src="images/stays/phuket.jpg" alt="Phuket" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Langkawi</p>
-                <p class="text-sm text-gray-600">Beach Paradise</p>
+                <p class="font-semibold text-gray-800">Phuket</p>
+                <p class="text-sm text-gray-600">Thailand</p>
               </div>
             </div>
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Redang" alt="Redang" class="w-full h-32 object-cover">
+              <img src="images/stays/semporna.jpg" alt="Semporna" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Redang</p>
-                <p class="text-sm text-gray-600">Crystal Waters</p>
+                <p class="font-semibold text-gray-800">Semporna</p>
+                <p class="text-sm text-gray-600">Malaysia</p>
               </div>
             </div>
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Tioman" alt="Tioman" class="w-full h-32 object-cover">
+              <img src="images/stays/bali.jpg" alt="Bali" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Tioman</p>
-                <p class="text-sm text-gray-600">Island Escape</p>
+                <p class="font-semibold text-gray-800">Bali</p>
+                <p class="text-sm text-gray-600">Indonesia</p>
               </div>
             </div>
           </div>
@@ -251,35 +250,17 @@
           <!-- Outdoors Content (Hidden by default) -->
           <div id="outdoors-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Cameron+Highlands" alt="Cameron Highlands" class="w-full h-32 object-cover">
+              <img src="images/stays/kenya.jpg" alt="Wildlife Safari" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Cameron Highlands</p>
-                <p class="text-sm text-gray-600">Tea Plantations</p>
+                <p class="font-semibold text-gray-800">Wildlife Safari</p>
+                <p class="text-sm text-gray-600">Kenya</p>
               </div>
             </div>
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Taman+Negara" alt="Taman Negara" class="w-full h-32 object-cover">
+              <img src="images/stays/cappadocia.jpg" alt="Cappadocia" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Taman Negara</p>
-                <p class="text-sm text-gray-600">Rainforest Trek</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Relax Content (Hidden by default) -->
-          <div id="relax-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
-            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Pangkor+Laut" alt="Pangkor Laut" class="w-full h-32 object-cover">
-              <div class="p-3">
-                <p class="font-semibold text-gray-800">Pangkor Laut</p>
-                <p class="text-sm text-gray-600">Luxury Retreat</p>
-              </div>
-            </div>
-            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Spa+Resort" alt="Spa Resort" class="w-full h-32 object-cover">
-              <div class="p-3">
-                <p class="font-semibold text-gray-800">Spa Resort</p>
-                <p class="text-sm text-gray-600">Rejuvenate</p>
+                <p class="font-semibold text-gray-800">Cappadocia</p>
+                <p class="text-sm text-gray-600">Turkey</p>
               </div>
             </div>
           </div>
@@ -287,35 +268,57 @@
           <!-- Romance Content (Hidden by default) -->
           <div id="romance-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Honeymoon+Villa" alt="Honeymoon Villa" class="w-full h-32 object-cover">
+              <img src="images/stays/santorini.jpg" alt="Santorini" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Honeymoon Villa</p>
-                <p class="text-sm text-gray-600">Romantic Getaway</p>
+                <p class="font-semibold text-gray-800">Santorini</p>
+                <p class="text-sm text-gray-600">Greece</p>
               </div>
             </div>
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Private+Beach" alt="Private Beach" class="w-full h-32 object-cover">
+              <img src="images/stays/lisbon.jpg" alt="Lisbon" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Private Beach</p>
-                <p class="text-sm text-gray-600">Secluded Bliss</p>
+                <p class="font-semibold text-gray-800">Lisbon</p>
+                <p class="text-sm text-gray-600">Portugal</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="images/stays/paris.jpg" alt="Paris" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Pairs</p>
+                <p class="text-sm text-gray-600">France</p>
               </div>
             </div>
           </div>
+          
 
           <!-- Food Content (Hidden by default) -->
           <div id="food-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Penang+Food" alt="Penang Food" class="w-full h-32 object-cover">
+              <img src="images/stays/barcelona-ham.jpg" alt="Barcelona" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Penang Food</p>
-                <p class="text-sm text-gray-600">Street Food Heaven</p>
+                <p class="font-semibold text-gray-800">Barcelona</p>
+                <p class="text-sm text-gray-600">Spain</p>
               </div>
             </div>
             <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Ipoh+Cuisine" alt="Ipoh Cuisine" class="w-full h-32 object-cover">
+              <img src="images/stays/mendoza.jpg" alt="Mendoza" class="w-full h-32 object-cover">
               <div class="p-3">
-                <p class="font-semibold text-gray-800">Ipoh Cuisine</p>
-                <p class="text-sm text-gray-600">Local Delights</p>
+                <p class="font-semibold text-gray-800">Mendoza</p>
+                <p class="text-sm text-gray-600">Argentina</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="images/stays/mexico.jpg" alt="Monterrey" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Monterrey</p>
+                <p class="text-sm text-gray-600">Mexico</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="images/stays/hanoi.jpg" alt="Hanoi" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Hanoi</p>
+                <p class="text-sm text-gray-600">Vietnam</p>
               </div>
             </div>
           </div>
@@ -326,28 +329,28 @@
         <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
           <!-- Card 1 -->
           <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Hotels" alt="Hotels" class="w-full h-32 object-cover">
+            <img src="images/stays/hotel.jpg" alt="Hotels" class="w-full h-32 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Hotels</p>
             </div>
           </div>
           <!-- Card 2 -->
           <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Apartments" alt="Apartments" class="w-full h-32 object-cover">
+            <img src="images/stays/apartment.jpg" alt="Apartments" class="w-full h-32 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Apartments</p>
             </div>
           </div>
           <!-- Card 3 -->
           <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Resorts" alt="Resorts" class="w-full h-32 object-cover">
+            <img src="images/stays/resort.jpg" alt="Resorts" class="w-full h-32 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Resorts</p>
             </div>
           </div>
           <!-- Card 4 -->
           <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Villas" alt="Villas" class="w-full h-32 object-cover">
+            <img src="images/stays/villas.jpg" alt="Villas" class="w-full h-32 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Villas</p>
             </div>
@@ -359,28 +362,28 @@
         <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
           <!-- Card 1 -->
           <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Kuala+Lumpur" alt="Kuala Lumpur" class="w-full h-40 object-cover">
+            <img src="images/stays/kuala_lumpur.jpg" alt="Kuala Lumpur" class="w-full h-40 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Kuala Lumpur <span class="fi fi-my"></span></p>
             </div>
           </div>
           <!-- Card 2 -->
           <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Melaka" alt="Melaka" class="w-full h-40 object-cover">
+            <img src="images/stays/melaka.jpg" alt="Melaka" class="w-full h-40 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Melaka <span class="fi fi-my"></span></p>
             </div>
           </div>
           <!-- Card 3 -->
           <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Penang" alt="Penang" class="w-full h-40 object-cover">
+            <img src="images/stays/penang.jpg" alt="Penang" class="w-full h-40 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Penang <span class="fi fi-my"></span></p>
             </div>
           </div>
           <!-- Card 4 -->
           <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
-            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Langkawi" alt="Langkawi" class="w-full h-40 object-cover">
+            <img src="images/stays/langkawi.jpg" alt="Langkawi" class="w-full h-40 object-cover">
             <div class="p-3">
               <p class="font-semibold text-gray-800">Langkawi <span class="fi fi-my"></span></p>
             </div>
