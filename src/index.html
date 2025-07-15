@@ -5,8 +5,411 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
     <title>Triple Fun</title>
+
+    <style>
+      /* Hide scrollbar for a cleaner look */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, and Opera */
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+        scrollbar-width: none;  /* For Firefox */
+      }
+    </style>
   </head>
-  <body>
-    <h1 class="text-red-300 text-2xl">Welcome to Triple Fun</h1>
+
+  <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-sky-500 text-white p-4 shadow-md">
+      <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <!-- Logo and Title in a row -->
+        <a href="index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-luggage-icon lucide-luggage">
+            <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/>
+            <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/>
+            <path d="M10 20h4"/><circle cx="16" cy="20" r="2"/>
+            <circle cx="8" cy="20" r="2"/>
+          </svg>
+          <h1 class="text-3xl font-bold">TripleFun</h1>
+        </a>
+        <nav class="flex-grow flex justify-center mt-4 md:mt-0">
+          <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-lg items-center">
+            <li><a href="index.html" class="px-4 py-2 rounded-full bg-sky-700 text-white transition duration-300">Stays</a></li>
+            <li><a href="flights.html" class="px-4 py-2 rounded-full border border-transparent hover:bg-sky-600 hover:text-white transition duration-300">Flights</a></li>
+          </ul>
+        </nav>
+        <!-- User Login/Signup -->
+        <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
+          <a href="pages/login.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+          <a href="pages/signup.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
+        </div>
+      </div>
+
+      <!-- Extended Header Content for Stays Page -->
+      <div class="container mx-auto mt-8 p-6 pb-12 bg-sky-500 text-white text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-2">Find your next stay</h2>
+        <p class="text-lg md:text-xl mb-6">Search low prices on hotels, homes and much more...</p>
+
+        <!-- Search Form -->
+        <div class="bg-white rounded-lg p-2 shadow-xl flex flex-col lg:flex-row items-center justify-between space-y-2 lg:space-y-0 lg:space-x-1 border-4 border-orange-400">
+          <div class="flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            <input type="text" placeholder="Where are you going?" id="hotel-location-input" class="w-full px-3 py-2 focus:outline-none text-base" />
+          </div>
+
+          <div class="relative flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 text-gray-500 mr-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zM12 18h.008v.008H12V18z" />
+            </svg>
+            <!-- Start Date Input -->
+            <input type="text" placeholder="Check In Date" onfocus="(this.type='date')" onblur="(this.type='date')" id="check-in-date" class="w-full px-3 py-2 focus:outline-none text-base cursor-pointer" onclick="this.showPicker()" />
+            <span class="mx-1 text-gray-500">—</span>
+            <!-- End Date Input -->
+            <input type="text" placeholder="Check Out Date" onfocus="(this.type='date')" onblur="(this.type='date')" id="check-out-date" class="w-full px-3 py-2 focus:outline-none text-base cursor-pointer" onclick="this.showPicker()" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+
+          <div class="relative flex items-center w-full lg:w-auto flex-grow px-2 py-1 rounded-lg text-gray-800 lg:border-l border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            <input type="text" id="travelers-summary-input" placeholder="2 adults - 0 children - 1 room" class="w-full px-3 py-2 bg-white focus:outline-none text-base cursor-pointer" readonly />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+
+            <!-- Custom Travelers Dropdown -->
+            <div id="travelers-dropdown" class="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10 p-4 hidden text-gray-800 w-64">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-medium">Adults</span>
+                <div class="flex items-center space-x-2">
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="adults" data-action="decrement">-</button>
+                  <input type="number" id="adults-input" value="2" min="1" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="adults" data-action="increment">+</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-medium">Children</span>
+                <div class="flex items-center space-x-2">
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="children" data-action="decrement">-</button>
+                  <input type="number" id="children-input" value="0" min="0" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="children" data-action="increment">+</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-medium">Rooms</span>
+                <div class="flex items-center space-x-2">
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="rooms" data-action="decrement">-</button>
+                  <input type="number" id="rooms-input" value="1" min="1" class="w-12 text-center border-b border-gray-300 focus:outline-none text-base" readonly />
+                  <button class="quantity-btn border border-gray-300 rounded-md w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition" data-target="rooms" data-action="increment">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer w-full lg:w-auto" id="search-hotels-button">
+            Search
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-6 -mt-12">
+      <!-- Offers Section -->
+      <section class="container mx-auto p-6 mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Offers</h2>
+        <p class="text-gray-600 mb-6">Promotions, deals and special offers for you</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Offer Card 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row hover:scale-105 transition transform duration-300">
+            <div class="p-6 flex-1">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">Quick escape, quality time</h3>
+              <p class="text-gray-600 mb-4">Save up to 20% with a Getaway Deal</p>
+              <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-stays">Save on stays</button>
+            </div>
+            <div class="md:w-1/3 flex-shrink-0">
+              <img src="https://placehold.co/300x200/E0E0E0/000000?text=Offer+Image+1" alt="Offer Image 1" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- Offer Card 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row hover:scale-105 transition transform duration-300">
+            <div class="p-6 flex-1">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">Live the dream in a holiday home</h3>
+              <p class="text-gray-600 mb-4">Choose from houses, villas, chalets and more</p>
+              <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-stays">Book yours</button>
+            </div>
+            <div class="md:w-1/3 flex-shrink-0">
+              <img src="https://placehold.co/300x200/E0E0E0/000000?text=Offer+Image+2" alt="Offer Image 2" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick and Easy Trip Planner Section -->
+      <section class="container mx-auto p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Your personalized trip suggestion</h2>
+        <p class="text-gray-600 mb-6">Pick a vibe and explore the top destinations around the world</p>
+
+        <!-- Vibe Filters -->
+        <div class="flex space-x-2 mb-6 overflow-x-auto pb-2">
+          <button class="vibe-btn px-4 py-2 rounded-full bg-blue-700 text-white text-sm font-medium flex-shrink-0 transition duration-300 cursor-pointer" data-vibe="city">City</button>
+          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="beach">Beach</button>
+          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="outdoors">Outdoors</button>
+          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="relax">Relax</button>
+          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="romance">Romance</button>
+          <button class="vibe-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="food">Food</button>
+        </div>
+
+        <!-- Vibe Content Areas -->
+        <div id="vibe-content-container">
+          <!-- City Content (Default) -->
+          <div id="city-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <!-- Card 1 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Putrajaya" alt="Putrajaya" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Putrajaya</p>
+                <p class="text-sm text-gray-600">7 km away</p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kajang" alt="Kajang" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Kajang</p>
+                <p class="text-sm text-gray-600">16 km away</p>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kuala+Lumpur" alt="Kuala Lumpur" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Kuala Lumpur</p>
+                <p class="text-sm text-gray-600">22 km away</p>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Melaka" alt="Melaka" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Melaka</p>
+                <p class="text-sm text-gray-600">109 km away</p>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Ipoh" alt="Ipoh" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Ipoh</p>
+                <p class="text-sm text-gray-600">191 km away</p>
+              </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Kulai" alt="Kulai" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Kulai</p>
+                <p class="text-sm text-gray-600">261 km away</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beach Content (Hidden by default) -->
+          <div id="beach-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Langkawi" alt="Langkawi" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Langkawi</p>
+                <p class="text-sm text-gray-600">Beach Paradise</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Redang" alt="Redang" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Redang</p>
+                <p class="text-sm text-gray-600">Crystal Waters</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Tioman" alt="Tioman" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Tioman</p>
+                <p class="text-sm text-gray-600">Island Escape</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outdoors Content (Hidden by default) -->
+          <div id="outdoors-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Cameron+Highlands" alt="Cameron Highlands" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Cameron Highlands</p>
+                <p class="text-sm text-gray-600">Tea Plantations</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Taman+Negara" alt="Taman Negara" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Taman Negara</p>
+                <p class="text-sm text-gray-600">Rainforest Trek</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Relax Content (Hidden by default) -->
+          <div id="relax-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Pangkor+Laut" alt="Pangkor Laut" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Pangkor Laut</p>
+                <p class="text-sm text-gray-600">Luxury Retreat</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Spa+Resort" alt="Spa Resort" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Spa Resort</p>
+                <p class="text-sm text-gray-600">Rejuvenate</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Romance Content (Hidden by default) -->
+          <div id="romance-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Honeymoon+Villa" alt="Honeymoon Villa" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Honeymoon Villa</p>
+                <p class="text-sm text-gray-600">Romantic Getaway</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Private+Beach" alt="Private Beach" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Private Beach</p>
+                <p class="text-sm text-gray-600">Secluded Bliss</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Content (Hidden by default) -->
+          <div id="food-content" class="vibe-content flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Penang+Food" alt="Penang Food" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Penang Food</p>
+                <p class="text-sm text-gray-600">Street Food Heaven</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+              <img src="https://placehold.co/200x150/E0E0E0/000000?text=Ipoh+Cuisine" alt="Ipoh Cuisine" class="w-full h-32 object-cover">
+              <div class="p-3">
+                <p class="font-semibold text-gray-800">Ipoh Cuisine</p>
+                <p class="text-sm text-gray-600">Local Delights</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-8">Browse by property</h2>
+        <!-- Property Type Cards (Horizontal Scroll) -->
+        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+          <!-- Card 1 -->
+          <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Hotels" alt="Hotels" class="w-full h-32 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Hotels</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Apartments" alt="Apartments" class="w-full h-32 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Apartments</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Resorts" alt="Resorts" class="w-full h-32 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Resorts</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/200x150/E0E0E0/000000?text=Villas" alt="Villas" class="w-full h-32 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Villas</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-8">Popular trips in Malaysia</h2>
+        <!-- Popular Destinations Cards (Horizontal Scroll) -->
+        <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
+          <!-- Card 1 -->
+          <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Kuala+Lumpur" alt="Kuala Lumpur" class="w-full h-40 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Kuala Lumpur <span class="fi fi-my"></span></p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Melaka" alt="Melaka" class="w-full h-40 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Melaka <span class="fi fi-my"></span></p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Penang" alt="Penang" class="w-full h-40 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Penang <span class="fi fi-my"></span></p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition transform duration-300">
+            <img src="https://placehold.co/256x180/E0E0E0/000000?text=Langkawi" alt="Langkawi" class="w-full h-40 object-cover">
+            <div class="p-3">
+              <p class="font-semibold text-gray-800">Langkawi <span class="fi fi-my"></span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sky-500 text-white p-3 shadow-inner">
+      <div class="container mx-auto text-center text-sm">
+        <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-sky-200 transition duration-300">Privacy Policy</a>
+          <a href="#" class="hover:text-sky-200 transition duration-300">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/stays_home.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxYn-Dgp1r1Qp2HbIubEc-egYC1_xb9E&libraries=places&callback=initHotelAutocomplete" async defer></script>
+    <script src="scripts/stays_home_search.js"></script>
+    <script>
+      document.querySelectorAll('.search-stays').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        window.location.href = 'pages/hotel_search.html';
+      });
+    });
+    </script>
   </body>
 </html>

@@ -4,248 +4,316 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flight Booking Payment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../output.css" rel="stylesheet" />
+    <style>
+      /* Custom styles for softer focus on form elements, assuming output.css provides base Tailwind */
+      input:focus, select:focus, textarea:focus {
+        outline: none; /* Remove default outline */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Blue ring shadow */
+        border-color: rgba(59, 130, 246, 0.5); /* Soft blue border */
+      }
+      /* Ensure borders are removed where shadow is applied */
+      .card-shadow-soft {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+      }
+      .divide-y-soft > div + div {
+        border-top: 1px solid rgba(229, 231, 235, 0.6); /* Softer divider line */
+      }
+    </style>
   </head>
-  <body class="bg-white">
-    <div
-      class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6"
-    >
-      <!-- Flight Info -->
-      <div class="border lg:col-span-1 bg-white p-4 rounded-xl shadow h-fit">
-        <img src="../images/air-asia.png" alt="Flight" class="rounded mb-4" />
-        <h2 class="text-xl font-semibold">
-          Kunming (KMG) → Kuala Lumpur (KUL)
-        </h2>
-        <p class="text-sm text-gray-600">Direct flight • 4h 10m</p>
-        <p class="text-green-600 text-sm">Excellent airline — 8.9</p>
-        <div class="flex items-center gap-4 mt-2">
-          <span class="text-blue-500 font-bold">8.9</span>
-          <span class="text-sm text-gray-600">Fabulous • 1,234 reviews</span>
-        </div>
-        <div class="mt-2 text-sm text-gray-600 flex gap-2">
-          <span>🧳 20kg baggage</span>
-          <span>🍱 Meal included</span>
-          <span>💺 Seat selection</span>
-        </div>
-        <div class="mt-4 border-t pt-4">
-          <h3 class="font-semibold">Your flight details</h3>
-          <p><strong>Departure:</strong> Mon 14 Jul 2025, 10:30</p>
-          <p><strong>Arrival:</strong> Mon 14 Jul 2025, 14:40</p>
-          <p><strong>Flight:</strong> AirAsia AK1234</p>
-          <p><strong>Passengers:</strong> 2 adults</p>
-        </div>
-        <div class="mt-4 border-t pt-4">
-          <h3 class="font-semibold">Your price summary</h3>
-          <p class="text-xl font-bold">MYR 1,234.00</p>
-          <p class="text-sm text-gray-600">+MYR 150 taxes and charges</p>
-          <p class="text-sm text-gray-500">In property currency: CNY 2,200</p>
-        </div>
-      </div>
-
-      <!-- Booking Form -->
-      <div class="border lg:col-span-2 bg-white p-6 rounded-xl shadow">
-        <h2 class="text-2xl font-bold mb-4">
-          Enter passenger & payment details
-        </h2>
-        <form class="space-y-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block font-semibold">First name *</label>
-              <input
-                type="text"
-                class="w-full border p-2 rounded"
-                placeholder="First name"
-                required
-              />
-            </div>
-            <div>
-              <label class="block font-semibold">Last name *</label>
-              <input
-                type="text"
-                class="w-full border p-2 rounded"
-                placeholder="Last name"
-                required
-              />
-            </div>
-          </div>
-
-          <div>
-            <label class="block font-semibold">Email address *</label>
-            <input
-              type="email"
-              class="w-full border p-2 rounded"
-              placeholder="Email"
-              required
-            />
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block font-semibold">Country/region *</label>
-              <select class="w-full border p-2 rounded">
-                <option>Malaysia</option>
-                <option>China</option>
-                <option>Singapore</option>
-                <option>Thailand</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-semibold">Phone number *</label>
-              <input
-                type="tel"
-                class="w-full border p-2 rounded"
-                placeholder="Phone"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="mt-4">
-            <label class="block font-semibold mb-1">Passenger type</label>
-            <label class="block"
-              ><input type="radio" checked class="mr-2" /> Adult</label
-            >
-            <label class="block"
-              ><input type="radio" class="mr-2" /> Child</label
-            >
-          </div>
-
-          <div class="mt-4">
-            <label class="block font-semibold">Passport number</label>
-            <input
-              type="text"
-              class="w-full border p-2 rounded"
-              placeholder="Passport number"
-            />
-          </div>
-
-          <div class="mt-6">
-            <h3 class="text-lg font-semibold mb-2">Payment method</h3>
-            <div class="flex flex-col md:flex-row gap-4">
-              <label class="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="payment-method"
-                  class="mr-2"
-                  value="card"
-                  checked
-                />
-                <span>Credit/Debit Card</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="payment-method"
-                  class="mr-2"
-                  value="ewallet"
-                />
-                <span>E-wallet</span>
-              </label>
-            </div>
-            <div id="ewallet-options" class="mt-4 hidden">
-              <label class="block font-semibold mb-2"
-                >Choose your E-wallet</label
-              >
-              <div class="flex flex-wrap gap-4">
-                <label class="flex items-center cursor-pointer">
-                  <input
-                    type="radio"
-                    name="ewallet-type"
-                    class="mr-2"
-                    value="Touch 'n Go"
-                    checked
-                  />
-                  Touch 'n Go
-                </label>
-                <label class="flex items-center cursor-pointer">
-                  <input
-                    type="radio"
-                    name="ewallet-type"
-                    class="mr-2"
-                    value="GrabPay"
-                  />
-                  GrabPay
-                </label>
-                <label class="flex items-center cursor-pointer">
-                  <input
-                    type="radio"
-                    name="ewallet-type"
-                    class="mr-2"
-                    value="Boost"
-                  />
-                  Boost
-                </label>
-                <label class="flex items-center cursor-pointer">
-                  <input
-                    type="radio"
-                    name="ewallet-type"
-                    class="mr-2"
-                    value="Alipay"
-                  />
-                  Alipay
-                </label>
-                <label class="flex items-center cursor-pointer">
-                  <input
-                    type="radio"
-                    name="ewallet-type"
-                    class="mr-2"
-                    value="WeChat Pay"
-                  />
-                  WeChat Pay
-                </label>
-              </div>
-            </div>
-            <div id="card-fields" class="mt-4">
-              <label class="block font-semibold">Card number</label>
-              <input
-                type="text"
-                class="w-full border p-2 rounded mb-2"
-                placeholder="Card number"
-              />
-              <div class="flex gap-2">
-                <div class="flex-1">
-                  <label class="block font-semibold">Expiry</label>
-                  <input
-                    type="text"
-                    class="w-full border p-2 rounded"
-                    placeholder="MM/YY"
-                  />
-                </div>
-                <div class="flex-1">
-                  <label class="block font-semibold">CVV</label>
-                  <input
-                    type="text"
-                    class="w-full border p-2 rounded"
-                    placeholder="CVV"
-                  />
-                </div>
-              </div>
-              <label class="block font-semibold mt-2">Name on card</label>
-              <input
-                type="text"
-                class="w-full border p-2 rounded"
-                placeholder="Name on card"
-              />
-            </div>
-            <div id="ewallet-fields" class="mt-4 hidden">
-              <label class="block font-semibold">E-wallet phone number</label>
-              <input
-                type="text"
-                class="w-full border p-2 rounded"
-                placeholder="Phone number"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-blue-600 text-white py-3 rounded mt-6 font-semibold"
-          >
-            Confirm booking
-          </button>
-        </form>
+  <body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Header from flights.html -->
+  <header class="bg-sky-500 text-white p-4 shadow-md">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <!-- Logo and Title in a row -->
+      <a href="../index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-luggage-icon lucide-luggage">
+          <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" />
+          <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" />
+          <path d="M10 20h4" />
+          <circle cx="16" cy="20" r="2" />
+          <circle cx="8" cy="20" r="2" />
+        </svg>
+        <h1 class="text-3xl font-bold">TripleFun</h1>
+      </a>
+      <nav class="flex-grow flex justify-center mt-4 md:mt-0">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-lg">
+          <li><a href="../index.html"
+              class="px-4 py-2 rounded-full border border-transparent hover:bg-sky-600 hover:text-white transition duration-300">Stays</a>
+          </li>
+          <li><a href="../flights.html"
+              class="px-4 py-2 rounded-full bg-sky-700 text-white transition duration-300">Flights</a></li>
+        </ul>
+      </nav>
+      <!-- User Login/Signup -->
+      <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
+        <a href="./login.html"
+          class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+        <a href="./signup.html"
+          class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign
+          in</a>
       </div>
     </div>
+    </header>
+
+    <main>
+      <div
+        class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6"
+      >
+        <!-- Flight Info Card - Replaced 'border' with 'card-shadow-soft' for a softer look -->
+        <div class="lg:col-span-1 bg-white p-4 rounded-xl card-shadow-soft h-fit">
+          <img src="../images/air-asia.png" alt="Flight" class="rounded mb-4 w-full h-auto object-cover" />
+          <h2 class="text-xl font-semibold mb-1">
+            Kunming (KMG) → Kuala Lumpur (KUL)
+          </h2>
+          <p class="text-sm text-gray-600 mb-1">Direct flight • 4h 10m</p>
+          <p class="text-green-600 text-sm mb-2">Excellent airline — 8.9</p>
+          <div class="flex items-center gap-4 mt-2 mb-4">
+            <span class="text-blue-500 font-bold text-lg">8.9</span>
+            <span class="text-sm text-gray-600">Fabulous • 1,234 reviews</span>
+          </div>
+          <div class="text-sm text-gray-600 flex flex-wrap gap-x-4 gap-y-2">
+            <span>🧳 20kg baggage</span>
+            <span>🍱 Meal included</span>
+            <span>💺 Seat selection</span>
+          </div>
+          <!-- Border-top replaced with a subtle shadow for separation -->
+          <div class="pt-4 mt-4 divide-y-soft">
+            <h3 class="font-semibold text-lg mb-2">Your flight details</h3>
+            <p class="text-sm mb-1"><strong>Departure:</strong> Mon 14 Jul 2025, 10:30</p>
+            <p class="text-sm mb-1"><strong>Arrival:</strong> Mon 14 Jul 2025, 14:40</p>
+            <p class="text-sm mb-1"><strong>Flight:</strong> AirAsia AK1234</p>
+            <p class="text-sm"><strong>Passengers:</strong> 2 adults</p>
+          </div>
+          <!-- Border-top replaced with a subtle shadow for separation -->
+          <div class="pt-4 mt-4 divide-y-soft">
+            <h3 class="font-semibold text-lg mb-2">Your price summary</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-1">MYR 1,234.00</p>
+            <p class="text-sm text-gray-600 mb-1">+MYR 150 taxes and charges</p>
+            <p class="text-sm text-gray-500">In property currency: CNY 2,200</p>
+          </div>
+        </div>
+
+        <!-- Booking Form - Replaced 'border' with 'card-shadow-soft' for a softer look -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-xl card-shadow-soft">
+          <h2 class="text-2xl font-bold mb-6">
+            Enter passenger & payment details
+          </h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold mb-1">First name <span class="text-red-500">*</span></label>
+                <input
+                  type="text"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                  placeholder="First name"
+                  required
+                />
+              </div>
+              <div>
+                <label class="block font-semibold mb-1">Last name <span class="text-red-500">*</span></label>
+                <input
+                  type="text"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                  placeholder="Last name"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold mb-1">Email address <span class="text-red-500">*</span></label>
+              <input
+                type="email"
+                class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold mb-1">Country/region <span class="text-red-500">*</span></label>
+                <select class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300 cursor-pointer">
+                  <option>Malaysia</option>
+                  <option>China</option>
+                  <option>Singapore</option>
+                  <option>Thailand</option>
+                  <option>Indonesia</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold mb-1">Phone number <span class="text-red-500">*</span></label>
+                <input
+                  type="tel"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                  placeholder="Phone"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block font-semibold mb-2">Passenger type</label>
+              <label class="block mb-1 cursor-pointer">
+                <input type="radio" name="passenger-type" class="mr-2 accent-blue-600 cursor-pointer" checked /> Adult
+              </label>
+              <label class="block cursor-pointer">
+                <input type="radio" name="passenger-type" class="mr-2 accent-blue-600 cursor-pointer" /> Child
+              </label>
+            </div>
+
+            <div class="mt-4">
+              <label class="block font-semibold mb-1">Passport number</label>
+              <input
+                type="text"
+                class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                placeholder="Passport number"
+              />
+            </div>
+
+            <div class="mt-6 pt-4 divide-y-soft">
+              <h3 class="text-lg font-semibold mb-3">Payment method</h3>
+              <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <label class="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    class="mr-2 accent-blue-600 cursor-pointer"
+                    value="card"
+                    checked
+                  />
+                  <span>Credit/Debit Card</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    class="mr-2 accent-blue-600 cursor-pointer"
+                    value="ewallet"
+                  />
+                  <span>E-wallet</span>
+                </label>
+              </div>
+              <div id="ewallet-options" class="mt-4 hidden">
+                <label class="block font-semibold mb-2"
+                  >Choose your E-wallet</label
+                >
+                <div class="flex flex-wrap gap-4">
+                  <label class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="ewallet-type"
+                      class="mr-2 accent-blue-600 cursor-pointer"
+                      value="Touch 'n Go"
+                      checked
+                    />
+                    Touch 'n Go
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="ewallet-type"
+                      class="mr-2 accent-blue-600 cursor-pointer"
+                      value="GrabPay"
+                    />
+                    GrabPay
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="ewallet-type"
+                      class="mr-2 accent-blue-600 cursor-pointer"
+                      value="Boost"
+                    />
+                    Boost
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="ewallet-type"
+                      class="mr-2 accent-blue-600 cursor-pointer"
+                      value="Alipay"
+                    />
+                    Alipay
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="ewallet-type"
+                      class="mr-2 accent-blue-600 cursor-pointer"
+                      value="WeChat Pay"
+                    />
+                    WeChat Pay
+                  </label>
+                </div>
+              </div>
+              <div id="card-fields" class="mt-4">
+                <label class="block font-semibold mb-1">Card number</label>
+                <input
+                  type="text"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300 mb-2"
+                  placeholder="Card number"
+                />
+                <div class="flex gap-2">
+                  <div class="flex-1">
+                    <label class="block font-semibold mb-1">Expiry</label>
+                    <input
+                      type="text"
+                      class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                      placeholder="MM/YY"
+                    />
+                  </div>
+                  <div class="flex-1">
+                    <label class="block font-semibold mb-1">CVV</label>
+                    <input
+                      type="text"
+                      class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                      placeholder="CVV"
+                    />
+                  </div>
+                </div>
+                <label class="block font-semibold mt-2 mb-1">Name on card</label>
+                <input
+                  type="text"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                  placeholder="Name on card"
+                />
+              </div>
+              <div id="ewallet-fields" class="mt-4 hidden">
+                <label class="block font-semibold mb-1">E-wallet phone number</label>
+                <input
+                  type="text"
+                  class="w-full p-2 rounded-md bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-300"
+                  placeholder="Phone number"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-3 rounded-md mt-6 font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer"
+              id="confirm-booking"
+            >
+              Confirm booking
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer from flights.html -->
+  <footer class="bg-sky-500 text-white p-3 shadow-inner">
+    <div class="container mx-auto text-center text-sm">
+      <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="hover:text-sky-200 transition duration-300">Privacy Policy</a>
+        <a href="#" class="hover:text-sky-200 transition duration-300">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -255,6 +323,7 @@
         const cardFields = document.getElementById("card-fields");
         const ewalletFields = document.getElementById("ewallet-fields");
         const ewalletOptions = document.getElementById("ewallet-options");
+
         function updatePaymentFields() {
           if (radios[0].checked) {
             cardFields.classList.remove("hidden");
@@ -266,10 +335,17 @@
             ewalletOptions.classList.remove("hidden");
           }
         }
+
         radios[0].addEventListener("change", updatePaymentFields);
         radios[1].addEventListener("change", updatePaymentFields);
         updatePaymentFields();
       });
+    </script>
+    <script>
+      document.getElementById("confirm-booking").addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = '../flights.html';
+      })
     </script>
   </body>
 </html>

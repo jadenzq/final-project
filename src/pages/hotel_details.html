@@ -3,723 +3,674 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
     <title>Holiday Inn Kunming City Centre by IHG</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "booking-blue": "#0066cc",
-              "rating-gold": "#febb02",
-            },
-          },
-        },
-      };
-    </script>
   </head>
   <body class="bg-white">
-    <div class="max-w-7xl mx-auto bg-white">
-      <!-- Navigation Tabs -->
-      <div class="overflow-x-auto">
-        <nav
-          class="flex space-x-8 px-4 py-4 whitespace-nowrap text-sm md:text-base"
-        >
-          <a
-            href="#"
-            class="nav-tab text-booking-blue border-b-2 border-booking-blue pb-2 font-medium"
-            >Overview</a
-          >
-          <a
-            href="#overview"
-            class="nav-tab text-gray-600 hover:text-booking-blue"
-            >Info & prices</a
-          >
-          <a
-            href="#facilities"
-            class="nav-tab text-gray-600 hover:text-booking-blue"
-            >Facilities</a
-          >
-          <a
-            href="#reviews"
-            class="nav-tab text-gray-600 hover:text-booking-blue"
-            >Guest reviews (267)</a
-          >
+    <header class="bg-sky-500 text-white p-4 shadow-md">
+      <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <!-- Logo and Title -->
+        <a href="../index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-luggage-icon lucide-luggage">
+            <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/>
+            <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/>
+            <path d="M10 20h4"/><circle cx="16" cy="20" r="2"/>
+            <circle cx="8" cy="20" r="2"/>
+          </svg>
+          <h1 class="text-3xl font-bold">TripleFun</h1>
+        </a>
+        <nav class="flex-grow flex justify-center mt-4 md:mt-0">
+          <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-lg">
+            <li><a href="../index.html" class="px-4 py-2 rounded-full bg-sky-700 text-white transition duration-300">Stays</a></li>
+            <li><a href="../flights.html" class="px-4 py-2 rounded-full border border-transparent hover:bg-sky-600 hover:text-white transition duration-300">Flights</a></li>
+          </ul>
         </nav>
-      </div>
-
-      <!-- Header Section -->
-      <div class="px-4 py-6 md:px-6">
-        <div
-          class="flex flex-col md:flex-row justify-between items-start gap-4"
-        >
-          <div class="flex-1">
-            <!-- Star Rating -->
-            <div class="flex items-center mb-2">
-              <div class="flex text-rating-gold">
-                <span class="text-xl">★★★★★</span>
-              </div>
-            </div>
-
-            <!-- Hotel Name -->
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              Holiday Inn Kunming City Centre by IHG
-            </h1>
-
-            <!-- Location -->
-            <div
-              class="flex flex-wrap items-center text-gray-600 text-sm md:text-base"
-            >
-              <span
-                >&#x1F5FA; No. 29 Dongfeng East Road, Panlong District, 650011
-                Kunming, China –
-              </span>
-              <button
-                class="mt-2 md:mt-0 md:ml-4 text-blue-500 font-semibold hotel-show-map-btn"
-                data-lat="25.038001648970276"
-                data-lng="102.7250935964026"
-              >
-                Show on map
-              </button>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="flex items-center space-x-3 md:mt-0">
-            <button class="p-2 rounded-full hover:bg-gray-100">
-              <svg
-                class="w-6 h-6 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                ></path>
-              </svg>
-            </button>
-            <button class="p-2 rounded-full hover:bg-gray-100">
-              <svg
-                class="w-6 h-6 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-                ></path>
-              </svg>
-            </button>
-            <button
-              class="bg-booking-blue text-white px-4 md:px-6 py-2 rounded font-medium hover:bg-blue-700 text-sm md:text-base"
-            >
-              Reserve
-            </button>
-          </div>
+        <!-- User Login/Signup -->
+        <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
+          <a href="./login.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
+          <a href="./signup.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
         </div>
       </div>
+    </header>
 
-      <!-- Image Gallery -->
-      <div class="px-4 md:px-6 mb-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-          <div class="col-span-2 row-span-2">
-            <img
-              src="../images/holiday-inn-kunming-city-center.jpg"
-              alt="Hotel exterior"
-              class="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-          <!-- Room Tour Video -->
-          <div class="col-span-2 md:col-span-2 row-span-1">
-            <div class="w-full h-full aspect-video rounded-lg overflow-hidden">
-              <iframe
-                class="w-full h-full"
-                src="https://www.youtube.com/embed/ibBuYXA6EqQ"
-                title="Room Tour"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-lobby.jpg"
-              alt="Hotel lobby"
-              class="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-meeting-room.jpg"
-              alt="Meeting room"
-              class="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-food.jpg"
-              alt="Food"
-              class="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-buffet.jpg"
-              alt="Buffet"
-              class="w-full h-full object-cover rounded"
-            />
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-pool.jpg"
-              alt="Pool"
-              class="w-full h-full object-cover rounded"
-            />
-          </div>
-          <div class="col-span-1">
-            <img
-              src="../images/holiday-inn-room.jpg"
-              alt="Room"
-              class="w-full h-full object-cover rounded"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Left Column -->
-        <div class="md:col-span-3 col-span-1">
-          <!-- Amenities Icons -->
-          <div class="grid grid-cols-3 md:grid-cols-5 gap-4 mb-8">
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Exceptional breakfast</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v4H3V3h7.5z"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Free on-site parking</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Indoor swimming pool</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">View</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Private bathroom</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Free WiFi</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Non-smoking rooms</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Air conditioning</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Bath</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div
-                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Family rooms</span>
-            </div>
-          </div>
-
-          <!-- About Section -->
-          <div class="mb-8" id="overview">
-            <h2 class="text-2xl font-bold mb-4 flex items-center">
-              About this property
-              <button
-                id="about-see-more-btn"
-                class="ml-auto text-booking-blue text-sm font-medium underline focus:outline-none"
-              >
-                See more
-              </button>
-            </h2>
-            <div class="space-y-4 text-gray-700" id="about-section">
-              <p>
-                Situated only a short 7-minute walk from Hang Lung Plaza,
-                Holiday Inn Kunming City Centre features accommodation in the
-                CBD with free WiFi in all areas. It offers an indoor swimming
-                pool, a fitness centre, a garden and 1 on-site dining options.
-              </p>
-              <div id="about-extra-paragraphs" style="display: none">
-                <p>
-                  Dongfeng Square Metro Station on Line 2 and 3 can be accessed
-                  on foot from the property. The hotel is about 2.8 km from
-                  Kunming Railway Station and around 40 minutes' drive from
-                  Kunming Changshui International Airport.
-                </p>
-                <p>
-                  Each room here will provide you with a satellite TV, air
-                  conditioning and a minibar. Complete with a refrigerator, the
-                  dining area also has an electric kettle. Featuring a shower,
-                  private bathroom also comes with a hairdryer and bathrobes.
-                  Extras include a seating area.
-                </p>
-                <p>
-                  Staff at the 24-hour front desk will be glad to assist with
-                  luggage storage, ticketing services and currency exchange.
-                  There is ample flexible event space on site. Free public
-                  parking is possible.
-                </p>
-                <p>
-                  Couples particularly like the location — they rated it
-                  <strong>9.1</strong> for a two-person trip.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reviews Section -->
-          <div class="" id="reviews">
-            <h2 class="text-2xl font-bold mb-4">Guest reviews</h2>
-            <div
-              class="bg-blue-600 text-white inline-block px-3 py-1 rounded text-xl font-bold mb-4"
+    <main>
+      <div class="max-w-7xl mx-auto bg-white">
+        <!-- Navigation Tabs -->
+        <div class="overflow-x-auto">
+          <nav
+            class="flex space-x-8 px-4 py-4 whitespace-nowrap text-sm md:text-base"
+          >
+            <a
+              href="#"
+              class="nav-tab text-blue-600 border-b-2 border-blue-600 pb-2 font-medium"
+              >Overview</a
             >
-              8.7
-            </div>
-            <span class="ml-2 text-xl font-semibold">Fabulous</span>
-            <span class="text-gray-600 ml-2">267 reviews</span>
-            <a href="#" class="text-booking-blue ml-4 underline">Read all</a>
-
-            <!-- Review Categories -->
-            <div class="grid grid-cols-3 gap-4 mt-6">
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Staff</span>
-                  <span class="font-semibold">9.3</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 93%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Facilities</span>
-                  <span class="font-semibold">8.9</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 89%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Cleanliness</span>
-                  <span class="font-semibold">9.1</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 91%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Comfort</span>
-                  <span class="font-semibold">9.0</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 90%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Value for money</span>
-                  <span class="font-semibold">8.9</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 89%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-700">Location</span>
-                  <span class="font-semibold">9.1</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 91%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Individual Reviews -->
-            <div class="mt-8">
-              <h3 class="text-lg font-semibold mb-4">
-                Guests who stayed here loved
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                  <div class="flex items-center mb-3">
-                    <div
-                      class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold"
-                    >
-                      K
-                    </div>
-                    <div class="ml-3">
-                      <div class="font-semibold">Kris</div>
-                      <div class="text-sm text-gray-600 flex items-center">
-                        <span class="mr-1">🇫🇷</span>
-                        France
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 text-sm">
-                    "This place was amazing. The staff were kind and helpful
-                    (especially Lily on reception). They really made us feel
-                    welcome. The room was spacious and..."
-                  </p>
-                  <button class="text-booking-blue text-sm mt-2">
-                    Read more
-                  </button>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                  <div class="flex items-center mb-3">
-                    <div
-                      class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold"
-                    >
-                      M
-                    </div>
-                    <div class="ml-3">
-                      <div class="font-semibold">Marco</div>
-                      <div class="text-sm text-gray-600 flex items-center">
-                        <span class="mr-1">🇮🇹</span>
-                        Italy
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 text-sm">
-                    "The room was very nice, the staff very friendly. Mavis was
-                    very friendly and helpful. She gave me a nice present from
-                    the hotel"
-                  </p>
-                  <button class="text-booking-blue text-sm mt-2">
-                    Read more
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hotel Chain Info -->
-        <div class="bg-white border rounded-lg p-4">
-          <div class="text-sm text-gray-600 mb-2">Hotel chain/brand</div>
-          <div class="flex items-center">
-            <div class="text-lg font-semibold">
-              Holiday Inn Hotels & Resorts
-            </div>
-            <div class="ml-2 text-2xl font-bold text-green-600">H</div>
-          </div>
-        </div>
-
-        <!-- Property Highlights -->
-        <div class="bg-white border rounded-lg p-4">
-          <h3 class="text-lg font-semibold mb-3">Property highlights</h3>
-          <div class="flex items-start mb-3">
-            <svg
-              class="w-5 h-5 text-gray-600 mr-2 mt-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <a
+              href="#overview"
+              class="nav-tab text-gray-600 hover:text-blue-500"
+              >Info & prices</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              ></path>
-            </svg>
-            <div>
-              <div class="font-medium">
-                Top location: Highly rated by recent guests (9.1)
-              </div>
-            </div>
-          </div>
-          <div class="text-sm text-gray-600 mb-4">Breakfast info</div>
-          <div class="text-sm">Buffet</div>
-          <div class="flex items-center mt-3">
-            <svg
-              class="w-5 h-5 text-gray-600 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <a
+              href="#facilities"
+              class="nav-tab text-gray-600 hover:text-blue-500"
+              >Facilities</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v4H3V3h7.5z"
-              ></path>
-            </svg>
-            <span class="text-sm">Free parking available at the hotel</span>
-          </div>
+            <a
+              href="#reviews"
+              class="nav-tab text-gray-600 hover:text-blue-500"
+              >Guest reviews (267)</a
+            >
+          </nav>
         </div>
 
-        <!-- Map -->
-        <div class="bg-white border rounded-lg p-4">
+        <!-- Header Section -->
+        <div class="px-4 py-6 md:px-6">
           <div
-            class="bg-blue-100 h-32 rounded flex items-center justify-center relative overflow-hidden"
+            class="flex flex-col md:flex-row justify-between items-start gap-4"
           >
-            <div
-              class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold z-10"
-            >
-              Holiday Inn
+            <div class="flex-1">
+              <!-- Star Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-amber-400">
+                  <!-- Using inline SVG for each star -->
+                  <svg
+                    class="w-4 h-4 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.901-7.416 3.901 1.48-8.279-6.064-5.828 8.332-1.151z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.901-7.416 3.901 1.48-8.279-6.064-5.828 8.332-1.151z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.901-7.416 3.901 1.48-8.279-6.064-5.828 8.332-1.151z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.901-7.416 3.901 1.48-8.279-6.064-5.828 8.332-1.151z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.901-7.416 3.901 1.48-8.279-6.064-5.828 8.332-1.151z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Hotel Name -->
+              <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                Holiday Inn Kunming City Centre by IHG
+              </h1>
+
+              <!-- Location -->
+              <div
+                class="flex flex-wrap items-center text-gray-600 text-sm md:text-base"
+              >
+                <span
+                  >&#x1F5FA; No. 29 Dongfeng East Road, Panlong District, 650011
+                  Kunming, China –
+                </span>
+                <button
+                  class="mt-2 md:mt-0 md:ml-4 text-blue-500 font-semibold hotel-show-map-btn cursor-pointer"
+                  data-lat="25.038001648970276"
+                  data-lng="102.7250935964026"
+                >
+                  Show on map
+                </button>
+              </div>
             </div>
-            <div id="sidebar-map" class="w-full h-full rounded"></div>
-            <div class="absolute bottom-2 right-2 text-xs text-gray-500 z-10">
-              © Map data ©2025
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3 md:mt-0">
+              <button class="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
+                <svg
+                  class="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  ></path>
+                </svg>
+              </button>
+              <button class="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
+                <svg
+                  class="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                class="bg-blue-600 text-white px-4 md:px-6 py-2 rounded font-medium hover:bg-blue-700 text-sm md:text-base cursor-pointer reserve-btn"
+              >
+                Reserve
+              </button>
             </div>
           </div>
-          <div class="mt-3 flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-gray-600 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>Easy access to public transport</span>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="px-4 md:px-6 mb-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="col-span-2 row-span-2">
+              <img
+                src="../images/holiday-inn-kunming-city-center.jpg"
+                alt="Hotel exterior"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <!-- Room Tour Video -->
+            <div class="col-span-2 md:col-span-2 row-span-1">
+              <div class="w-full h-full aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/ibBuYXA6EqQ"
+                  title="Room Tour"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-lobby.jpg"
+                alt="Hotel lobby"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-meeting-room.jpg"
+                alt="Meeting room"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-food.jpg"
+                alt="Food"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-buffet.jpg"
+                alt="Buffet"
+                class="w-full h-full object-cover rounded"
+              />
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-pool.jpg"
+                alt="Pool"
+                class="w-full h-full object-cover rounded"
+              />
+            </div>
+            <div class="col-span-1">
+              <img
+                src="../images/holiday-inn-room.jpg"
+                alt="Room"
+                class="w-full h-full object-cover rounded"
+              />
+            </div>
           </div>
-          <button
-            class="w-full bg-booking-blue text-white py-2 rounded mt-3 hover:bg-blue-700 hotel-show-map-btn"
-            data-lat="25.038001648970276"
-            data-lng="102.7250935964026"
-          >
-            Show on map
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto">
-      <!-- Facilities Section -->
-      <div class="px-4 md:px-6 py-8 bg-white">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
-        >
-          <h2 class="text-2xl font-bold">
-            Facilities of Holiday Inn Kunming City Centre by IHG
-          </h2>
         </div>
 
-        <!-- Most Popular Facilities -->
-        <div class="">
-          <h3 class="text-lg font-semibold mb-4">Most popular facilities</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Main Content -->
+        <div class="px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Left Column -->
+          <div class="md:col-span-3 col-span-1">
+            <!-- Amenities Icons -->
+            <div class="grid grid-cols-3 md:grid-cols-5 gap-4 mb-8">
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Exceptional breakfast</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v4H3V3h7.5z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Free on-site parking</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Indoor swimming pool</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">View</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Private bathroom</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Free WiFi</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Non-smoking rooms</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Air conditioning</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Bath</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-sm text-gray-600">Family rooms</span>
+              </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="mb-8" id="overview">
+              <h2 class="text-2xl font-bold mb-4 flex items-center">
+                About this property
+                <button
+                  id="about-see-more-btn"
+                  class="ml-auto text-blue-600 text-sm font-medium underline focus:outline-none cursor-pointer"
+                >
+                  See more
+                </button>
+              </h2>
+              <div class="space-y-4 text-gray-700" id="about-section">
+                <p>
+                  Situated only a short 7-minute walk from Hang Lung Plaza,
+                  Holiday Inn Kunming City Centre features accommodation in the
+                  CBD with free WiFi in all areas. It offers an indoor swimming
+                  pool, a fitness centre, a garden and 1 on-site dining options.
+                </p>
+                <div id="about-extra-paragraphs" style="display: none">
+                  <p>
+                    Dongfeng Square Metro Station on Line 2 and 3 can be accessed
+                    on foot from the property. The hotel is about 2.8 km from
+                    Kunming Railway Station and around 40 minutes' drive from
+                    Kunming Changshui International Airport.
+                  </p>
+                  <p>
+                    Each room here will provide you with a satellite TV, air
+                    conditioning and a minibar. Complete with a refrigerator, the
+                    dining area also has an electric kettle. Featuring a shower,
+                    private bathroom also comes with a hairdryer and bathrobes.
+                    Extras include a seating area.
+                  </p>
+                  <p>
+                    Staff at the 24-hour front desk will be glad to assist with
+                    luggage storage, ticketing services and currency exchange.
+                    There is ample flexible event space on site. Free public
+                    parking is possible.
+                  </p>
+                  <p>
+                    Couples particularly like the location — they rated it
+                    <strong>9.1</strong> for a two-person trip.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="" id="reviews">
+              <h2 class="text-2xl font-bold mb-4">Guest reviews</h2>
+              <div
+                class="bg-blue-600 text-white inline-block px-3 py-1 rounded text-xl font-bold mb-4"
+              >
+                8.7
+              </div>
+              <span class="ml-2 text-xl font-semibold">Fabulous</span>
+              <span class="text-gray-600 ml-2">267 reviews</span>
+              <a href="#" class="text-blue-600 ml-4 underline">Read all</a>
+
+              <!-- Review Categories -->
+              <div class="grid grid-cols-3 gap-4 mt-6">
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Staff</span>
+                    <span class="font-semibold">9.3</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 93%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Facilities</span>
+                    <span class="font-semibold">8.9</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 89%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Cleanliness</span>
+                    <span class="font-semibold">9.1</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 91%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Comfort</span>
+                    <span class="font-semibold">9.0</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Value for money</span>
+                    <span class="font-semibold">8.9</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 89%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700">Location</span>
+                    <span class="font-semibold">9.1</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 h-2 rounded-full"
+                      style="width: 91%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Individual Reviews -->
+              <div class="mt-8">
+                <h3 class="text-lg font-semibold mb-4">
+                  Guests who stayed here loved
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                      <div
+                        class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold"
+                      >
+                        K
+                      </div>
+                      <div class="ml-3">
+                        <div class="font-semibold">Kris</div>
+                        <div class="text-sm text-gray-600 flex items-center">
+                          <span class="mr-1">🇫🇷</span>
+                          France
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-gray-700 text-sm">
+                      "This place was amazing. The staff were kind and helpful
+                      (especially Lily on reception). They really made us feel
+                      welcome. The room was spacious and..."
+                    </p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                      <div
+                        class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold"
+                      >
+                        M
+                      </div>
+                      <div class="ml-3">
+                        <div class="font-semibold">Marco</div>
+                        <div class="text-sm text-gray-600 flex items-center">
+                          <span class="mr-1">🇮🇹</span>
+                          Italy
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-gray-700 text-sm">
+                      "The room was very nice, the staff very friendly. Mavis was
+                      very friendly and helpful. She gave me a nice present from
+                      the hotel"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel Chain Info -->
+          <div class="bg-white border rounded-lg p-4">
+            <div class="text-sm text-gray-600 mb-2">Hotel chain/brand</div>
             <div class="flex items-center">
+              <div class="text-lg font-semibold">
+                Holiday Inn Hotels & Resorts
+              </div>
+              <div class="ml-2 text-2xl font-bold text-green-600">H</div>
+            </div>
+          </div>
+
+          <!-- Property Highlights -->
+          <div class="bg-white border rounded-lg p-4">
+            <h3 class="text-lg font-semibold mb-3">Property highlights</h3>
+            <div class="flex items-start mb-3">
               <svg
-                class="w-5 h-5 text-gray-600 mr-2"
+                class="w-5 h-5 text-gray-600 mr-2 mt-0.5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -728,60 +679,24 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                 ></path>
-              </svg>
-              <span class="text-sm">Indoor swimming pool</span>
-            </div>
-            <div class="flex items-center">
-              <svg
-                class="w-5 h-5 text-gray-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 ></path>
               </svg>
-              <span class="text-sm">Non-smoking rooms</span>
+              <div>
+                <div class="font-medium">
+                  Top location: Highly rated by recent guests (9.1)
+                </div>
+              </div>
             </div>
-            <div class="flex items-center">
-              <svg
-                class="w-5 h-5 text-gray-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
-                ></path>
-              </svg>
-              <span class="text-sm">Free WiFi</span>
-            </div>
-            <div class="flex items-center">
-              <svg
-                class="w-5 h-5 text-gray-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                ></path>
-              </svg>
-              <span class="text-sm">Fitness centre</span>
-            </div>
-            <div class="flex items-center">
+            <div class="text-sm text-gray-600 mb-4">Breakfast info</div>
+            <div class="text-sm">Buffet</div>
+            <div class="flex items-center mt-3">
               <svg
                 class="w-5 h-5 text-gray-600 mr-2"
                 fill="none"
@@ -795,11 +710,512 @@
                   d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v4H3V3h7.5z"
                 ></path>
               </svg>
-              <span class="text-sm">Free parking</span>
+              <span class="text-sm">Free parking available at the hotel</span>
             </div>
-            <div class="flex items-center">
+          </div>
+
+          <!-- Map -->
+          <div class="bg-white border rounded-lg p-4">
+            <div
+              class="bg-blue-100 h-32 rounded flex items-center justify-center relative overflow-hidden"
+            >
+              <div
+                class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold z-10"
+              >
+                Holiday Inn
+              </div>
+              <div id="sidebar-map" class="w-full h-full rounded"></div>
+              <div class="absolute bottom-2 right-2 text-xs text-gray-500 z-10">
+                © Map data ©2025
+              </div>
+            </div>
+            <div class="mt-3 flex items-center text-sm">
               <svg
-                class="w-5 h-5 text-gray-600 mr-2"
+                class="w-4 h-4 text-gray-600 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Easy access to public transport</span>
+            </div>
+            <button
+              class="w-full bg-blue-600 text-white py-2 rounded mt-3 hover:bg-blue-700 hotel-show-map-btn cursor-pointer"
+              data-lat="25.038001648970276"
+              data-lng="102.7250935964026"
+            >
+              Show on map
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto">
+        <!-- Facilities Section -->
+        <div class="px-4 md:px-6 py-8 bg-white">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
+          >
+            <h2 class="text-2xl font-bold">
+              Facilities of Holiday Inn Kunming City Centre by IHG
+            </h2>
+          </div>
+
+          <!-- Most Popular Facilities -->
+          <div class="">
+            <h3 class="text-lg font-semibold mb-4">Most popular facilities</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 004.5 16c-.477 0-.954.152-1.5.454"
+                  ></path>
+                </svg>
+                <span class="text-sm">Indoor swimming pool</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
+                  ></path>
+                </svg>
+                <span class="text-sm">Non-smoking rooms</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                  ></path>
+                </svg>
+                <span class="text-sm">Free WiFi</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+                <span class="text-sm">Fitness centre</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v4H3V3h7.5z"
+                  ></path>
+                </svg>
+                <span class="text-sm">Free parking</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="text-sm">Room service</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+                <span class="text-sm">Facilities for disabled guests</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-gray-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+                <span class="text-sm">Family rooms</span>
+              </div>
+          </div>
+        </div>
+
+        <!-- Detailed Facilities -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 bg-white"
+          id="facilities"
+        >
+          <!-- Great for your stay -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+              Great for your stay
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Parking
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Air conditioning
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Free WiFi
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Fitness centre
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Family rooms
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Facilities for disabled guests
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Free parking
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Room service
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Indoor swimming pool
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Non-smoking rooms
+              </li>
+            </ul>
+          </div>
+
+          <!-- Media & Technology -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              Media &amp; Technology
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Cable channels
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Satellite channels
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Telephone
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                TV
+              </li>
+            </ul>
+
+            <!-- Food & Drink -->
+            <h3 class="text-lg font-semibold mb-4 mt-6 flex items-center">
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a1 1 0 001 1h10a1 1 0 001-1v-6m-9 2a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"
+                ></path>
+              </svg>
+              Food &amp; Drink
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Breakfast in the room
+              </li>
+            </ul>
+          </div>
+
+          <!-- Business facilities -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg
+                class="w-5 h-5 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -811,11 +1227,32 @@
                   d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                 ></path>
               </svg>
-              <span class="text-sm">Room service</span>
-            </div>
-            <div class="flex items-center">
+              Business facilities
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Meeting/banquet facilities
+                <span class="ml-2 text-xs text-gray-500">Additional charge</span>
+              </li>
+            </ul>
+
+            <!-- General -->
+            <h3 class="text-lg font-semibold mb-4 mt-6 flex items-center">
               <svg
-                class="w-5 h-5 text-gray-600 mr-2"
+                class="w-5 h-5 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -824,551 +1261,179 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
-              <span class="text-sm">Facilities for disabled guests</span>
-            </div>
-            <div class="flex items-center">
-              <svg
-                class="w-5 h-5 text-gray-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
-              </svg>
-            </div>
-            <span class="text-sm">Family rooms</span>
+              General
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Air conditioning
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Wake-up service
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Heating
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Car hire
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Lift
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Family rooms
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Facilities for disabled guests
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Non-smoking rooms
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-600 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Room service
+              </li>
+            </ul>
           </div>
+
+          <!-- Reserve Button -->
+          <button
+            class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 md:col-start-2 reserve-btn cursor-pointer"
+          >
+            Reserves
+          </button>
         </div>
       </div>
+    </main>
 
-      <!-- Detailed Facilities -->
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 bg-white"
-        id="facilities"
-      >
-        <!-- Great for your stay -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 flex items-center">
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              ></path>
-            </svg>
-            Great for your stay
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Parking
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Air conditioning
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Free WiFi
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Fitness centre
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Family rooms
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Facilities for disabled guests
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Free parking
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Room service
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Indoor swimming pool
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Non-smoking rooms
-            </li>
-          </ul>
+    <!-- Footer -->
+    <footer class="bg-sky-500 text-white p-3 shadow-inner">
+      <div class="container mx-auto text-center text-sm">
+        <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-sky-200 transition duration-300">Privacy Policy</a>
+          <a href="#" class="hover:text-sky-200 transition duration-300">Terms of Service</a>
         </div>
-
-        <!-- Media & Technology -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 flex items-center">
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
-            </svg>
-            Media &amp; Technology
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Cable channels
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Satellite channels
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Telephone
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              TV
-            </li>
-          </ul>
-
-          <!-- Food & Drink -->
-          <h3 class="text-lg font-semibold mb-4 mt-6 flex items-center">
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a1 1 0 001 1h10a1 1 0 001-1v-6m-9 2a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"
-              ></path>
-            </svg>
-            Food &amp; Drink
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Breakfast in the room
-            </li>
-          </ul>
-        </div>
-
-        <!-- Business facilities -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 flex items-center">
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-              ></path>
-            </svg>
-            Business facilities
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Meeting/banquet facilities
-              <span class="ml-2 text-xs text-gray-500">Additional charge</span>
-            </li>
-          </ul>
-
-          <!-- General -->
-          <h3 class="text-lg font-semibold mb-4 mt-6 flex items-center">
-            <svg
-              class="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            General
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Air conditioning
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Wake-up service
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Heating
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Car hire
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Lift
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Family rooms
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Facilities for disabled guests
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Non-smoking rooms
-            </li>
-            <li class="flex items-center">
-              <svg
-                class="w-4 h-4 text-green-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              Room service
-            </li>
-          </ul>
-        </div>
-
-        <!-- Reserve Button -->
-        <button
-          class="w-full bg-booking-blue text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 md:col-start-2 md:mb-6"
-        >
-          Reserves
-        </button>
       </div>
-    </div>
+    </footer>
 
     <!-- Google Map Modal -->
     <div
@@ -1387,8 +1452,8 @@
         <div id="map-container" class="flex-1 w-full h-full rounded-b-lg"></div>
       </div>
     </div>
+    
 
-    <script src="./hotel_autocomplete.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // About section see more
@@ -1405,18 +1470,18 @@
           tab.addEventListener("click", function (e) {
             navTabs.forEach(function (t) {
               t.classList.remove(
-                "text-booking-blue",
+                "text-blue-600",
                 "border-b-2",
-                "border-booking-blue",
+                "border-blue-600",
                 "font-medium"
               );
-              t.classList.add("text-gray-600");
+              t.classList.add("text-gray-600", "hover:text-blue-500");
             });
             tab.classList.remove("text-gray-600");
             tab.classList.add(
-              "text-booking-blue",
+              "text-blue-600",
               "border-b-2",
-              "border-booking-blue",
+              "border-blue-600",
               "font-medium"
             );
           });
@@ -1428,6 +1493,51 @@
       async
       defer
     ></script>
+    <script>
+      function showEmbeddedMapModal(lat, lng, title = "Location") {
+        const modal = document.getElementById("map-modal");
+        const mapContainer = document.getElementById("map-container");
+        modal.classList.remove("hidden");
+        // Clear previous map instance
+        mapContainer.innerHTML = "";
+        // Create the map
+        const map = new google.maps.Map(mapContainer, {
+          center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+          zoom: 15,
+        });
+        new google.maps.Marker({
+          position: { lat: parseFloat(lat), lng: parseFloat(lng) },
+          map,
+          title,
+        });
+      }
+      window.addEventListener("DOMContentLoaded", function () {
+        const closeBtn = document.getElementById("close-map-modal");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", function () {
+            document.getElementById("map-modal").classList.add("hidden");
+          });
+        }
+        const modal = document.getElementById("map-modal");
+        if (modal) {
+          modal.addEventListener("click", function (e) {
+            if (e.target === this) {
+              this.classList.add("hidden");
+            }
+          });
+        }
+      });
+      document.querySelectorAll(".hotel-show-map-btn").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const lat = this.getAttribute("data-lat");
+        const lng = this.getAttribute("data-lng");
+        const title =
+          this.closest(".flex-1")?.querySelector("h2")?.textContent || "Hotel";
+        showEmbeddedMapModal(lat, lng, title);
+      });
+    });
+    </script>
     <script>
       // Google Maps embed for sidebar
       function initSidebarMap() {
@@ -1464,6 +1574,14 @@
           initSidebarMap();
         };
       }
+    </script>
+    <script>
+      document.querySelectorAll('.reserve-btn').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        window.location.href = './hotel_payment.html';
+      });
+    });
     </script>
   </body>
 </html>
