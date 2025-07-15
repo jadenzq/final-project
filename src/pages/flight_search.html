@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="../output.css" rel="stylesheet" />
-  <title>Triple Fun</title>
+  <title>TripleFun - Find Your Next Flight</title>
   <style>
     /* Hide scrollbar for a cleaner look */
     .scrollbar-hide::-webkit-scrollbar {
@@ -98,12 +98,12 @@
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zM12 18h.008v.008H12V18z" />
           </svg>
-          <input type="text" placeholder="Depart" onfocus="(this.type='date')" onblur="(this.type='text')"
-            id="depart-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+          <input type="text" placeholder="Depart" onfocus="(this.type='date')" onblur="(this.type='date') "
+            id="depart-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" onclick="this.showPicker()" />
           <div id="return-date-section" class="flex items-center w-full">
             <span class="mx-1 text-gray-500">—</span>
-            <input type="text" placeholder="Return" onfocus="(this.type='date')" onblur="(this.type='text')"
-              id="return-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" />
+            <input type="text" placeholder="Return" onfocus="(this.type='date')" onblur="(this.type='date')"
+              id="return-date" class="w-full p-0.5 focus:outline-none text-base cursor-pointer" onclick="this.showPicker()"/>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
             class="w-4 h-4 text-gray-500 ml-2 pointer-events-none">
@@ -181,12 +181,12 @@
       <div class="flex justify-center items-center space-x-4 p-2 mt-4">
         <div class="flex items-center space-x-2">
           <input type="radio" id="round-trip" name="trip-type" value="round-trip"
-            class="form-radio h-4 w-4 text-blue-600" checked>
-          <label for="round-trip" class="text-white text-base">Round trip</label>
+            class="form-radio h-4 w-4 accent-blue-600 cursor-pointer" checked>
+          <label for="round-trip" class="text-white text-base cursor-pointer">Round trip</label>
         </div>
         <div class="flex items-center space-x-2">
-          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 text-blue-600">
-          <label for="one-way" class="text-white text-base">One way</label>
+          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 accent-blue-600 cursor-pointer">
+          <label for="one-way" class="text-white text-base cursor-pointer">One way</label>
         </div>
         <!-- Removed Multi-city radio button -->
       </div>
@@ -213,14 +213,14 @@
             <div class="mb-4">
               <h3 class="font-medium mb-1">Stops</h3>
               <div class="space-y-2">
-                <label class="flex items-center space-x-2">
-                  <input type="radio" name="stops" checked /> <span>Any</span>
+                <label class="flex items-center space-x-2 accent-blue-600 cursor-pointer">
+                  <input type="radio" name="stops" checked class="cursor-pointer"/> <span>Any</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="radio" name="stops" /> <span>Direct only</span>
+                <label class="flex items-center space-x-2 accent-blue-600 cursor-pointer">
+                  <input type="radio" name="stops" class="cursor-pointer" /> <span>Direct only</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="radio" name="stops" /> <span>1 stop max</span>
+                <label class="flex items-center space-x-2 accent-blue-600 cursor-pointer">
+                  <input type="radio" name="stops" class="cursor-pointer" /> <span>1 stop max</span>
                 </label>
               </div>
             </div>
@@ -228,14 +228,14 @@
             <div class="mb-4">
               <h3 class="font-medium mb-1">Airlines</h3>
               <div class="space-y-1">
-                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Air
+                <label class="flex items-center accent-blue-600 cursor-pointer"><input type="checkbox" checked class="mr-2 cursor-pointer" /> Air
                   Asia</label>
-                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> China Eastern
+                <label class="flex items-center accent-blue-600 cursor-pointer"><input type="checkbox" checked class="mr-2 cursor-pointer" /> China Eastern
                   Airlines</label>
-                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Scoot</label>
-                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Batik Air
+                <label class="flex items-center accent-blue-600 cursor-pointer"><input type="checkbox" checked class="mr-2 cursor-pointer" /> Scoot</label>
+                <label class="flex items-center accent-blue-600 cursor-pointer"><input type="checkbox" checked class="mr-2 cursor-pointer" /> Batik Air
                   Malaysia</label>
-                <label class="flex items-center"><input type="checkbox" checked class="mr-2" /> Xiamen
+                <label class="flex items-center accent-blue-600 cursor-pointer"><input type="checkbox" checked class="mr-2 cursor-pointer" /> Xiamen
                   Airlines</label>
               </div>
             </div>
@@ -246,13 +246,13 @@
         <main class="flex-1">
           <!-- Sort Tabs -->
           <div class="bg-white p-3 rounded-xl shadow-md mb-4 flex space-x-4 border border-gray-200">
-            <button class="sort-btn font-semibold border-b-2 border-blue-600 pb-1" onclick="setActiveSort(this)">
+            <button class="sort-btn font-semibold border-b-2 border-blue-600 pb-1 transition duration-300 ease-in-out" onclick="setActiveSort(this)">
               Best
             </button>
-            <button class="sort-btn text-gray-500" onclick="setActiveSort(this)">
+            <button class="sort-btn text-gray-500 cursor-pointer hover:font-semibold hover:pb-1 hover:border-b-2 hover:border-blue-600 transition duration-300 ease-in-out" onclick="setActiveSort(this)">
               Cheapest
             </button>
-            <button class="sort-btn text-gray-500" onclick="setActiveSort(this)">
+            <button class="sort-btn text-gray-500 cursor-pointer hover:font-semibold hover:pb-1 hover:border-b-2 hover:border-blue-600 transition duration-300 ease-in-out" onclick="setActiveSort(this)">
               Fastest
             </button>
           </div>
@@ -336,7 +336,7 @@
                 MYR3,059.61 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -392,7 +392,7 @@
                 MYR2,198.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -448,7 +448,7 @@
                 MYR2,398.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -504,7 +504,7 @@
                 MYR2,798.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -562,7 +562,7 @@
                 MYR3,798.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -620,7 +620,7 @@
                 MYR2,598.00 for all travellers
               </p>
               <button
-                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">
+                class="mt-2 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white cursor-pointer flight-detail">
                 View details
               </button>
             </div>
@@ -649,12 +649,12 @@
         const sortButtons = document.querySelectorAll('.sort-btn');
         sortButtons.forEach(btn => {
             btn.classList.remove('font-semibold', 'border-b-2', 'border-blue-600', 'pb-1');
-            btn.classList.add('text-gray-500');
+            btn.classList.add('text-gray-500', 'cursor-pointer', 'hover:font-semibold', 'hover:pb-1', 'hover:border-b-2', 'hover:border-blue-600');
         });
 
         // Add active styles to the clicked button
         button.classList.add('font-semibold', 'border-b-2', 'border-blue-600', 'pb-1');
-        button.classList.remove('text-gray-500');
+        button.classList.remove('text-gray-500', 'cursor-pointer', 'hover:font-semibold', 'hover:pb-1', 'hover:border-b-2', 'hover:border-blue-600');
     };
 
     // Function to parse URL parameters and populate search fields
@@ -694,6 +694,14 @@
           }
         }
       });
+  </script>
+  <script>
+    document.querySelectorAll('.flight-detail').forEach(button => {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      window.location.href = './flight_payment.html';
+    });
+  });
   </script>
 
 </body>

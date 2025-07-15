@@ -51,38 +51,38 @@ document.getElementById('search-hotels-button').addEventListener('click', async 
   const travelers = travelersInput.value.trim();
 
   // Perform initial validation for all fields
-  if (!location || !checkIn || !checkOut || !travelers) {
-    alert("Please fill in all search fields.");
-    return; // Stop the function execution
-  }
+  // if (!location || !checkIn || !checkOut || !travelers) {
+  //   alert("Please fill in all search fields.");
+  //   return; // Stop the function execution
+  // }
 
   // If selectedPlace is not set or doesn't have geometry, try to geocode the current input value
   // This ensures that even if the user types a location without selecting from the dropdown,
   // we attempt to validate it.
-  if (!selectedPlace || !selectedPlace.geometry) {
-    try {
-      const geocodeResults = await new Promise((resolve, reject) => {
-        geocoder.geocode({ 'address': location }, function(results, status) {
-          if (status === 'OK' && results[0]) {
-            resolve(results[0]);
-          } else {
-            reject(new Error('Geocode was not successful for the input location: ' + status));
-          }
-        });
-      });
-      selectedPlace = geocodeResults; // Update selectedPlace with the geocoded result
-    } catch (error) {
-      console.error(error);
-      alert("Please select a valid location from the dropdown suggestions or ensure the entered location is recognizable.");
-      return; // Stop if geocoding fails
-    }
-  }
+  // if (!selectedPlace || !selectedPlace.geometry) {
+  //   try {
+  //     const geocodeResults = await new Promise((resolve, reject) => {
+  //       geocoder.geocode({ 'address': location }, function(results, status) {
+  //         if (status === 'OK' && results[0]) {
+  //           resolve(results[0]);
+  //         } else {
+  //           reject(new Error('Geocode was not successful for the input location: ' + status));
+  //         }
+  //       });
+  //     });
+  //     selectedPlace = geocodeResults; // Update selectedPlace with the geocoded result
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("Please select a valid location from the dropdown suggestions or ensure the entered location is recognizable.");
+  //     return; // Stop if geocoding fails
+  //   }
+  // }
 
-  // Final check after potentially geocoding: ensure a valid place with geometry is available
-  if (!selectedPlace || !selectedPlace.geometry) {
-      alert("Please select a valid location from the dropdown suggestions.");
-      return;
-  }
+  // // Final check after potentially geocoding: ensure a valid place with geometry is available
+  // if (!selectedPlace || !selectedPlace.geometry) {
+  //     alert("Please select a valid location from the dropdown suggestions.");
+  //     return;
+  // }
 
   // Construct URL with query parameters
   const params = new URLSearchParams();

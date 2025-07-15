@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Basic validation for required fields
-        if (!leavingFrom || !goingTo || !departDate || !travelers) {
-            alert("Please fill in all required flight search fields.");
-            return;
-        }
+        // if (!leavingFrom || !goingTo || !departDate || !travelers) {
+        //     alert("Please fill in all required flight search fields.");
+        //     return;
+        // }
 
         // Date Validation
         const todayString = getTodayFormatted();
@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (roundTripRadio.checked) {
-            if (!returnDate) {
-                alert("Please select a return date for round trip.");
-                return;
-            }
+            // if (!returnDate) {
+            //     alert("Please select a return date for round trip.");
+            //     return;
+            // }
             const returnDateObj = new Date(returnDate);
             const minReturnDate = new Date(departDateObj);
             minReturnDate.setDate(minReturnDate.getDate() + 1);

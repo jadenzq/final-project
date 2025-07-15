@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <title>Triple Fun</title>
+    <title>TripleFun</title>
     <style>
       /* Hide scrollbar for a cleaner look */
       .scrollbar-hide::-webkit-scrollbar {
@@ -121,7 +121,9 @@
             </div>
           </div>
 
-          <button id="search-flights-button" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer w-full lg:w-auto">
+          <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out cursor-pointer w-full lg:w-auto"
+            id="search-flights-button"
+          >
             Search
           </button>
         </div>
@@ -129,11 +131,11 @@
       <!-- Trip Type Radios - Moved outside and centered -->
       <div class="flex justify-center items-center space-x-4 p-2 mt-4">
         <div class="flex items-center space-x-2">
-          <input type="radio" id="round-trip" name="trip-type" value="round-trip" class="form-radio h-4 w-4 text-blue-600 cursor-pointer" checked>
+          <input type="radio" id="round-trip" name="trip-type" value="round-trip" class="form-radio h-4 w-4 accent-blue-600 cursor-pointer" checked>
           <label for="round-trip" class="text-white text-base cursor-pointer">Round trip</label>
         </div>
         <div class="flex items-center space-x-2">
-          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 text-blue-600 cursor-pointer">
+          <input type="radio" id="one-way" name="trip-type" value="one-way" class="form-radio h-4 w-4 accent-blue-600 cursor-pointer">
           <label for="one-way" class="text-white text-base cursor-pointer">One way</label>
         </div>
       </div>
@@ -155,7 +157,7 @@
                 <div class="p-6 flex-1">
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">Early Bird Savings</h3>
                   <p class="text-gray-600 mb-4">Book in advance and save up to 15% on international flights.</p>
-                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Find Flights</button>
+                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-flights">Find Flights</button>
                 </div>
                 <div class="md:w-1/3 flex-shrink-0">
                   <img src="https://placehold.co/300x200/E0E0E0/000000?text=Flight+Offer+1" alt="Flight Offer 1" class="w-full h-full object-cover">
@@ -167,7 +169,7 @@
                 <div class="p-6 flex-1">
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">Last Minute Escapes</h3>
                   <p class="text-gray-600 mb-4">Spontaneous travel? Grab incredible last-minute flight deals.</p>
-                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Explore Deals</button>
+                  <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 cursor-pointer search-flights">Explore Deals</button>
                 </div>
                 <div class="md:w-1/3 flex-shrink-0">
                   <img src="https://placehold.co/300x200/E0E0E0/000000?text=Flight+Offer+2" alt="Flight Offer 2" class="w-full h-full object-cover">
@@ -177,18 +179,18 @@
           </section>
 
           <!-- Explore Popular Flight Destinations Section -->
-          <section class="container mx-auto p-6 mt-8">
+          <section class="container mx-auto p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Explore Popular Flight Destinations</h2>
             <p class="text-gray-600 mb-6">Find flights to top cities around the world based on your travel style.</p>
 
             <!-- Vibe Filters -->
             <div class="flex space-x-2 mb-6 overflow-x-auto pb-2">
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-blue-700 text-white text-sm font-medium flex-shrink-0" data-vibe="city-flights">City</button>
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="beach-flights">Beach</button>
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="outdoors-flights">Outdoors</button>
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="relax-flights">Relax</button>
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="romance-flights">Romance</button>
-              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300" data-vibe="food-flights">Food</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-blue-700 text-white text-sm font-medium flex-shrink-0 cursor-pointer" data-vibe="city-flights">City</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="beach-flights">Beach</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="outdoors-flights">Outdoors</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="relax-flights">Relax</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="romance-flights">Romance</button>
+              <button class="vibe-btn-flights px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm font-medium flex-shrink-0 hover:bg-gray-300 transition duration-300 cursor-pointer" data-vibe="food-flights">Food</button>
             </div>
 
             <!-- Vibe Content Areas (Flights) -->
@@ -339,8 +341,8 @@
           </section>
 
           <!-- Top International Flight Destinations -->
-          <section class="container mx-auto p-6 mt-8">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Top International Flight Destinations</h3>
+          <section class="container mx-auto p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Top International Flight Destinations</h2>
             <!-- Popular Destinations Cards (Horizontal Scroll) -->
             <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
               <!-- Card 1 -->
@@ -390,5 +392,61 @@
 
     <script src="scripts/flights_home.js"></script>
     <script src="scripts/flights_home_search.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const vibeButtonsFlights = document.querySelectorAll('.vibe-btn-flights');
+
+        const vibeContentAreasFlights = document.querySelectorAll('[id$="-flights-content"]');
+
+        function showVibeContentFlights(vibe) {
+         // Hide all content areas
+         vibeContentAreasFlights.forEach(content => {
+           content.classList.add('hidden');
+          });
+
+          // Show the selected content area
+          const selectedContent = document.getElementById(`${vibe}-content`);
+          if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+          }
+        }
+
+        function setActiveVibeButtonFlights(clickedButton) {
+          // Remove active styles and add inactive styles (including hover)
+          vibeButtonsFlights.forEach(button => {
+            button.classList.remove('bg-blue-700', 'text-white');
+            button.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300'); // Ensure hover is present for inactive
+          });
+
+          // Add active styles to the clicked button and remove its hover effect
+          clickedButton.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300'); // Remove hover
+          clickedButton.classList.add('bg-blue-700', 'text-white');
+        }
+
+        // Add click listeners to flight vibe buttons
+        vibeButtonsFlights.forEach(button => {
+          button.addEventListener('click', () => {
+            const vibe = button.dataset.vibe;
+            setActiveVibeButtonFlights(button);
+            showVibeContentFlights(vibe);
+         });
+        });
+
+        // Initialize with 'city-flights' content shown and 'City' button active
+        const defaultVibeButtonFlights = document.querySelector('.vibe-btn-flights[data-vibe="city-flights"]');
+        if (defaultVibeButtonFlights) {
+          setActiveVibeButtonFlights(defaultVibeButtonFlights);
+          showVibeContentFlights('city-flights');
+        }
+    });
+    </script>
+    <script>
+      document.querySelectorAll('.search-flights').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        window.location.href = 'pages/flight_search.html';
+      });
+    });
+    </script>
   </body>
 </html>
