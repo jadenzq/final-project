@@ -471,5 +471,15 @@
       });
     });
     </script>
+    
+    <!-- Firebase 用户状态管理 -->
+    <script type="module">
+      import { initAuthState } from "./scripts/auth.js";
+      
+      // 初始化用户认证状态
+      document.addEventListener('DOMContentLoaded', () => {
+        initAuthState();
+      });
+    </script>
   </body>
 </html>
