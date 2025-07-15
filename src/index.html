@@ -41,8 +41,8 @@
         </nav>
         <!-- User Login/Signup -->
         <div class="flex space-x-2 mt-4 md:mt-0 text-lg">
-          <a href="pages/signup.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">Register</a>
-          <a href="pages/login.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign in</a>
+          <a href="pages/signup.html" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">注册</a>
+          <a href="pages/login.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">登录</a>
         </div>
       </div>
 
@@ -410,6 +410,31 @@
         window.location.href = 'pages/hotel_search.html';
       });
     });
+    </script>
+
+    <!-- 这里是用于引入firebase的 script-->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+      import { initAuthState } from "./scripts/auth.js";
+      
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCPC6aCEzTydqiDvXtXQ8S67ZxDuseCrdk",
+        authDomain: "final-3cf98.firebaseapp.com",
+        projectId: "final-3cf98",
+        storageBucket: "final-3cf98.firebasestorage.app",
+        messagingSenderId: "540018380553",
+        appId: "1:540018380553:web:9ec2fd28769cf4e6fb4dd8"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      
+      // 初始化用户认证状态
+      document.addEventListener('DOMContentLoaded', () => {
+        initAuthState();
+      });
     </script>
   </body>
 </html>

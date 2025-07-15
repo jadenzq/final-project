@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase 功能测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold text-center mb-6">Firebase 功能测试</h1>
+        
+        <div class="space-y-4">
+            <div class="p-4 bg-blue-50 rounded-lg">
+                <h2 class="text-xl font-semibold mb-2">当前用户状态</h2>
+                <div id="user-status">检查中...</div>
+            </div>
+            
+            <div class="p-4 bg-green-50 rounded-lg">
+                <h2 class="text-xl font-semibold mb-2">快速测试</h2>
+                <div class="space-x-2">
+                    <a href="pages/signup.html" class="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">注册页面</a>
+                    <a href="pages/login.html" class="inline-block px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">登录页面</a>
+                    <button id="logout-test" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50" disabled>登出</button>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-yellow-50 rounded-lg">
+                <h2 class="text-xl font-semibold mb-2">使用说明</h2>
+                <ol class="list-decimal list-inside space-y-1 text-sm">
+                    <li>点击"注册页面"创建新账户</li>
+                    <li>使用有效的邮箱和强密码（8-16位，包含大小写字母和数字）</li>
+                    <li>注册成功后会自动跳转到登录页面</li>
+                    <li>使用相同的邮箱密码登录</li>
+                    <li>登录成功后返回首页，导航栏会显示用户信息和登出按钮</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { checkAuthState, logOut } from "./scripts/auth.js";
+        
+        const userStatus = document.getElementById('user-status');
+        const logoutBtn = document.getElementById('logout-test');
+        
+        // 检查用户状态
+        checkAuthState().then(user => {
+            if (user) {
+                userStatus.innerHTML = `
+                    <div class="text-green-600">
+                        <strong>已登录</strong><br>
+                        邮箱: ${user.email}<br>
+                        UID: ${user.uid}
+                    </div>
+                `;
+                logoutBtn.disabled = false;
+            } else {
+                userStatus.innerHTML = '<div class="text-gray-600">未登录</div>';
+                logoutBtn.disabled = true;
+            }
+        });
+        
+        // 登出按钮事件
+        logoutBtn.addEventListener('click', async () => {
+            const success = await logOut();
+            if (success) {
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
