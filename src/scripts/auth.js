@@ -1,8 +1,9 @@
-// 用户认证状态管理
-import { auth } from './firebase-config.js';
+// User authentication state management
+import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-// 检查用户登录状态
+// Check user login status
 export function checkAuthState() {
   return new Promise((resolve) => {
     onAuthStateChanged(auth, (user) => {
@@ -11,79 +12,109 @@ export function checkAuthState() {
   });
 }
 
-// 用户登出
+// User logout
 export async function logOut() {
   try {
     await signOut(auth);
-    console.log("用户已登出");
+    console.log("User logged out");
     return true;
   } catch (error) {
-    console.error("登出错误:", error);
+    console.error("Logout error:", error);
     return false;
   }
 }
 
-// 更新导航栏的用户状态显示
-export function updateNavigation(user) {
-  // 获取导航栏中的用户操作区域 - 更准确的选择器
-  const userActions = document.querySelector('header .container .flex.space-x-2.mt-4');
+// Update navigation bar user status display
+export async function updateNavigation(user) {
+  // Try multiple selectors to find the user actions area
+  let userActions = document.querySelector('header .container .flex.space-x-2.mt-4.md\\:w-1\\/3.md\\:justify-end');
   
   if (!userActions) {
-    console.log("找不到用户操作区域，尝试其他选择器");
-    // 尝试更通用的选择器
-    const alternativeSelector = document.querySelector('header div.flex.space-x-2');
-    if (alternativeSelector) {
-      console.log("找到备用选择器");
-      updateUserActionArea(alternativeSelector, user);
-      return;
+    // Alternative selectors for different page structures
+    userActions = document.querySelector('header .flex.space-x-2.mt-4.md\\:w-1\\/3.md\\:justify-end');
+  }
+  
+  if (!userActions) {
+    userActions = document.querySelector('header .flex.space-x-2.mt-4');
+  }
+  
+  if (!userActions) {
+    userActions = document.querySelector('header div.flex.space-x-2');
+  }
+  
+  if (!userActions) {
+    console.log("Could not find user actions area, trying generic selector");
+    // Find any div with class containing "space-x-2" in header
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+      userActions = headerElement.querySelector('div[class*="space-x-2"]');
     }
-    console.log("无法找到用户操作区域");
+  }
+  
+  if (!userActions) {
+    console.log("Unable to find user actions area");
     return;
   }
 
-  updateUserActionArea(userActions, user);
+  await updateUserActionArea(userActions, user);
 }
 
-// 更新用户操作区域的辅助函数
-function updateUserActionArea(userActions, user) {
+// Helper function to update user action area
+async function updateUserActionArea(userActions, user) {
+  // Remove loading state and show content
+  userActions.classList.remove('opacity-0');
+  userActions.classList.add('opacity-100');
+  
   if (user) {
-    // 用户已登录，显示用户信息和登出按钮
-    const userEmail = user.email;
-    const userName = userEmail.split('@')[0]; // 简单地从邮箱提取用户名
+    // User is logged in, show user info and logout button
+    let userName = user.email.split('@')[0]; // Default fallback to email username
+    
+    try {
+      // Try to get username from Firestore
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        if (userData.username) {
+          userName = userData.username;
+        }
+      }
+    } catch (error) {
+      console.log("Could not fetch user data from Firestore:", error);
+      // Continue with email-based username as fallback
+    }
     
     userActions.innerHTML = `
-      <span class="px-4 py-2 text-white font-semibold">欢迎, ${userName}</span>
-      <button id="logout-btn" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">登出</button>
+      <span class="px-4 py-2 text-white font-semibold whitespace-nowrap">Welcome, ${userName}</span>
+      <button id="logout-btn" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer whitespace-nowrap">Logout</button>
     `;
     
-    // 添加登出按钮事件监听器
+    // Add logout button event listener
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', async () => {
         const success = await logOut();
         if (success) {
-          // 刷新页面以更新导航栏
+          // Refresh page to update navigation bar
           window.location.reload();
         }
       });
     }
   } else {
-    // 用户未登录，显示注册和登录按钮
-    // 检查当前页面路径以确定正确的链接
+    // User not logged in, show register and login buttons
+    // Check current page path to determine correct links
     const isInSubfolder = window.location.pathname.includes('/pages/');
     const signupLink = isInSubfolder ? 'signup.html' : 'pages/signup.html';
     const loginLink = isInSubfolder ? 'login.html' : 'pages/login.html';
     
     userActions.innerHTML = `
-      <a href="${signupLink}" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer">注册</a>
-      <a href="${loginLink}" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">登录</a>
+      <a href="${signupLink}" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer whitespace-nowrap">Register</a>
+      <a href="${loginLink}" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer whitespace-nowrap">Sign in</a>
     `;
   }
 }
 
-// 在页面加载时检查用户状态
-export function initAuthState() {
-  checkAuthState().then(user => {
-    updateNavigation(user);
-  });
+// Initialize auth state when page loads
+export async function initAuthState() {
+  const user = await checkAuthState();
+  await updateNavigation(user);
 }
