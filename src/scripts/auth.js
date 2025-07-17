@@ -26,28 +26,33 @@ export async function logOut() {
 
 // Update navigation bar user status display
 export async function updateNavigation(user) {
-  // Try multiple selectors to find the user actions area
-  let userActions = document.querySelector('header .container .flex.space-x-2.mt-4.md\\:w-1\\/3.md\\:justify-end');
+  // Try ID selector first (most reliable)
+  let userActions = document.getElementById('user-auth-area');
+  
+  if (!userActions) {
+    // Try multiple class selectors to find the user actions area
+    userActions = document.querySelector('header .container .flex.space-x-1.md\\:space-x-2.text-sm.md\\:text-lg.justify-end');
+  }
   
   if (!userActions) {
     // Alternative selectors for different page structures
-    userActions = document.querySelector('header .flex.space-x-2.mt-4.md\\:w-1\\/3.md\\:justify-end');
+    userActions = document.querySelector('header .flex.space-x-1.md\\:space-x-2.text-sm.md\\:text-lg.justify-end');
   }
   
   if (!userActions) {
-    userActions = document.querySelector('header .flex.space-x-2.mt-4');
+    userActions = document.querySelector('header .flex.justify-end');
   }
   
   if (!userActions) {
-    userActions = document.querySelector('header div.flex.space-x-2');
+    userActions = document.querySelector('header div.flex.space-x-1');
   }
   
   if (!userActions) {
     console.log("Could not find user actions area, trying generic selector");
-    // Find any div with class containing "space-x-2" in header
+    // Find any div with class containing "space-x-" in header
     const headerElement = document.querySelector('header');
     if (headerElement) {
-      userActions = headerElement.querySelector('div[class*="space-x-2"]');
+      userActions = headerElement.querySelector('div[class*="space-x-"]');
     }
   }
   
