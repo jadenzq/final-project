@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../output.css" rel="stylesheet" />
+    <title>TripleFun - Profile</title>
+  </head>
+  <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+    <!-- Header (reuse existing header if consistent across pages) -->
+    <header class="bg-sky-500 text-white p-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-luggage">
+            <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" />
+            <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" />
+            <path d="M10 20h4" />
+            <circle cx="16" cy="20" r="2" />
+            <circle cx="8" cy="20" r="2" />
+          </svg>
+          <h1 class="text-2xl font-bold">TripleFun</h1>
+        </a>
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign Out</a>
+      </div>
+    </header>
+
+    <!-- Profile Content -->
+    <main class="container mx-auto p-6">
+      <!-- Sub Navigation Tabs -->
+      <div class="mt-6 mb-4">
+        <nav class="bg-sky-100 rounded-lg p-2 flex space-x-4 text-sm font-semibold">
+          <a href="profile.html" class="px-4 py-2 rounded-md text-sky-900 bg-white hover:bg-sky-200 transition">Profile</a>
+          <a href="trip-history.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Trip History</a>
+          <a href="support.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Support</a>
+          <a href="setting.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Setting</a>
+        </nav>
+      </div>
+      <!-- Profile Header Card -->
+      <div class="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+        <img src="https://i.pravatar.cc/100" alt="User Avatar" class="w-24 h-24 rounded-full" />
+        <div class="flex-1">
+          <h2 class="text-2xl font-bold">Jane Traveler</h2>
+          <p class="text-gray-600">jane@example.com</p>
+        </div>
+        <a href="setting.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Edit Profile</a>
+      </div>
+
+      <!-- Profile Sections -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <!-- Travel Preferences -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-lg font-semibold mb-2">Travel Preferences</h3>
+          <ul class="text-gray-700 space-y-1">
+            <li>Favorite Types: Nature, Culture</li>
+            <li>Preferred Mode: Self-guided</li>
+            <li>Budget: $1000–2000</li>
+            <li>Wishlist: Japan, Iceland, Peru</li>
+          </ul>
+        </div>
+
+        <!-- Trip History -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-lg font-semibold mb-2">Recent Trips</h3>
+          <ul class="text-gray-700 space-y-1">
+            <li>Tokyo City Tour (May 2025)</li>
+            <li>Bali Adventure (Feb 2025)</li>
+            <li>Prague Cultural Walk (Dec 2024)</li>
+          </ul>
+        </div>
+
+        <!-- Saved Places -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-lg font-semibold mb-2">Saved Destinations</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-sm">Kyoto</span>
+            <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-sm">Santorini</span>
+            <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-sm">Banff</span>
+          </div>
+        </div>
+
+        <!-- Account Security -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-lg font-semibold mb-2">Account Security</h3>
+          <ul class="text-gray-700 space-y-1">
+            <li>Email Verified </li>
+            <li>2FA: Enabled </li>
+            <li>Linked Accounts: Google</li>
+          </ul>
+          <a href="setting.html" class="text-blue-600 text-sm mt-2 inline-block hover:underline">Manage Settings</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sky-500 text-white p-3 mt-12">
+      <div class="container mx-auto text-center text-sm">
+        <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-sky-200 transition">Privacy Policy</a>
+          <a href="#" class="hover:text-sky-200 transition">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
