@@ -69,33 +69,46 @@
         id="submitBtn"
         class="w-full py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition duration-300"
       >
-        Confirm
+        Confirm Registration
       </button>
     </form>
 
     <!-- Jump to Login -->
     <div class="mt-6 text-center">
       <a href="login.html" class="text-blue-600 hover:underline text-sm">
-        Have an account?
+        Already have an account? Click to login
       </a>
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { auth, db } from "../scripts/firebase-config.js";
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
     const form = document.getElementById("registerForm");
     const notification = document.getElementById("notification");
     const submitBtn = document.getElementById("submitBtn");
 
-    function showNotification(message) {
+    function showNotification(message, isError = true) {
       notification.textContent = message;
       notification.classList.remove("hidden");
       notification.classList.add("opacity-100");
+      
+      // 改变颜色以区分成功和错误消息
+      if (isError) {
+        notification.className = notification.className.replace(/bg-green-500/, "bg-red-500");
+        notification.classList.add("bg-red-500");
+      } else {
+        notification.className = notification.className.replace(/bg-red-500/, "bg-green-500");
+        notification.classList.add("bg-green-500");
+      }
 
       setTimeout(() => {
         notification.classList.remove("opacity-100");
         notification.classList.add("opacity-0");
         setTimeout(() => notification.classList.add("hidden"), 300);
-      }, 2000);
+      }, 3000);
     }
 
     function validatePassword(password) {
@@ -113,39 +126,76 @@
 
       // Basic validations
       if (!/^[\w\.-]+@[\w\.-]+\.\w{2,4}$/.test(email)) {
-        showNotification("Enter a valid email address.");
+        showNotification("Please enter a valid email address");
         return;
       }
 
       if (!/^\d{7,15}$/.test(phone)) {
-        showNotification("Enter a valid phone number.");
+        showNotification("Please enter a valid phone number");
         return;
       }
 
       if (username === "") {
-        showNotification("Username is required.");
+        showNotification("Username is required");
         return;
       }
 
       if (!validatePassword(password)) {
-        showNotification("Password must be 8–16 chars, include upper/lower/numbers.");
+        showNotification("Password must be 8-16 characters, include upper/lower case and numbers");
         return;
       }
 
-      // Simulate Firebase registration
+      // Firebase registration
       submitBtn.disabled = true;
       submitBtn.textContent = "Registering...";
 
       try {
-        await new Promise(resolve => setTimeout(resolve, 1500)); // simulate async
-        // Normally here you'd send the data to your backend or Firebase
-        alert("Registration successful!");
-        window.location.href = "login.html";
-      } catch (err) {
-        showNotification("Unexpected error occurred.");
+        // 创建用户账户
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // 将用户信息保存到 Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          email: email,
+          username: username,
+          phone: phone,
+          createdAt: new Date().toISOString(),
+          uid: user.uid
+        });
+
+        showNotification("Registration successful! Redirecting to login page...", false);
+        
+        // Delay redirect to let user see success message
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 2000);
+
+      } catch (error) {
+        console.error("Registration error:", error);
+        
+        // Display appropriate Firebase error messages
+        let errorMessage = "Registration failed, please try again";
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            errorMessage = "This email is already registered, please use a different email";
+            break;
+          case 'auth/weak-password':
+            errorMessage = "Password is too weak, please set a stronger password";
+            break;
+          case 'auth/invalid-email':
+            errorMessage = "Invalid email format";
+            break;
+          case 'auth/operation-not-allowed':
+            errorMessage = "Email registration is not enabled";
+            break;
+          default:
+            errorMessage = `Registration failed: ${error.message}`;
+        }
+        
+        showNotification(errorMessage);
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Confirm";
+        submitBtn.textContent = "Confirm Registration";
       }
     });
   </script>

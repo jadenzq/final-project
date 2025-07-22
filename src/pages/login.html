@@ -74,49 +74,99 @@
     <!-- Register Link -->
     <div class="mt-6 text-sm text-center text-gray-600">
       Don't have an account?
-      <a href="signup.html" class="text-blue-600 hover:underline">Register here.</a>
+      <a href="signup.html" class="text-blue-600 hover:underline">Register here</a>
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { auth } from "../scripts/firebase-config.js";
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
     const loginForm = document.getElementById("loginForm");
     const loginButton = document.getElementById("loginButton");
     const emailError = document.getElementById("emailError");
     const passwordError = document.getElementById("passwordError");
     const generalError = document.getElementById("generalError");
 
+    // 显示错误消息的辅助函数
+    function showError(element, message) {
+      element.textContent = message;
+      element.classList.remove("hidden");
+    }
+
+    // 清除所有错误消息
+    function clearErrors() {
+      emailError.classList.add("hidden");
+      passwordError.classList.add("hidden");
+      generalError.classList.add("hidden");
+    }
+
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       // Clear errors
-      emailError.classList.add("hidden");
-      passwordError.classList.add("hidden");
-      generalError.classList.add("hidden");
+      clearErrors();
 
       const email = loginForm.email.value.trim();
       const password = loginForm.password.value.trim();
 
-      // Mock authentication logic (replace with Firebase/your backend logic)
+      // Basic validation
+      if (!email) {
+        showError(emailError, "Please enter your email address");
+        return;
+      }
+
+      if (!password) {
+        showError(passwordError, "Please enter your password");
+        return;
+      }
+
+      // Firebase login
       loginButton.disabled = true;
-      loginButton.textContent = "Loading...";
+      loginButton.textContent = "Logging in...";
 
       try {
-        // Simulated login
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-        if (email === "user@example.com" && password === "password123") {
-          window.location.href = "profile.html";
-        } else if (email !== "user@example.com") {
-          emailError.textContent = "Email not found.";
-          emailError.classList.remove("hidden");
-        } else {
-          passwordError.textContent = "Incorrect password.";
-          passwordError.classList.remove("hidden");
+        console.log("Login successful:", user);
+        
+        // Display success message
+        showError(generalError, "Login successful! Redirecting...");
+        generalError.className = generalError.className.replace("text-red-500", "text-green-500");
+        
+        // Delay redirect to let user see success message
+        setTimeout(() => {
+          // Redirect to homepage
+          window.location.href = "../index.html";
+        }, 1500);
+
+      } catch (error) {
+        console.error("Login error:", error);
+        
+        // Display appropriate Firebase error messages
+        switch (error.code) {
+          case 'auth/user-not-found':
+            showError(emailError, "User not found, please check email or register first");
+            break;
+          case 'auth/wrong-password':
+            showError(passwordError, "Incorrect password, please try again");
+            break;
+          case 'auth/invalid-email':
+            showError(emailError, "Invalid email format");
+            break;
+          case 'auth/user-disabled':
+            showError(generalError, "This account has been disabled");
+            break;
+          case 'auth/too-many-requests':
+            showError(generalError, "Too many login attempts, please try again later");
+            break;
+          case 'auth/invalid-credential':
+            showError(generalError, "Invalid email or password, please try again");
+            break;
+          default:
+            showError(generalError, `Login failed: ${error.message}`);
         }
-
-      } catch (err) {
-        generalError.textContent = "An unexpected error occurred.";
-        generalError.classList.remove("hidden");
       } finally {
         loginButton.disabled = false;
         loginButton.textContent = "Login";
