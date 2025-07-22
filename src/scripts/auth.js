@@ -3,6 +3,9 @@ import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+const currentPath = window.location.pathname;
+const profileLink = currentPath.includes('/pages/') ? 'profile.html' : 'pages/profile.html';
+
 // Check user login status
 export function checkAuthState() {
   return new Promise((resolve) => {
@@ -89,7 +92,7 @@ async function updateUserActionArea(userActions, user) {
     }
     
     userActions.innerHTML = `
-      <span class="px-4 py-2 text-white font-semibold whitespace-nowrap">Welcome, ${userName}</span>
+      <span class="px-4 py-2 text-white font-semibold whitespace-nowrap">Welcome, <a href="${profileLink}" class="hover:underline">${userName}</a></span>
       <button id="logout-btn" class="px-4 py-2 rounded-full border border-white text-white font-semibold hover:bg-sky-600 hover:border-sky-600 transition duration-300 cursor-pointer whitespace-nowrap">Logout</button>
     `;
     
@@ -122,4 +125,5 @@ async function updateUserActionArea(userActions, user) {
 export async function initAuthState() {
   const user = await checkAuthState();
   await updateNavigation(user);
+  return user;
 }
