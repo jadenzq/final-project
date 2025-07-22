@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Settings - TripleFun</title>
+  <link href="../output.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-800 flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-sky-600 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../index.html" class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/>
+          <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/>
+          <path d="M10 20h4"/>
+          <circle cx="16" cy="20" r="2"/>
+          <circle cx="8" cy="20" r="2"/>
+        </svg>
+        <h1 class="text-2xl font-bold">TripleFun</h1>
+      </a>
+      <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign out</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+   <main class="flex flex-grow container mx-auto p-6 gap-8 flex-col">
+
+  <!-- Sub Navigation Tabs -->
+  <div class="mb-6">
+    <nav class="bg-sky-100 rounded-lg p-2 flex space-x-4 text-sm font-semibold">
+      <a href="profile.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Profile</a>
+      <a href="trip-history.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Trip History</a>
+      <a href="support.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Support</a>
+      <a href="setting.html" class="px-4 py-2 rounded-md text-sky-900 bg-white hover:bg-sky-200 transition">Setting</a>
+    </nav>
+  </div>
+  <main class="flex flex-grow container mx-auto p-6 gap-8">
+
+    <!-- Sidebar Nav -->
+    <nav class="w-60 bg-white rounded-lg shadow p-6 sticky top-6 self-start">
+      <h2 class="text-xl font-semibold mb-6">Settings</h2>
+      <ul class="space-y-3 text-gray-700">
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('account')"
+            id="nav-account"
+          >Account Settings</button>
+        </li>
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('privacy')"
+            id="nav-privacy"
+          >Privacy & Security</button>
+        </li>
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('notifications')"
+            id="nav-notifications"
+          >Notifications</button>
+        </li>
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('payment')"
+            id="nav-payment"
+          >Payment Methods</button>
+        </li>
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('language')"
+            id="nav-language"
+          >Language & Region</button>
+        </li>
+        <li>
+          <button
+            class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-100 focus:bg-sky-200 focus:outline-none transition"
+            onclick="showSection('help')"
+            id="nav-help"
+          >Help & Support</button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Content area -->
+    <section class="flex-1 bg-white rounded-lg shadow p-8 min-h-[500px]">
+
+      <!-- Account Settings -->
+      <div id="section-account" class="settings-section">
+        <h3 class="text-2xl font-semibold mb-6">Account Settings</h3>
+        <form class="space-y-6 max-w-md">
+          <div>
+            <label for="username" class="block mb-1 font-medium">Username</label>
+            <input id="username" type="text" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400" value="JaneTraveler"/>
+          </div>
+          <div>
+            <label for="email" class="block mb-1 font-medium">Email Address</label>
+            <input id="email" type="email" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400" value="jane@example.com"/>
+          </div>
+          <div>
+            <label for="phone" class="block mb-1 font-medium">Phone Number</label>
+            <input id="phone" type="tel" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400" value="+60123456789"/>
+          </div>
+          <div class="flex items-center space-x-3">
+            <input id="2fa" type="checkbox" class="h-5 w-5 text-sky-600 focus:ring-sky-400 rounded"/>
+            <label for="2fa" class="font-medium select-none">Enable Two-Factor Authentication (2FA)</label>
+          </div>
+          <button type="submit" class="mt-6 px-6 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition font-semibold">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Privacy & Security -->
+      <div id="section-privacy" class="settings-section hidden">
+        <h3 class="text-2xl font-semibold mb-6">Privacy & Security</h3>
+        <form class="space-y-6 max-w-md">
+          <div>
+            <p class="font-medium mb-2">Who can see my trips?</p>
+            <select class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400" id="tripVisibility">
+              <option value="private">Only Me</option>
+              <option value="friends">Friends</option>
+              <option value="public">Public</option>
+            </select>
+          </div>
+          <div>
+            <label class="inline-flex items-center space-x-2 cursor-pointer">
+              <input type="checkbox" id="locationAccess" class="form-checkbox h-5 w-5 text-sky-600 focus:ring-sky-400 rounded"/>
+              <span>Allow location access for personalized recommendations</span>
+            </label>
+          </div>
+          <div>
+            <p class="font-medium mb-2">Linked Accounts</p>
+            <ul class="list-disc list-inside text-gray-700">
+              <li>Google - Connected</li>
+              <li>Facebook - Not Connected</li>
+            </ul>
+            <button type="button" class="mt-2 px-4 py-1 border border-sky-600 text-sky-600 rounded hover:bg-sky-50 transition">Manage Linked Accounts</button>
+          </div>
+          <div class="mt-6">
+            <button type="submit" class="px-6 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition font-semibold">Save Changes</button>
+          </div>
+        </form>
+      </div>
+
+        <!-- Notifications -->
+        <div id="section-notifications" class="settings-section hidden">
+            <h3 class="text-2xl font-semibold mb-6">Notifications</h3>
+            <form class="space-y-6 max-w-md">
+                <div class="flex items-center space-x-3">
+                    <input id="emailNotif" type="checkbox" class="h-5 w-5 text-sky-600 focus:ring-sky-400 rounded"/>
+                    <label for="emailNotif" class="font-medium select-none">Email Notifications</label>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input id="smsNotif" type="checkbox" class="h-5 w-5 text-sky-600 focus:ring-sky-400 rounded"/>
+                    <label for="smsNotif" class="font-medium select-none">SMS Notifications</label>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input id="pushNotif" type="checkbox" class="h-5 w-5 text-sky-600 focus:ring-sky-400 rounded"/>
+                    <label for="pushNotif" class="font-medium select-none">Push Notifications</label>
+                </div>
+                <div>
+                    <label for="notifFrequency" class="block font-medium mb-1">Notification Frequency</label>
+                    <select id="notifFrequency" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400">
+                        <option>Immediately</option>
+                        <option>Daily Summary</option>
+                        <option>Weekly Summary</option>
+                        <option>Off</option>
+                    </select>
+                </div>
+                <button type="submit" class="px-6 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition font-semibold">Save Changes</button>
+            </form>
+        </div>
+
+        <!-- Payment Methods -->
+        <div id="section-payment" class="settings-section hidden">
+            <h3 class="text-2xl font-semibold mb-6">Payment Methods</h3>
+            <form class="space-y-6 max-w-md">
+                <p class="mb-4 text-gray-700">Manage your saved payment options.</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4">
+                    <li>Visa ending in 1234</li>
+                    <li>Mastercard ending in 5678</li>
+                    <li>PayPal: jane@example.com</li>
+                </ul>
+                <button type="button" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-semibold">Add New Payment Method</button>
+            </form>
+        </div>
+
+        <!-- Language & Region -->
+        <div id="section-language" class="settings-section hidden">
+            <h3 class="text-2xl font-semibold mb-6">Language & Region</h3>
+            <form class="space-y-6 max-w-md">
+                <div>
+                    <label for="languageSelect" class="block font-medium mb-1">Language</label>
+                    <select id="languageSelect" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400">
+                        <option>English (US)</option>
+                        <option>English (UK)</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                     <option>Chinese (Simplified)</option>
+                        <option>Chinese (Traditional)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="regionSelect" class="block font-medium mb-1">Region / Timezone</label>
+                    <select id="regionSelect" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400">
+                        <option>UTC-8 (Pacific Time)</option>
+                        <option>UTC+0 (Greenwich Mean Time)</option>
+                        <option>UTC+8 (Malaysia Time)</option>
+                        <option>UTC+9 (Japan Time)</option>
+                    </select>
+                </div>
+                <button type="submit" class="px-6 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition font-semibold">Save Changes</button>
+            </form>
+        </div>
+
+        <!-- Help & Support -->
+        <div id="section-help" class="settings-section hidden">
+            <h3 class="text-2xl font-semibold mb-6">Help & Support</h3>
+            <div class="max-w-md space-y-4 text-gray-700">
+            <p>If you need assistance, please check the following resources or contact our support team.</p>
+            <ul class="list-disc list-inside">
+                <li><a href="support.html" class="text-sky-600 hover:underline">FAQ</a></li>
+                <li><a href="support.html" class="text-sky-600 hover:underline">Contact Support</a></li>
+                <li><a href="support.html" class="text-sky-600 hover:underline">User Guide</a></li>
+            </ul>
+            <p>Our support team is available 9am - 6pm (GMT+8), Monday to Friday.</p>
+            </div>
+        </div>
+
+    </section>
+  </main>
+
+<script>
+    function showSection(section) {
+    // Hide all sections
+    document.querySelectorAll('.settings-section').forEach(el => el.classList.add('hidden'));
+    // Remove active class from all nav buttons
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('bg-sky-100', 'font-semibold'));
+    // Show selected section
+    document.getElementById('section-' + section).classList.remove('hidden');
+    // Highlight active nav button
+    document.getElementById('nav-' + section).classList.add('bg-sky-100', 'font-semibold');
+  }
+
+  // Default active section
+  showSection('account');
+</script>
+
+</body>
+</html>

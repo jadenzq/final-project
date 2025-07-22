@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Trips - TripleFun</title>
+  <link href="../output.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-sky-500 text-white p-4 shadow-md">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <a href="../index.html" class="flex items-center space-x-2 mb-2 md:mb-0 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-luggage">
+            <path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" />
+            <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" />
+            <path d="M10 20h4" />
+            <circle cx="16" cy="20" r="2" />
+            <circle cx="8" cy="20" r="2" />
+          </svg>
+        <h1 class="text-2xl font-bold">TripleFun</h1>
+        </a>
+
+        <!-- Log Out button -->
+        <div class="mt-2 md:mt-0">
+          <a href="../index.html"
+            class="px-4 py-2 rounded-full bg-white text-sky-900 font-semibold hover:bg-sky-700 hover:text-white transition duration-300 cursor-pointer">Sign out</a>
+        </div>
+        </div>
+    </header>
+
+  <!-- Main -->
+  <main class="container mx-auto px-4 py-8 flex-grow">
+    <!-- 🔹 Sub Navigation Tabs -->
+    <div class="mb-8">
+      <nav class="bg-sky-100 rounded-lg p-2 flex space-x-4 text-sm font-semibold">
+        <a href="profile.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Profile</a>
+        <a href="trip-history.html" class="px-4 py-2 rounded-md text-sky-900 bg-white shadow-sm">Trip History</a>
+        <a href="support.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Support</a>
+        <a href="setting.html" class="px-4 py-2 rounded-md text-sky-900 hover:bg-sky-200 transition">Setting</a>
+      </nav>
+    </div>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">My Trips</h2>
+
+    <!-- Tabs -->
+    <div class="mb-6">
+      <ul class="flex border-b text-sm font-medium text-gray-600">
+        <li class="-mb-px mr-4">
+          <a href="#" class="tab-btn border-b-2 border-sky-600 text-sky-600 pb-2">Upcoming</a>
+        </li>
+        <li class="mr-4">
+          <a href="#" class="tab-btn hover:text-sky-600 pb-2">Completed</a>
+        </li>
+        <li>
+          <a href="#" class="tab-btn hover:text-sky-600 pb-2">Cancelled</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Trip List -->
+    <div class="space-y-6">
+
+      <!-- Trip Card -->
+      <div class="bg-white rounded-lg shadow-md p-6 border hover:shadow-lg transition">
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-xl font-semibold text-sky-800">Hotel Stripes Kuala Lumpur</h3>
+            <p class="text-sm text-gray-600 mt-1">Check-in: Aug 5, 2025 – Check-out: Aug 9, 2025</p>
+            <p class="text-sm text-gray-500">Booking ID: #TRP98421</p>
+          </div>
+          <span class="bg-green-100 text-green-700 px-3 py-1 text-sm rounded-full">Confirmed</span>
+        </div>
+        <div class="mt-4 flex justify-end">
+          <a href="trip-detail1.html"
+            class="text-sm text-blue-600 font-medium hover:underline">View details →</a>
+        </div>
+      </div>
+
+      <!-- Another Trip Card -->
+      <div class="bg-white rounded-lg shadow-md p-6 border hover:shadow-lg transition">
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-xl font-semibold text-sky-800">Flight to Langkawi</h3>
+            <p class="text-sm text-gray-600 mt-1">Departure: Sep 2, 2025 – Return: Sep 7, 2025</p>
+            <p class="text-sm text-gray-500">Booking ID: #FLG23512</p>
+          </div>
+          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 text-sm rounded-full">Pending Check-in</span>
+        </div>
+        <div class="mt-4 flex justify-end">
+          <a href="trip-detail2.html"
+            class="text-sm text-blue-600 font-medium hover:underline">View details →</a>
+        </div>
+      </div>
+
+      <!-- Add more cards here -->
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-sky-500 text-white p-3 mt-8">
+    <div class="container mx-auto text-center text-sm">
+      <p class="mb-2">&copy; 2025 TripleFun. All rights reserved.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="hover:text-sky-200 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-sky-200 transition">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
